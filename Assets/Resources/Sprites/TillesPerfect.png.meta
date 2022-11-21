@@ -1,0 +1,865 @@
+fileFormatVersion: 2
+guid: a9b84612e5889f243af9e7b892e65d73
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4526192607412357078
+    second: TillesPerfect_0
+  - first:
+      213: -6383450373437886412
+    second: TillesPerfect_1
+  - first:
+      213: -6798428824456788768
+    second: TillesPerfect_2
+  - first:
+      213: 4653150577224809142
+    second: TillesPerfect_3
+  - first:
+      213: 7312586811743521180
+    second: TillesPerfect_4
+  - first:
+      213: -5608165814907777988
+    second: TillesPerfect_5
+  - first:
+      213: -6594127426777569723
+    second: TillesPerfect_6
+  - first:
+      213: -2197526007179908090
+    second: TillesPerfect_7
+  - first:
+      213: 6756719832954609911
+    second: TillesPerfect_8
+  - first:
+      213: -8330788333074847506
+    second: TillesPerfect_9
+  - first:
+      213: 1438948730609023954
+    second: TillesPerfect_10
+  - first:
+      213: 132527510124479519
+    second: TillesPerfect_11
+  - first:
+      213: 278993777324592258
+    second: TillesPerfect_12
+  - first:
+      213: -7884345904105208785
+    second: TillesPerfect_13
+  - first:
+      213: -7278746022035614508
+    second: TillesPerfect_14
+  - first:
+      213: -4268125469376966035
+    second: TillesPerfect_15
+  - first:
+      213: 8748080895544925221
+    second: TillesPerfect_16
+  - first:
+      213: -790837048618041496
+    second: TillesPerfect_17
+  - first:
+      213: 6980646301147743980
+    second: TillesPerfect_18
+  - first:
+      213: -4940337580514052034
+    second: TillesPerfect_19
+  - first:
+      213: 7379290805671486042
+    second: TillesPerfect_20
+  - first:
+      213: 2238805313396486976
+    second: TillesPerfect_21
+  - first:
+      213: -3938798002987283067
+    second: TillesPerfect_22
+  - first:
+      213: 6351684084596012514
+    second: TillesPerfect_23
+  - first:
+      213: -4377601737103375834
+    second: TillesPerfect_24
+  - first:
+      213: 1792349258374287872
+    second: TillesPerfect_25
+  - first:
+      213: -2398657333131726180
+    second: TillesPerfect_26
+  - first:
+      213: -7898717639942910169
+    second: TillesPerfect_27
+  - first:
+      213: 4874433500539677065
+    second: TillesPerfect_28
+  - first:
+      213: -1909303512729359357
+    second: TillesPerfect_29
+  - first:
+      213: -2851176582138364161
+    second: TillesPerfect_30
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 19
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TillesPerfect_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a28ff2aedcbbf21c0800000000000000
+      internalID: -4526192607412357078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43076e1d4bd6967a0800000000000000
+      internalID: -6383450373437886412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e40a77f00127a1a0800000000000000
+      internalID: -6798428824456788768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_3
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ba73e9ebcf439040800000000000000
+      internalID: 4653150577224809142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_4
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c99cd2726f68b7560800000000000000
+      internalID: 7312586811743521180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_5
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ccee897eacb22b0800000000000000
+      internalID: -5608165814907777988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_6
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5462343ea04fc74a0800000000000000
+      internalID: -6594127426777569723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_7
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60ceb5d4db1d081e0800000000000000
+      internalID: -2197526007179908090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_8
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f0a812b3e0b4cd50800000000000000
+      internalID: 6756719832954609911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_9
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee8ea144628136c80800000000000000
+      internalID: -8330788333074847506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_10
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db33f12f3c28f310800000000000000
+      internalID: 1438948730609023954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_11
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f14cfeb7115d6d100800000000000000
+      internalID: 132527510124479519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_12
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28c0affbc5f2fd300800000000000000
+      internalID: 278993777324592258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_13
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f24c08b5c2d259290800000000000000
+      internalID: -7884345904105208785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_14
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d49742be03bcfa90800000000000000
+      internalID: -7278746022035614508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_15
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d621df4cf7294c4c0800000000000000
+      internalID: -4268125469376966035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_16
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52c1655a93d676970800000000000000
+      internalID: 8748080895544925221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_17
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86f37e1f4e16605f0800000000000000
+      internalID: -790837048618041496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_18
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce64e8a63dc30e060800000000000000
+      internalID: 6980646301147743980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_19
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3872f24525607bb0800000000000000
+      internalID: -4940337580514052034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_20
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a52ea5ef3e1886660800000000000000
+      internalID: 7379290805671486042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_21
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04331422295d11f10800000000000000
+      internalID: 2238805313396486976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_22
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58dccedb5149659c0800000000000000
+      internalID: -3938798002987283067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_23
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e5f8d3b507b52850800000000000000
+      internalID: 6351684084596012514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_24
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62202d3e962af33c0800000000000000
+      internalID: -4377601737103375834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_25
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00295da7724bfd810800000000000000
+      internalID: 1792349258374287872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_26
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c923cc83dd146bed0800000000000000
+      internalID: -2398657333131726180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_27
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72f471ad72e126290800000000000000
+      internalID: -7898717639942910169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_28
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9896ee0617775a340800000000000000
+      internalID: 4874433500539677065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_29
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30c6c53329ac085e0800000000000000
+      internalID: -1909303512729359357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TillesPerfect_30
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffefab531069e68d0800000000000000
+      internalID: -2851176582138364161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
