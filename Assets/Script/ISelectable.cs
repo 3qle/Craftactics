@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.Character;
 using UnityEngine;
 
 public interface ISelectable
@@ -26,26 +28,13 @@ public interface IViewable
 
 public interface IUIble
 {
-   void ShowInfo(ICharacter obj);
    void UpdateTurnText(Turn.Turns act);
    void ShowTurnCount(int turns);
-   public void ShowPopUp(ElementalResistance.Resistance result, Vector3 pos, int damage);
+   public void ShowPopUp(ResistanceType result, Vector3 pos, int damage);
    
 }
 
 
-public interface IWeapon
-{
-   public int GetDamageAmount();
-   Weapon.Element GetWeaponElement();
-   int DecreaseAP();
-   public int MaxRange();
-   public int MinRange();
-
-   public string GetName();
-   public int GetCost();
-   
-}
 
 public interface IAttackable
 {
@@ -53,20 +42,20 @@ public interface IAttackable
 }
 public interface ICharacter : ISelectable, IAttackable, IDamageable,IVisualization<ICharacterView>
 {
+   int Stamina { get; }
    bool OutOfAP { get; }
   public bool isDamaged { get; }
    public void PrepareCharacterForNewTurn(List<ICharacter> list, Turn.Turns act, int add);
-   IWeapon PrepareWeapon(int i);
-   IWeapon GetWeapon(int i);
+   void PrepareWeapon(IWeapon weapon);
+   
    void SetField(IViewable field);
-   IResistance GetResistanse { get; }
-  
+   
 }
 public interface IResistance
 {
+   public void ShowResistance();
    int CalculateDamage(IWeapon weapon);
-   ElementalResistance.Resistance GetAttackResult();
-   ElementalResistance.Resistance GetResistance(int num);
+   ResistanceType GetAttackResult();
    
 }
 

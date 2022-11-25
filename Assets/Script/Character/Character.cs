@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.Character;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,8 +12,10 @@ public abstract class Character : MonoBehaviour, ICharacter
     private IUIble _uIble;
     public IHealth Health;
     public IResistance Resistance;
-    public Weapon[] weapons;
+    private IWeapon _leftWeapon, _rightWeapon;
     public IWeapon SelectedWeapon;
+    protected IWeapon[] WeaponsArray;
+    public static Action<int, int, string> ShowBaseInfo;
     protected bool _isWalking, _outOfAp;
 
     private int _stepDirX, _stepDirY;
@@ -25,12 +28,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     
     public Vector3 Pos() => transform.position;
     
-    public IWeapon GetWeapon(int i) => weapons[i];
-    
     public void SetField(IViewable field) => Field = field;
-    public IResistance GetResistanse  => Resistance;
-    
-    public IHealth GetHealth() => Health;
     
     public Character GetStats() => this;
     
@@ -38,15 +36,14 @@ public abstract class Character : MonoBehaviour, ICharacter
     
     public bool IsDead => Health.isOver;
     
-    public IWeapon PrepareWeapon(int i)
+    public void PrepareWeapon(IWeapon weapon)
     {
-        if (AP >= weapons[i].Cost && !_isWalking)
+        if (AP >= weapon.ApCost && !_isWalking)
         {
-            SelectedWeapon = weapons[i];
+            SelectedWeapon = weapon;
             if (side == Fraction.Hero)
-                Field.ShowAttackTiles(weapons[i]);
+                Field.ShowAttackTiles(SelectedWeapon);
         }
-        return SelectedWeapon;
     }
     
     protected void Chache()
@@ -58,14 +55,22 @@ public abstract class Character : MonoBehaviour, ICharacter
         SetStats(gameObject);
         Field.SetTileType(this, false); 
         Turn.PrepareFractionForTurn += PrepareCharacterForNewTurn;
-    }
+        SetWeapons();
+   }
 
+    public void SetWeapons()
+    {
+        _leftWeapon = transform.GetChild(0).GetComponent<IWeapon>();
+        _rightWeapon = transform.GetChild(1).GetComponent<IWeapon>();
+        WeaponsArray = new[] {_leftWeapon, _rightWeapon};
+    }
     public void SetStats(GameObject obj)
     {
         obj.name = Name;
         AP = MaxAP;
     }
 
+    public int Stamina => AP;
     public bool OutOfAP => _outOfAp;
     public bool isDamaged { get; }
 
@@ -82,9 +87,12 @@ public abstract class Character : MonoBehaviour, ICharacter
  
     public virtual void SelectCharacter(bool selected)
     {
+        Resistance.ShowResistance();
+        ShowBaseInfo.Invoke(Health.HealthPoints,AP,Name);
+        _leftWeapon.ShowWeapon(this,WeaponHand.Left);
+        _rightWeapon.ShowWeapon(this,WeaponHand.Right);
         Field.ShowWalkTile(this);
-        _uIble.ShowInfo(this);
-        Field.CreateHighLight(transform.position, selected);
+      //  Field.CreateHighLight(transform.position, selected);
     }
 
     protected void MakeSteps(Vector3 destination)
@@ -102,7 +110,7 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     protected void FinishSteps()
     {
-        _uIble.ShowInfo(this);
+        ShowBaseInfo.Invoke(Health.HealthPoints,AP,Name);
         Field.SetTileType(this, false);
         _isWalking = false;
         Field.CreateHighLight(transform.position, true);
@@ -125,7 +133,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         StartCoroutine(Flash(0));
         int damage = Health.DecreaseHealth(Resistance.CalculateDamage(weapon));
-        _uIble.ShowInfo(this);
+        ShowBaseInfo.Invoke(Health.HealthPoints,AP,Name);
      //   Turn.I.ChangeTurnCount(Resistance.GetAttackResult());
         _uIble.ShowPopUp(Resistance.GetAttackResult(), transform.position, damage);
       
@@ -147,14 +155,12 @@ public abstract class Character : MonoBehaviour, ICharacter
     public IWeapon Attack()
     {
         Field.HideTiles();
-        AP -= SelectedWeapon.GetCost();
+        AP -= SelectedWeapon.ApCost;
         return SelectedWeapon;
     }
 
-  protected void CheckForStamina(Vector3 destination)
+  protected void CheckForStamina()
     {
-        _outOfAp = SelectedWeapon.GetCost()> AP;
-      
-        
+        _outOfAp = SelectedWeapon.ApCost > AP;
     }
 }

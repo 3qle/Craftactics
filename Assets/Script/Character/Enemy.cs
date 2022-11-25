@@ -23,12 +23,14 @@ public class Enemy : Character
         _target = null;
         base.SelectCharacter(selected);
         if (!selected || Turn.I.Act != Turn.Turns.E) return;
-        PrepareWeapon(Random.Range(0,2));
-        CheckForStamina(_pos);
+        PrepareWeapon(WeaponsArray[Random.Range(0,WeaponsArray.Length)]);
+        CheckForStamina();
         if(!_outOfAp) CreateWaypoint(); 
         StartCoroutine(_target == null ||  _outOfAp? StopAction():MoveEnemy(_pos));
         Debug.Log($" {name} {_target}");
     }
+    
+    
 
 
     private IEnumerator MoveEnemy(Vector3 destination)
@@ -69,8 +71,8 @@ public class Enemy : Character
     
     public void AttackEnemyTarget()
     {
-        AP -= SelectedWeapon.GetCost();
-        _target.TakeDamage(SelectedWeapon);
+    //    AP -= SelectedWeapon.GetCost();
+    //    _target.TakeDamage(SelectedWeapon);
         _target = null;
         StartCoroutine(StopAction());
     }

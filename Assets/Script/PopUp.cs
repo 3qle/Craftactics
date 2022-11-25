@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.Character;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public class PopUp : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
     }
 
-    public void ShowPopUp(ElementalResistance.Resistance result, Vector3 pos, int damage)
+    public void ShowPopUp(ResistanceType result, Vector3 pos, int damage)
     {
         gameObject.SetActive(true);
         transform.position =pos;

@@ -58,15 +58,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Script/Character/Character.cs</url>
-          <line>60</line>
-          <properties documentPath="C:\Unity Projects\Craftactics\Assets\Script\Character\Character.cs" initialLine="65" containingFunctionPresentation="method 'Chache'">
-            <startOffsets>
-              <option value="1713" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1714" />
-            </endOffsets>
-          </properties>
+          <line>58</line>
+          <properties documentPath="C:\Unity Projects\Craftactics\Assets\Script\Character\Character.cs" initialLine="65" containingFunctionPresentation="method 'Chache'" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

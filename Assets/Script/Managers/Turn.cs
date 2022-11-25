@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.Character;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -79,20 +80,20 @@ public class Turn : MonoBehaviour
        //     PrepareFractionForTurn.Invoke(_activeFractionList, Act,0);
     }
     
-    public void ChangeTurnCount(ElementalResistance.Resistance result)
+    public void ChangeTurnCount(ResistanceType result)
     {
         switch (result)
         {
-            case ElementalResistance.Resistance.Weak:
+            case ResistanceType.Weak:
                 SetTurnCount(_turnsCount);
                 break;
-            case ElementalResistance.Resistance.Block:
+            case ResistanceType.Block:
                 SetTurnCount(_turnsCount-2);
                 break;
-            case ElementalResistance.Resistance.Neutral:
+            case ResistanceType.Neutral:
                 SetTurnCount(_turnsCount-1);
                 break;
-            case ElementalResistance.Resistance.Absorb:
+            case ResistanceType.Absorb:
                 SetTurnCount(-_turnsCount);
                 break;
         }

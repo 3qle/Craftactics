@@ -121,9 +121,9 @@ public class Field :Spawner,IViewable
     {
         HideTiles();
         Vector2 pos = _selectable.Pos();
-        for (int x = (int) pos.x - stats.MaxRange(); x <= stats.MaxRange() + pos.x; x++) 
-        for (int y = (int) pos.y - stats.MaxRange(); y <= stats.MaxRange() + pos.y; y++) 
-            if (CheckMaxRange(x,y) && CheckMinRange(x,y,stats.MinRange(),pos) && _tilePool[x][y].Type != Cell.CellType.Hero) 
+        for (int x = (int) pos.x - stats.MaxRange; x <= stats.MaxRange + pos.x; x++) 
+        for (int y = (int) pos.y - stats.MaxRange; y <= stats.MaxRange + pos.y; y++) 
+            if (CheckMaxRange(x,y) && CheckMinRange(x,y,stats.MinRange,pos) && _tilePool[x][y].Type != Cell.CellType.Hero) 
                 _tilePool[x][y].CreateAttackCell();
     }
 

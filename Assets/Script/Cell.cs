@@ -60,7 +60,7 @@ public class Cell : MonoBehaviour
 
    public Cell CheckFreeNeighbours(Character character)
    {
-       weaponRange = character.SelectedWeapon.MaxRange();
+       weaponRange = character.SelectedWeapon.MaxRange;
       AddFreeNeighbours(weaponRange);
        Cell c = Left != null
             && (Left.Type == CellType.Free || (Character) CharOnCell == character) 
