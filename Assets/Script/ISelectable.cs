@@ -2,20 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script.Character;
+using Script.Managers;
 using UnityEngine;
 
-public interface ISelectable
-{
-   void SelectCharacter(bool select);
-   public void MoveCharacter(Vector3 point);
-   Vector3 Pos();
-   Character GetStats();
-}
+
 
 
 public interface IViewable
 {
-   void ShowWalkTile(ISelectable obj); 
+   void ShowWalkTile(IFightable obj); 
    void HideTiles();
    public void ShowAttackTiles(IWeapon stats);
   void SetTileType(Character obj,bool free);
@@ -28,7 +23,7 @@ public interface IViewable
 
 public interface IUIble
 {
-   void UpdateTurnText(Turn.Turns act);
+   void UpdateTurnText(Script.Managers.TurnState act);
    void ShowTurnCount(int turns);
    public void ShowPopUp(ResistanceType result, Vector3 pos, int damage);
    
@@ -36,22 +31,27 @@ public interface IUIble
 
 
 
-public interface IAttackable
+
+public interface IFightable 
 {
+   public bool IsDead {get;}
+   public void TakeDamage(IWeapon weapon);
    IWeapon Attack();
-}
-public interface ICharacter : ISelectable, IAttackable, IDamageable,IVisualization<ICharacterView>
-{
    int Stamina { get; }
    bool OutOfAP { get; }
   public bool isDamaged { get; }
-   public void PrepareCharacterForNewTurn(List<ICharacter> list, Turn.Turns act, int add);
+   public void PrepareCharacterForNewTurn(List<IFightable> list, Script.Managers.TurnState act, int add);
    void PrepareWeapon(IWeapon weapon);
+
+   public void Inject(IViewable field, UI ui, Pool pool);
+   void SelectCharacter(bool select);
+   public void MoveCharacter(Vector3 point);
+   Vector3 Pos();
+   Character GetStats();
    
-   void SetField(IViewable field);
-   
+
 }
-public interface IResistance
+public interface IResistance 
 {
    public void ShowResistance();
    int CalculateDamage(IWeapon weapon);
@@ -59,36 +59,17 @@ public interface IResistance
    
 }
 
-public interface IHealth : IVisualization<IHealthView>
+public interface IHealth 
 {
    public bool isOver { get; }
    public Health.HealthEnum healthStatus { get; }
    int DecreaseHealth(int damage);
-   void SetHP(int hp);
+   void SetMaxHP(int hp);
    int HealthPoints { get; }
 }
 
-public interface IVisualization<in TView>
-{
-   void Visualize(TView view);
-}
 
-public interface IHealthView
-{
-   void DisplayHealth(float amount);
-}
 
-public interface ICharacterView : IHealthView
-{
-   void DisplayName(string name);
-}
-
-public interface IDamageable
-{
-   public bool IsDead {get;}
-   public void TakeDamage(IWeapon weapon);
-
-}
 
 
 

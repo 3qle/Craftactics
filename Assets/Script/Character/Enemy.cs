@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class Enemy : Character
 {
     private Vector3 _pos;
-    private ICharacter _target;
+    private IFightable _target;
     private IResistance _targetResistance;
     public List<Cell> targetList = new List<Cell>();
     private Cell _targetCell;
@@ -22,7 +22,7 @@ public class Enemy : Character
     {
         _target = null;
         base.SelectCharacter(selected);
-        if (!selected || Turn.I.Act != Turn.Turns.E) return;
+       // if (!selected || Turn.I.Act != Turn.Turns.E) return;
         PrepareWeapon(WeaponsArray[Random.Range(0,WeaponsArray.Length)]);
         CheckForStamina();
         if(!_outOfAp) CreateWaypoint(); 
@@ -36,7 +36,7 @@ public class Enemy : Character
     private IEnumerator MoveEnemy(Vector3 destination)
     {
          AP -= 1;
-        Field.SetTileType(this, true);
+        _field.SetTileType(this, true);
         while (transform.position != destination)
         {
             MakeSteps(destination);
@@ -56,7 +56,7 @@ public class Enemy : Character
 
     private void CreateWaypoint()
     {
-        targetList = Field.GetTargetsForEnemy(this);
+        targetList = _field.GetTargetsForEnemy(this);
         foreach (var t in targetList)
         {
             if (t.CheckFreeNeighbours(this) != null)

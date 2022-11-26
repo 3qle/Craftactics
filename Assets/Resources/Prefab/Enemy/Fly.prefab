@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3154607226807287490}
   - component: {fileID: 3154607226807287489}
   - component: {fileID: 3154607226807287493}
-  - component: {fileID: 3854599289963438292}
   - component: {fileID: 7954876238064597557}
   - component: {fileID: 4260118181093361741}
   m_Layer: 0
@@ -100,33 +99,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c62eb21c0595546940a491c2671f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 378025428036790825}
-  - {fileID: 4888590415966279892}
+  Health:
+    healthStat: 0
+    HP: 0
+  Resistance:
+    physicDefence: 0
+    fireDefence: 0
+    waterDefence: 0
+    electricDefence: 0
+    waveDefence: 0
+    attackResult: 0
   Name: Fly
   MaxHP: 3
   MaxAP: 3
   AP: 0
   side: 1
   targetList: []
---- !u!114 &3854599289963438292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3154607226807287488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4d9df685efa26848961442e055ca26e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  physicDefence: 3
-  fireDefence: 3
-  waterDefence: 1
-  electricDefence: 3
-  waveDefence: 2
-  attackResult: 2
 --- !u!61 &7954876238064597557
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -240,17 +228,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: 713faf714e95bb141b63612baa9d043e, type: 3}
   m_PrefabInstance: {fileID: 2069865692260428954}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4888590415966279892 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: 713faf714e95bb141b63612baa9d043e, type: 3}
-  m_PrefabInstance: {fileID: 2069865692260428954}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6508093900258631271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,14 +290,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: 396abcea2dc29564ab729b30894f4cbb, type: 3}
   m_PrefabInstance: {fileID: 6508093900258631271}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &378025428036790825 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: 396abcea2dc29564ab729b30894f4cbb, type: 3}
-  m_PrefabInstance: {fileID: 6508093900258631271}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7108880036797212023}
   - component: {fileID: 7108880036797212021}
   - component: {fileID: 7108880036797212018}
-  - component: {fileID: -2150338899290075777}
   - component: {fileID: 7108880036797212019}
   m_Layer: 0
   m_Name: Archer
@@ -135,24 +134,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-2150338899290075777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7108880036797212022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4d9df685efa26848961442e055ca26e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  physicDefence: 2
-  fireDefence: 3
-  waterDefence: 2
-  electricDefence: 3
-  waveDefence: 2
-  attackResult: 2
 --- !u!114 &7108880036797212019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,9 +146,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81f7e21f7fd118469de5d4a00559370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 3514010128264646934}
-  - {fileID: 7816728036844943569}
+  Health:
+    healthStat: 0
+    HP: 0
+  Resistance:
+    physicDefence: 0
+    fireDefence: 0
+    waterDefence: 0
+    electricDefence: 0
+    waveDefence: 0
+    attackResult: 0
   Name: Archer
   MaxHP: 5
   MaxAP: 5
@@ -235,17 +223,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: 434aed6d5f120474f8c4461ba27846a7, type: 3}
   m_PrefabInstance: {fileID: 3680839785435712671}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7816728036844943569 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: 434aed6d5f120474f8c4461ba27846a7, type: 3}
-  m_PrefabInstance: {fileID: 3680839785435712671}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8046284793591702872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,14 +285,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: 2baa19c14883bc648b2940b948c3faf4, type: 3}
   m_PrefabInstance: {fileID: 8046284793591702872}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3514010128264646934 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: 2baa19c14883bc648b2940b948c3faf4, type: 3}
-  m_PrefabInstance: {fileID: 8046284793591702872}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

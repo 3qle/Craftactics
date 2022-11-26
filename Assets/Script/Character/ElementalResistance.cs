@@ -3,19 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Script.Character;
 using UnityEngine;
-
-public class ElementalResistance : MonoBehaviour, IResistance
+[Serializable]
+public class ElementalResistance :  IResistance
 {
+    
     public ResistanceType physicDefence, fireDefence, waterDefence, electricDefence, waveDefence, attackResult;
-    public static Action<Dictionary<Element,ResistanceType>> ShowOnUI;
-    private Dictionary<Element, ResistanceType> _resistances;
+    public Dictionary<Element, ResistanceType> _resistances;
 
-    private void Start()
-    {
-        SetResistance();
-    }
-
-    void SetResistance()
+  
+   public void SetResistance()
     {
         _resistances = new Dictionary<Element, ResistanceType>
         {
@@ -26,7 +22,11 @@ public class ElementalResistance : MonoBehaviour, IResistance
             {Element.Wave, waveDefence},
         };
     }
-    public void ShowResistance() => ShowOnUI.Invoke(_resistances);
+
+    public void ShowResistance()
+    {
+        
+    }
     
   public int CalculateDamage(IWeapon element)
     {

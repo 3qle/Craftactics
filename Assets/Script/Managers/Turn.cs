@@ -2,71 +2,74 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script.Character;
+using Script.Managers;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-
-public class Turn : MonoBehaviour
+[Serializable]
+public class Turn 
 {
     public static Action<bool> AllowPlayerClick;
-    public static Turn I;
-    public IViewable field;
-    public TextMeshProUGUI scoreText;
-    private int _score;
+  //  public static Turn I;
+    public IViewable _field;
+    private Pool _pool;
+   
     private IUIble _ui;
-    public static Action<List<ICharacter>, Turns, int> PrepareFractionForTurn;
-    public enum Turns { P ,E }
-    public List<ICharacter> _activeFractionList = new List<ICharacter>();
+        //public static Action<List<IFightable>, TurnState, int> PrepareFractionForTurn;
+    public TurnState Act;
+    public List<Character> _activeFractionList = new List<Character>();
     
     [Header("Turn Settings")]
-    public Turns Act;
+   
     int _turnsCount;
     private int _playerTurnCount, _savedTurnCount;
     
-    private void Awake() =>  I = this;
+  //  private void Awake() =>  I = this;
     
     void Start()
     {
-        field = FindObjectOfType<Field>();
-        _ui = FindObjectOfType<UI>();
-        Enemy.EnemyActDone += ActEnemy;
-        PrepareChangeTurn();
+       // field = FindObjectOfType<Field>();
+       // _ui = FindObjectOfType<UI>();
+       
+      
     }
-    
+
+    public void InjectDependency(Field field, UI ui, Pool pool)
+    {
+        _field = field;
+        _ui = ui;
+        _pool = pool;
+        Act = TurnState.E;
+        StartNewTurn();
+        Enemy.EnemyActDone += ActEnemy;
+    }
     public void TurnButton()
     {
-        if(Act == Turns.P) PrepareChangeTurn();
+        StartNewTurn();
     }
-
-    private void PrepareChangeTurn()
+    
+    void StartNewTurn()
     {
-        Act = Act == Turns.E? Turns.P:Turns.E;
-        StartCoroutine(ChangeTurn());
-    }
-
-    IEnumerator ChangeTurn()
-    {
+        Act = Act == TurnState.E? TurnState.P:TurnState.E;
+        AddActiveFractionToList();
+        AllowPlayerClick.Invoke(Act == TurnState.P);
+        if(Act == TurnState.E)ActEnemy();
         _ui.UpdateTurnText(Act);
-        _activeFractionList.Clear();
-        AllowPlayerClick.Invoke(Act == Turns.P);
-        PrepareFractionForTurn.Invoke(_activeFractionList, Act, _savedTurnCount);
-        if (_activeFractionList.Count == 0)
-        {
-            field.SpawnButton();
-            PrepareChangeTurn();
-        }
-        yield return new WaitForSeconds(1);
-        //SetTurnCount(_activeFractionList.Count);
-        if(Act == Turns.E) ActEnemy();
     }
+
+    void AddActiveFractionToList()
+    {
+        _activeFractionList.Clear();
+      _activeFractionList = Act == TurnState.P? _pool.HeroesList : _pool.EnemiesList;
+    }
+   
     private void ActEnemy()
     {
-        if (_activeFractionList.Count > 0  && Act == Turns.E)
+        if (_activeFractionList.Count > 0  && Act == TurnState.E)
         {
             int i = Random.Range(0, _activeFractionList.Count);
-
-
+            
             if (_activeFractionList[i].OutOfAP)
             {
                 _activeFractionList.Remove(_activeFractionList[i]);
@@ -75,7 +78,7 @@ public class Turn : MonoBehaviour
            else
             _activeFractionList[i].SelectCharacter(true);
         }
-        if(_activeFractionList.Count == 0) PrepareChangeTurn();
+        if(_activeFractionList.Count == 0) StartNewTurn();
     //    if(_activeFractionList.Count == 0 && _turnsCount > 0 && Act == Turns.E)   
        //     PrepareFractionForTurn.Invoke(_activeFractionList, Act,0);
     }
@@ -98,7 +101,7 @@ public class Turn : MonoBehaviour
                 break;
         }
 
-        if(_turnsCount == 0) PrepareChangeTurn();
+        if(_turnsCount == 0) StartNewTurn();
     }
 
     void SetTurnCount(int i)
@@ -108,8 +111,5 @@ public class Turn : MonoBehaviour
         _turnsCount = _turnsCount < 0 ? 0 : _turnsCount;
         _ui.ShowTurnCount(_turnsCount);
     }
-    public void RemoveDeadCharacter(ICharacter character)
-    {
-        PrepareFractionForTurn -= character.PrepareCharacterForNewTurn;
-    }
+    
 }

@@ -6,26 +6,17 @@ using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-
-public class Field :Spawner,IViewable
+[Serializable]
+public class Field :IViewable
 {
-    //проверка
     [Header("Field Settings")]
-    public Cell tile;
-    private readonly List<List<Cell>> _tilePool = new List<List<Cell>>();
-    
-    private ISelectable _selectable;
+    public readonly List<List<Cell>> _tilePool = new List<List<Cell>>();
+    private IFightable _selectable;
     private int _posX, _posY;
     private int _stamina;
     private Vector3 _pos;
-
-    private void Awake()
-    {
-        CreateField();
-        SpawnHeroes(this);
-        StartCoroutine(CreateSpawnPoint());
-    }
-    
+    public int height,width;
+  
     public Field GetStats() => this;
     
     public List<List<Cell>> GetField() 
@@ -33,48 +24,43 @@ public class Field :Spawner,IViewable
     
     public void CreateHighLight(Vector3 pos,bool create) 
         => _tilePool[(int)pos.x][(int)pos.y].CreateHighLight(create);
-    
+
+    public void SpawnButton()
+    {
+        throw new NotImplementedException();
+    }
+
     public void SetTileType(Character obj, bool free) 
         => _tilePool[(int)obj.Pos().x][(int)obj.Pos().y].ChangeType(obj, free);
     
-    public void SpawnButton() 
-        => StartCoroutine(CreateSpawnPoint());
-    
-   public IEnumerator CreateSpawnPoint()
-   {
-       yield return new WaitForSeconds(0.1f);
-     
-       _posX = Random.Range(0, width); 
-       _posY = Random.Range(0, height);
-       for (int i = 0; i < maxEnemy; i++) 
-       { 
-           yield return new WaitForSeconds(0.1f); 
-           while(_tilePool[_posX][_posY].Type != Cell.CellType.Free) 
-           { 
-               _posX = Random.Range(0, width); 
-               _posY = Random.Range(0, height); 
-            
-           } 
-           SpawnEnemy(new Vector3(_posX, _posY),this); 
-       }
-
-       maxEnemy++;
-   }
-   
-   void CreateField()
+  
+   public void CreateField()
     {
         for (var i = 0; i <= width; i++)
             _tilePool.Add(new List<Cell>());
-        
-        for (var i = 0; i < width; i++) 
-        for (var j = 0; j < height; j++) 
-        {
-            _tilePool[i].Add(Instantiate(tile, new Vector3(i, j), quaternion.identity,transform.GetChild(0)));
-            _tilePool[i][j].name = (i + "." + j);
-        }
     }
 
-    void GetStatsFromChar(ISelectable obj)
+  public void SetCellOnField(Cell cell, int x,int y)
+    {
+         _tilePool[x].Add(cell);
+         _tilePool[x][y].name = (x + "." + y);
+         _tilePool[x][y].SetFieldLink(this);
+    }
+   public Vector2 CreateSpawnPoint()
+   {
+       _posX = Random.Range(0, width); 
+       _posY = Random.Range(0, height); 
+       while(_tilePool[_posX][_posY].Type != Cell.CellType.Free) 
+       { 
+           _posX = Random.Range(0, width); 
+           _posY = Random.Range(0, height);
+       }
+       return new Vector2(_posX, _posY);
+   }
+   
+  
+
+    void GetStatsFromChar(IFightable obj)
     {
         _selectable = obj;
         _pos = obj.Pos();
@@ -86,7 +72,7 @@ public class Field :Spawner,IViewable
         var get = x >= 0 && x < width && y >= 0 && y < height;
         return get;
     }
-    public void ShowWalkTile(ISelectable obj)
+    public void ShowWalkTile(IFightable obj)
     {
         HideTiles();
         GetStatsFromChar(obj);

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7108880036797212021}
   - component: {fileID: 7108880036797212018}
   - component: {fileID: 7108880036797212019}
-  - component: {fileID: -7533389771030224814}
   m_Layer: 0
   m_Name: Wizard
   m_TagString: Player
@@ -147,32 +146,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81f7e21f7fd118469de5d4a00559370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 7961205776824088147}
-  - {fileID: 5598603560911972315}
+  Health:
+    healthStat: 0
+    HP: 0
+  Resistance:
+    physicDefence: 0
+    fireDefence: 0
+    waterDefence: 0
+    electricDefence: 0
+    waveDefence: 0
+    attackResult: 0
   Name: Wizard
   MaxHP: 5
   MaxAP: 5
   AP: 0
   side: 0
---- !u!114 &-7533389771030224814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7108880036797212022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4d9df685efa26848961442e055ca26e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  physicDefence: 3
-  fireDefence: 1
-  waterDefence: 1
-  electricDefence: 1
-  waveDefence: 3
-  attackResult: 2
 --- !u!1001 &6411039464847427447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235,17 +223,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4229230645586911074, guid: 9ed15de3e05267646b50ebd0810839ed, type: 3}
   m_PrefabInstance: {fileID: 6411039464847427447}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5598603560911972315 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1534225727708782764, guid: 9ed15de3e05267646b50ebd0810839ed, type: 3}
-  m_PrefabInstance: {fileID: 6411039464847427447}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8876955861679593215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,14 +285,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4229230645586911074, guid: e66f3d5131d986c4abdcae8a70a573b2, type: 3}
   m_PrefabInstance: {fileID: 8876955861679593215}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7961205776824088147 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1534225727708782764, guid: e66f3d5131d986c4abdcae8a70a573b2, type: 3}
-  m_PrefabInstance: {fileID: 8876955861679593215}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -18,7 +18,7 @@ public class Hero : Character
         if (AP > 0)
         {
             AP -= 1;
-            Field.SetTileType(this, true);
+            _field.SetTileType(this, true);
             while (transform.position != destination)
             {
                 MakeSteps(destination);

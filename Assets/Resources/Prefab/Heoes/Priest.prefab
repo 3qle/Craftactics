@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7108880036797212021}
   - component: {fileID: 7108880036797212018}
   - component: {fileID: 7108880036797212019}
-  - component: {fileID: 2718437532760811318}
   m_Layer: 0
   m_Name: Priest
   m_TagString: Player
@@ -147,32 +146,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81f7e21f7fd118469de5d4a00559370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 7607191210898242153}
-  - {fileID: 5544953268458165067}
+  Health:
+    healthStat: 0
+    HP: 0
+  Resistance:
+    physicDefence: 0
+    fireDefence: 0
+    waterDefence: 0
+    electricDefence: 0
+    waveDefence: 0
+    attackResult: 0
   Name: Priest
   MaxHP: 5
   MaxAP: 5
   AP: 0
   side: 0
---- !u!114 &2718437532760811318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7108880036797212022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4d9df685efa26848961442e055ca26e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  physicDefence: 3
-  fireDefence: 3
-  waterDefence: 2
-  electricDefence: 1
-  waveDefence: 2
-  attackResult: 2
 --- !u!1001 &3128177902101377934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235,17 +223,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7854345741862778409, guid: bf74b7d3d6f9fc947b9165baac3f2590, type: 3}
   m_PrefabInstance: {fileID: 3128177902101377934}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7607191210898242153 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4826637382187649511, guid: bf74b7d3d6f9fc947b9165baac3f2590, type: 3}
-  m_PrefabInstance: {fileID: 3128177902101377934}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6465211613020419047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,14 +285,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4229230645586911074, guid: 2d4d343c28114d6448dd02ed4836a2e1, type: 3}
   m_PrefabInstance: {fileID: 6465211613020419047}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5544953268458165067 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1534225727708782764, guid: 2d4d343c28114d6448dd02ed4836a2e1, type: 3}
-  m_PrefabInstance: {fileID: 6465211613020419047}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

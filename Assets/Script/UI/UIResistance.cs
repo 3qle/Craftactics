@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using Script.Character;
 using UnityEngine;
 
-public class UIResistance : MonoBehaviour
+[System.Serializable]
+public class UIResistance
 {
     public ResistanceCard[] ResistanceCards;
-        void Start() => ElementalResistance.ShowOnUI+= ShowResistance;
+       
         
-        void ShowResistance(Dictionary<Element,ResistanceType> resistanceTypes)
+        public void ShowResistance(Dictionary<Element,ResistanceType> resistanceTypes)
         {
             ResistanceCards[0].CreateButton(resistanceTypes[Element.Physic]);
             ResistanceCards[1].CreateButton(resistanceTypes[Element.Fire]);

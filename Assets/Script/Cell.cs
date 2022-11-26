@@ -8,40 +8,43 @@ public class Cell : MonoBehaviour
    public SpriteRenderer _spriteRenderer;
    private Animator _animator;
    public BoxCollider2D _box;
-   public ICharacter CharOnCell;
+   public IFightable CharOnCell;
    public Cell Up,Left,Right,Down;
-   private IViewable field;
+   private Field _field;
    public enum CellType { Free, Hero, Enemy, }
 
    public CellType Type;
    private int weaponRange;
+   
    private void Start()
    {
-       field = FindObjectOfType<Field>();
        _box = GetComponent<BoxCollider2D>();
        _spriteRenderer = GetComponent<SpriteRenderer>();
        _animator = GetComponent<Animator>();
    }
+
+   public void SetFieldLink(Field field) => _field = field;
+   
 
    public void AddFreeNeighbours(int range)
    {
        int x = (int)transform.position.x;
        int y = (int)transform.position.y;
        
-       Left = CheckBorders(x - range, y, field.GetField()) && field.GetField()[x - range][y].Type == CellType.Free
-               ? field.GetField()[x - range][y]
+       Left = CheckBorders(x - range, y, _field.GetField()) && _field.GetField()[x - range][y].Type == CellType.Free
+               ? _field.GetField()[x - range][y]
                : null;
        
-       Right = CheckBorders(x + range, y, field.GetField()) && field.GetField()[x + range][y].Type == CellType.Free
-               ? field.GetField()[x + range][y]
+       Right = CheckBorders(x + range, y, _field.GetField()) && _field.GetField()[x + range][y].Type == CellType.Free
+               ? _field.GetField()[x + range][y]
                : null;
        
-       Down = CheckBorders(x, y - range, field.GetField()) && field.GetField()[x][y - range].Type == CellType.Free
-               ? field.GetField()[x][y - range]
+       Down = CheckBorders(x, y - range, _field.GetField()) && _field.GetField()[x][y - range].Type == CellType.Free
+               ? _field.GetField()[x][y - range]
                : null;
        
-       Up = CheckBorders(x, y + range, field.GetField()) && field.GetField()[x][y + range].Type == CellType.Free
-               ? field.GetField()[x][y + range]
+       Up = CheckBorders(x, y + range, _field.GetField()) && _field.GetField()[x][y + range].Type == CellType.Free
+               ? _field.GetField()[x][y + range]
                : null;
    }
 

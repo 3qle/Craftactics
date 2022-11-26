@@ -1,33 +1,40 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Script.Character;
+using Script.Managers;
+using Script.UI;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
-using Image = UnityEngine.UI.Image;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 namespace Script.UI
 {
-    public class UIWeaponButtons : MonoBehaviour
+    [Serializable]
+    public class UIWeaponButtons
     {
         public WeaponHand Hand;
-        public Card WeaponUi;
+        public Button Button;
+        public Card Ui;
 
         private IWeapon _weapon;
-        private ICharacter _character;
-        private void Start() => Weapon.ShowWeaponButton += ShowButtons;
+        private IFightable _fightable;
+
+        public void SetButton()=>Button.onClick.AddListener(SelectWeapon);
         
-        public void SelectWeapon() => _character.PrepareWeapon(_weapon);
+        public void SelectWeapon() => _fightable.PrepareWeapon(_weapon);
         
-        public void ShowButtons(ICharacter character, IWeapon weapon,WeaponHand hand)
+        public void ShowButton(IFightable fightable, IWeapon weapon,WeaponHand hand)
         {
             if (Hand == hand)
             {
                 _weapon = weapon;
-                _character = character;
-                WeaponUi.UpdateButtonInfo(weapon, character);
+                _fightable = fightable;
+                Ui.UpdateButtonInfo(weapon, fightable);
             }
         }
 
-     
+        
         
         
     }

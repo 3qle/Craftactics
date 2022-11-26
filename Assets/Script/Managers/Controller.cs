@@ -1,0 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+using UnityEngine.Events;
+[Serializable]
+public class Controller
+{
+    
+   
+    private Camera _camera;
+    private IFightable _selectable;
+
+    private bool _canClick;
+    public void InjectDependency()
+    {
+        _camera = Camera.main;
+        Turn.AllowPlayerClick += SetCursorLock;
+    }
+
+    void SetCursorLock(bool can) => _canClick = can;
+    
+ 
+    
+ public   void Click()
+    {
+        Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
+      
+        if (Input.GetMouseButtonDown(0) && _canClick)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+            if (hit.collider != null)
+            {
+                 if (hit.collider.CompareTag("WalkTile")) 
+                    _selectable.MoveCharacter(hit.collider.transform.position);
+
+                else  if (hit.collider.CompareTag("AttackTile")) 
+                    hit.collider.GetComponent<Cell>().CharOnCell.TakeDamage(_selectable.Attack());
+
+                else  if (hit.collider.CompareTag("CharacterTile"))
+                {
+                    _selectable = hit.collider.GetComponent<Cell>().CharOnCell; 
+                    _selectable.SelectCharacter(true);
+                  
+                }
+               
+            }
+        }
+    }
+   
+  
+}

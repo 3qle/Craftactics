@@ -2,17 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[System.Serializable]
-public class Health : IHealth
+
+[Serializable]
+public class Health 
 {
-    public Health(int hp)
-   {
-       HP = hp;
-   }
+  
     public enum HealthEnum { Healthy, Wounded, Weaken, AtDead }
     public HealthEnum healthStat;
 
     public int HP;
+    public int MaxHP;
     
     public void SetEnemyHealthStatus()
     {
@@ -30,11 +29,9 @@ public class Health : IHealth
         HP -= damage;
         return damage;
     }
-    public void SetHP(int hp) => HP = hp;
+    public void SetMaxHP() => HP = MaxHP;
+    
     public int HealthPoints => HP;
 
-    public void Visualize(IHealthView view)
-    {
-        view.DisplayHealth(HP);
-    }
+  
 }

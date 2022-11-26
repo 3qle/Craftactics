@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5696796565254440727}
   - component: {fileID: 5696796565254440724}
   - component: {fileID: 5696796565254440720}
-  - component: {fileID: 3051574344727587128}
   - component: {fileID: 3384148561521561643}
   - component: {fileID: 4068768751921587133}
   m_Layer: 0
@@ -100,33 +99,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c62eb21c0595546940a491c2671f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 5562105161854982205}
-  - {fileID: 1667263568386634486}
+  Health:
+    healthStat: 0
+    HP: 0
+  Resistance:
+    physicDefence: 0
+    fireDefence: 0
+    waterDefence: 0
+    electricDefence: 0
+    waveDefence: 0
+    attackResult: 0
   Name: Slime
   MaxHP: 4
   MaxAP: 5
   AP: 0
   side: 1
   targetList: []
---- !u!114 &3051574344727587128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5696796565254440725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4d9df685efa26848961442e055ca26e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  physicDefence: 1
-  fireDefence: 3
-  waterDefence: 0
-  electricDefence: 3
-  waveDefence: 3
-  attackResult: 2
 --- !u!61 &3384148561521561643
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -236,17 +224,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: d32b876febbd1e5458f1040ecc3c538e, type: 3}
   m_PrefabInstance: {fileID: 1323761253130464371}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5562105161854982205 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: d32b876febbd1e5458f1040ecc3c538e, type: 3}
-  m_PrefabInstance: {fileID: 1323761253130464371}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5209872664144725688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -309,14 +286,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: 66860d054c60f224f9a9ab2169b9dacb, type: 3}
   m_PrefabInstance: {fileID: 5209872664144725688}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1667263568386634486 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: 66860d054c60f224f9a9ab2169b9dacb, type: 3}
-  m_PrefabInstance: {fileID: 5209872664144725688}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

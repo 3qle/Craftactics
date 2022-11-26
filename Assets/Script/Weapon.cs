@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour,IWeapon
     public int Cost;
     public int HitsCount;
 
-    public static Action<ICharacter, IWeapon, WeaponHand > ShowWeaponButton;
+    public static Action<IFightable, IWeapon, WeaponHand > ShowWeaponButton;
     public Element DamageElement;
     private int _maxRange;
     private int _minRange;
@@ -25,11 +25,11 @@ public class Weapon : MonoBehaviour,IWeapon
         Type = name;
     }
 
-    public void ShowWeapon(ICharacter character,WeaponHand hand) 
-        => ShowWeaponButton.Invoke(character,this,hand);
+    public void ShowWeapon(IFightable fightable,WeaponHand hand) 
+        => ShowWeaponButton.Invoke(fightable,this,hand);
 
     public int Damage 
-        =>WeaponDamage;
+        => WeaponDamage;
     
     public Element WeaponElement
         => DamageElement;

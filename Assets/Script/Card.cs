@@ -12,11 +12,11 @@ public class Card : MonoBehaviour
     public TextMeshProUGUI Name, Cost, Dam;
 
 
-    public void UpdateButtonInfo(IWeapon weapon, ICharacter character)
+    public void UpdateButtonInfo(IWeapon weapon, IFightable fightable)
     {
         Name.text = weapon.Name;
         Cost.text = weapon.ApCost.ToString();
-        Cost.color = character.Stamina >= weapon.ApCost ? Color.green : Color.red;
+        Cost.color = fightable.Stamina >= weapon.ApCost ? Color.green : Color.red;
         Dam.color = GetDamageColor(weapon.WeaponElement);
         Dam.text = weapon.Damage.ToString();
     }

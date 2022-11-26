@@ -1,7 +1,7 @@
 ﻿using Script.Character;
   public interface IWeapon
     {
-        public void ShowWeapon(ICharacter character,WeaponHand hand);
+        public void ShowWeapon(IFightable fightable,WeaponHand hand);
         public int Damage { get; }
         Element WeaponElement { get; }
         public int MaxRange { get; }

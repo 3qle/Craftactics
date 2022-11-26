@@ -1,33 +1,57 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
-    [Header("Spawner Settings")] 
-    public int maxParty;
+    public UI ui;
+    public Pool pool;
+    public Field field;
+    public Turn turn;
+    public Controller controller;
+    
+    [Header("Spawner Settings")]
     public int maxEnemy;
     int _spawnX, _spawnY;
-    public Character[] heroes;
-    public Character[] enemies;
 
-    public int height,width;
 
-    public void SpawnHeroes(IViewable field)
+    public void SpawnOnBattleStart()
     {
-        for (int i = 0; i < maxParty; i++)
-        { 
-            var  hero =Instantiate(heroes[i], new Vector3(i, 0, 0), Quaternion.identity, transform.GetChild(2));
-            hero.SetField(field);
+        SpawnCells();
+        SpawnHeroes();
+        SpawnEnemies();
+    }
+    void SpawnCells()
+    {
+        field.CreateField();
+        for (var x = 0; x < field.width; x++)
+        for (var y = 0; y < field.height; y++)
+        {
+            var cell =  Instantiate(pool.tile, new Vector2(x,y), quaternion.identity, transform.GetChild(0));
+            field.SetCellOnField(cell,x,y);
+        }
+    }
+   
+
+    public void SpawnHeroes()
+    {
+        for (int i = 0; i < pool.heroes.Length; i++)
+        {
+            var  hero = Instantiate(pool.heroes[i], new Vector3(i, 0, 0), Quaternion.identity, transform.GetChild(2));
+            hero.Inject(field,ui, pool);
         }
     }
 
-   public void SpawnEnemy(Vector3 spawnPos, IViewable field)
-    { 
-        var  enemy =Instantiate(enemies[Random.Range(0, 4)], spawnPos, Quaternion.identity, transform.GetChild(2)); 
-        enemy.SetField(field);
-    }
+   public void SpawnEnemies()
+    {
+        for (int i = 0; i < maxEnemy; i++)
+        {
+            var  enemy =Instantiate(pool.enemies[Random.Range(0, pool.enemies.Length)], field.CreateSpawnPoint(), Quaternion.identity, transform.GetChild(2));
+            enemy.Inject(field,ui, pool);
+        }
+   }
    
 }

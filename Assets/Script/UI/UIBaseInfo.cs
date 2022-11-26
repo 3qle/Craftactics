@@ -4,15 +4,12 @@ using UnityEngine;
 
 namespace Script.UI
 {
-    public class UIBaseInfo: MonoBehaviour
+    [Serializable]
+    public class UIBaseInfo
     {
         public TextMeshProUGUI HPText, APText, NameText;
 
-        private void Start()
-        {
-            global::Character.ShowBaseInfo += ShowInfo;
-        }
-
+      
         public void ShowInfo(int hp, int ap, string name)
         {
             HPText.text = hp.ToString();
