@@ -121,10 +121,10 @@ public class Cell : MonoBehaviour
    {
        _spriteRenderer.color = tag switch
        {
-           "WalkTile" => Color.cyan,
+           "WalkTile" => new Color(0.21f,0.58f,0.52f),
            "AttackTile" => Color.red,
            "VoidTile" => Color.grey,
-           "CharacterTile" => Color.yellow,
+           "CharacterTile" => new Color(0.74f,0.41f,0.2f),
            _ => default
        };
        
