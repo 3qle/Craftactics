@@ -19,6 +19,7 @@ public class Turn
     
     public void Initialize(Field field, UI ui, Pool pool)
     {
+        
         _ui = ui;
         _pool = pool;
         Act = TurnState.E;
