@@ -360,7 +360,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4989646174743155195, guid: af613948ffd643340bf0e37942a4b624, type: 3}
       propertyPath: m_Name
-      value: AffinityStatus (4)
+      value: Wave
       objectReference: {fileID: 0}
     - target: {fileID: 7664907426926970830, guid: af613948ffd643340bf0e37942a4b624, type: 3}
       propertyPath: m_Pivot.x
@@ -1792,7 +1792,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4989646174743155195, guid: af613948ffd643340bf0e37942a4b624, type: 3}
       propertyPath: m_Name
-      value: AffinityStatus (1)
+      value: Water
       objectReference: {fileID: 0}
     - target: {fileID: 7664907426926970830, guid: af613948ffd643340bf0e37942a4b624, type: 3}
       propertyPath: m_Pivot.x
@@ -1924,7 +1924,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4989646174743155195, guid: af613948ffd643340bf0e37942a4b624, type: 3}
       propertyPath: m_Name
-      value: AffinityStatus
+      value: Physic
       objectReference: {fileID: 0}
     - target: {fileID: 7664907426926970830, guid: af613948ffd643340bf0e37942a4b624, type: 3}
       propertyPath: m_Pivot.x
@@ -2732,7 +2732,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4989646174743155195, guid: af613948ffd643340bf0e37942a4b624, type: 3}
       propertyPath: m_Name
-      value: AffinityStatus (3)
+      value: Electric
       objectReference: {fileID: 0}
     - target: {fileID: 7664907426926970830, guid: af613948ffd643340bf0e37942a4b624, type: 3}
       propertyPath: m_Pivot.x
@@ -3283,7 +3283,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4989646174743155195, guid: af613948ffd643340bf0e37942a4b624, type: 3}
       propertyPath: m_Name
-      value: AffinityStatus (2)
+      value: Fire
       objectReference: {fileID: 0}
     - target: {fileID: 7664907426926970830, guid: af613948ffd643340bf0e37942a4b624, type: 3}
       propertyPath: m_Pivot.x
@@ -3715,7 +3715,7 @@ MonoBehaviour:
     - {fileID: 7108880036797212019, guid: c332726f4df159b4696f88709a9e2379, type: 3}
     - {fileID: 7108880036797212019, guid: b8a7bf91373d97c4e8d7c305e9b61651, type: 3}
     enemies:
-    - {fileID: 5696796565254440720, guid: 5414691f35ad9a843a42dc90117f3c0a, type: 3}
+    - {fileID: 3154607226807287493, guid: 3e5f290fa3a57e548b32fc05094f55aa, type: 3}
     - {fileID: 5696796565254440720, guid: 5414691f35ad9a843a42dc90117f3c0a, type: 3}
     - {fileID: 5696796565254440720, guid: bad893fd5c26a3c4faa689533b241aa1, type: 3}
     - {fileID: 5696796565254440720, guid: 939737e298212bf43a7da3ffb40fa556, type: 3}
@@ -3728,9 +3728,6 @@ MonoBehaviour:
     height: 7
     width: 5
   turn:
-    _field:
-      height: 0
-      width: 0
     Act: 0
     _activeFractionList: []
   maxEnemy: 7
@@ -4122,7 +4119,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

@@ -11,16 +11,14 @@ using Random = UnityEngine.Random;
 public class Turn 
 {
     [Header("Turn Settings")]
-    public Field _field;
     private Pool _pool;
     private UI _ui;
      
     public TurnState Act;
-    public List<Character> _activeFractionList = new List<Character>();
+    [HideInInspector] public List<Character> _activeFractionList = new List<Character>();
     
     public void Initialize(Field field, UI ui, Pool pool)
     {
-        _field = field;
         _ui = ui;
         _pool = pool;
         Act = TurnState.E;

@@ -51,14 +51,17 @@
      <Compile Include="Assets\Script\Managers\Pool.cs" />
      <Compile Include="Assets\Script\Character\Character.cs" />
      <Compile Include="Assets\Script\Character\Weapon.cs" />
+     <Compile Include="Assets\Script\Character\Legs.cs" />
      <Compile Include="Assets\Script\Managers\Controller.cs" />
      <Compile Include="Assets\Script\UI\Card.cs" />
+     <Compile Include="Assets\Script\Character\Stamina.cs" />
      <Compile Include="Assets\Script\Character\ResistanceType.cs" />
      <Compile Include="Assets\Script\Managers\Field.cs" />
      <Compile Include="Assets\Script\Character\WeaponHand.cs" />
      <Compile Include="Assets\Script\Managers\Turn.cs" />
      <Compile Include="Assets\Script\Character\Attributes.cs" />
      <Compile Include="Assets\Script\Character\Hero.cs" />
+     <Compile Include="Assets\Script\Character\Hands.cs" />
      <Compile Include="Assets\Script\UI\UIResistance.cs" />
      <Compile Include="Assets\Script\Character\Health.cs" />
      <Compile Include="Assets\Script\Managers\Spawner.cs" />
@@ -67,9 +70,6 @@
      <Compile Include="Assets\Script\UI\UIBaseInfo.cs" />
      <Compile Include="Assets\Script\Managers\BattleStarter.cs" />
      <Compile Include="Assets\Script\UI\ResistanceCard.cs" />
-     <Compile Include="Assets\Script\Character\Stamina.cs" />
-     <Compile Include="Assets\Script\Character\Legs.cs" />
-     <Compile Include="Assets\Script\Character\Hands.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

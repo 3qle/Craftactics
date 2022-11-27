@@ -106,6 +106,10 @@ MonoBehaviour:
     healthStat: 0
     HP: 0
     MaxHP: 2
+  Stamina:
+    MaxSP: 3
+    SP: 0
+    OutOfStamina: 0
   Resistance:
     physicDefence: 3
     fireDefence: 3
@@ -113,10 +117,6 @@ MonoBehaviour:
     electricDefence: 3
     waveDefence: 2
     attackResult: 0
-  Stamina:
-    MaxSP: 0
-    SP: 0
-    OutOfStamina: 0
   Legs:
     _isWalking: 0
   Hands:
