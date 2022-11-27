@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638051339185309590
-    m_Hash: 4235052115
+      ticks: 638051351144649389
+    m_Hash: 690001957
   m_LockFileStatus:
     m_FilePath: C:/Unity Projects/Craftactics/Craftactics/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638051339250898849
-    m_Hash: 2449740277
+      ticks: 638051351144649389
+    m_Hash: 983925866
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
