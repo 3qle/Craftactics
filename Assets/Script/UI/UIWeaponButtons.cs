@@ -8,23 +8,21 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-namespace Script.UI
-{
-    [Serializable]
+ [Serializable]
     public class UIWeaponButtons
     {
         public WeaponHand Hand;
         public Button Button;
         public Card Ui;
 
-        private IWeapon _weapon;
-        private IFightable _fightable;
+        private Weapon _weapon;
+        private Character _fightable;
 
         public void SetButton()=>Button.onClick.AddListener(SelectWeapon);
         
-        public void SelectWeapon() => _fightable.PrepareWeapon(_weapon);
+        public void SelectWeapon() => _fightable.Hands.PrepareWeapon(_weapon);
         
-        public void ShowButton(IFightable fightable, IWeapon weapon,WeaponHand hand)
+        public void ShowButton(Character fightable, Weapon weapon,WeaponHand hand)
         {
             if (Hand == hand)
             {
@@ -38,4 +36,3 @@ namespace Script.UI
         
         
     }
-}

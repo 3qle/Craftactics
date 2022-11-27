@@ -1,79 +1,72 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 
 public class Enemy : Character
 {
-    private Vector3 _pos;
-    private IFightable _target;
-    private IResistance _targetResistance;
+    private Vector2 _pos;
+    private Character _target;
+    private ElementalResistance _targetResistance;
     public List<Cell> targetList = new List<Cell>();
     private Cell _targetCell;
-    public static Action EnemyActDone;
-
-    private void Start()
-    {
-        Chache();
-    }
-    public override void SelectCharacter(bool selected)
-    {
-        _target = null;
-        base.SelectCharacter(selected);
-       // if (!selected || Turn.I.Act != Turn.Turns.E) return;
-        PrepareWeapon(WeaponsArray[Random.Range(0,WeaponsArray.Length)]);
-        CheckForStamina();
-        if(!_outOfAp) CreateWaypoint(); 
-        StartCoroutine(_target == null ||  _outOfAp? StopAction():MoveEnemy(_pos));
-        Debug.Log($" {name} {_target}");
-    }
     
-    
-
-
-    private IEnumerator MoveEnemy(Vector3 destination)
+    public override void Select(bool selected)
     {
-         AP -= 1;
-        _field.SetTileType(this, true);
-        while (transform.position != destination)
-        {
-            MakeSteps(destination);
-            yield return new WaitForSeconds(0.15f);
-        }
-        FinishSteps();
-        yield return new WaitForSeconds(0.5f);
+        base.Select(selected);
+        if (!selected || _turn.Act != TurnState.E) return;
+        
+        Hands.PrepareRandomWeapon();
+        SearchTarget();
+        ChooseAction();
+        StartCoroutine(WaitForAttack());
+    }
+
+    IEnumerator WaitForAttack()
+    {
+        while (Legs._isWalking) 
+            yield return new WaitForEndOfFrame();
         AttackEnemyTarget();
-    }  
+    }
+
+    void ChooseAction()
+    {
+        if(_target == null ||  Stamina.OutOfStamina) 
+           StartCoroutine( StopAction());
+        else 
+            Move(_pos);
+    }
     
     private IEnumerator StopAction()
     {
-        SelectCharacter(false);
+        _target = null;
+        Select(false);
         yield return new WaitForSeconds(1);
-        EnemyActDone.Invoke();
+        _turn.NextEnemyAct();
     }
 
-    private void CreateWaypoint()
+    private void SearchTarget()
     {
-        targetList = _field.GetTargetsForEnemy(this);
-        foreach (var t in targetList)
+        if (!Stamina.CheckForStamina(Hands.SelectedWeapon))
         {
-            if (t.CheckFreeNeighbours(this) != null)
+            targetList = field.GetTargetsForEnemy(this);
+            foreach (var t in targetList)
             {
-                _target = t.CharOnCell;
-               _pos = t.CheckFreeNeighbours(this).transform.position;
+                if (t.CheckFreeNeighbours(this) != null)
+                {
+                    _target = t.CharOnCell;
+                    _pos = t.CheckFreeNeighbours(this).transform.position;
+                }
             }
         }
-        
-       
     }
     
     public void AttackEnemyTarget()
     {
-    //    AP -= SelectedWeapon.GetCost();
-    //    _target.TakeDamage(SelectedWeapon);
-        _target = null;
-        StartCoroutine(StopAction());
+        _target.TakeDamage(Attack());
+        StartCoroutine( StopAction());
     }
 }

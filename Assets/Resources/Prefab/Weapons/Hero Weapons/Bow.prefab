@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 4
-  Damage: 1
+  WeaponDamage: 1
   Min: 2
   Max: 4
   Cost: 1
   HitsCount: 0
-  DamageType: 0
+  DamageElement: 0

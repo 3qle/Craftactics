@@ -10,7 +10,7 @@ public class Health
     public enum HealthEnum { Healthy, Wounded, Weaken, AtDead }
     public HealthEnum healthStat;
 
-    public int HP;
+   [HideInInspector] public int HP;
     public int MaxHP;
     
     public void SetEnemyHealthStatus()
@@ -24,14 +24,11 @@ public class Health
     public bool isOver => HP < 0;
     public HealthEnum healthStatus => healthStat;
 
-    public int DecreaseHealth(int damage)
+    public int Loose(int damage)
     {
         HP -= damage;
         return damage;
     }
-    public void SetMaxHP() => HP = MaxHP;
+    public void SetMax() => HP = MaxHP;
     
-    public int HealthPoints => HP;
-
-  
 }

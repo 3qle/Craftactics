@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Script.Character;
 using UnityEngine;
 [Serializable]
-public class ElementalResistance :  IResistance
+public class ElementalResistance 
 {
     
     public ResistanceType physicDefence, fireDefence, waterDefence, electricDefence, waveDefence, attackResult;
@@ -16,8 +16,8 @@ public class ElementalResistance :  IResistance
         _resistances = new Dictionary<Element, ResistanceType>
         {
             {Element.Physic, physicDefence},
-            {Element.Fire, fireDefence},
             {Element.Water, waterDefence},
+            {Element.Fire, fireDefence},
             {Element.Electric, electricDefence},
             {Element.Wave, waveDefence},
         };
@@ -28,7 +28,7 @@ public class ElementalResistance :  IResistance
         
     }
     
-  public int CalculateDamage(IWeapon element)
+  public int CalculateDamage(Weapon element)
     {
         int damage = element.Damage;
         

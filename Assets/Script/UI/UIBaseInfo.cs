@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Script.UI
 {
     [Serializable]
-    public class UIBaseInfo
+    public  class UIBaseInfo
     {
         public TextMeshProUGUI HPText, APText, NameText;
 

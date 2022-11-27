@@ -99,20 +99,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c62eb21c0595546940a491c2671f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  field:
+    height: 0
+    width: 0
   Health:
     healthStat: 0
     HP: 0
+    MaxHP: 2
   Resistance:
-    physicDefence: 0
-    fireDefence: 0
-    waterDefence: 0
-    electricDefence: 0
-    waveDefence: 0
+    physicDefence: 3
+    fireDefence: 3
+    waterDefence: 1
+    electricDefence: 3
+    waveDefence: 2
     attackResult: 0
+  Stamina:
+    MaxSP: 0
+    SP: 0
+    OutOfStamina: 0
+  Legs:
+    _isWalking: 0
+  Hands:
+    _leftWeapon: {fileID: 4888590415966279892}
+    _rightWeapon: {fileID: 378025428036790825}
+    SelectedWeapon: {fileID: 0}
+    WeaponsArray: []
   Name: Fly
-  MaxHP: 3
-  MaxAP: 3
-  AP: 0
   side: 1
   targetList: []
 --- !u!61 &7954876238064597557
@@ -228,6 +240,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: 713faf714e95bb141b63612baa9d043e, type: 3}
   m_PrefabInstance: {fileID: 2069865692260428954}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4888590415966279892 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: 713faf714e95bb141b63612baa9d043e, type: 3}
+  m_PrefabInstance: {fileID: 2069865692260428954}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6508093900258631271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -290,3 +313,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: 396abcea2dc29564ab729b30894f4cbb, type: 3}
   m_PrefabInstance: {fileID: 6508093900258631271}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &378025428036790825 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: 396abcea2dc29564ab729b30894f4cbb, type: 3}
+  m_PrefabInstance: {fileID: 6508093900258631271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -7,44 +7,38 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class Field :IViewable
+public class Field 
 {
     [Header("Field Settings")]
-    public readonly List<List<Cell>> _tilePool = new List<List<Cell>>();
-    private IFightable _selectable;
+    public  List<List<Cell>> _tilePool = new List<List<Cell>>();
+    private Character _selectable;
     private int _posX, _posY;
     private int _stamina;
     private Vector3 _pos;
     public int height,width;
-  
-    public Field GetStats() => this;
-    
-    public List<List<Cell>> GetField() 
-        => _tilePool;
-    
-    public void CreateHighLight(Vector3 pos,bool create) 
-        => _tilePool[(int)pos.x][(int)pos.y].CreateHighLight(create);
 
-    public void SpawnButton()
+
+    public void CreateHighLight(Vector3 pos, bool create)
     {
-        throw new NotImplementedException();
+        HideTiles();
+         _tilePool[(int)pos.x][(int)pos.y].CreateHighLight(create);
     }
-
-    public void SetTileType(Character obj, bool free) 
-        => _tilePool[(int)obj.Pos().x][(int)obj.Pos().y].ChangeType(obj, free);
+        
     
-  
-   public void CreateField()
+    public void SetTileType(Character obj, bool free) 
+        => _tilePool[(int)obj.Position.x][(int)obj.Position.y].ChangeType(obj, free);
+
+    public void CreateField()
     {
         for (var i = 0; i <= width; i++)
             _tilePool.Add(new List<Cell>());
     }
 
-  public void SetCellOnField(Cell cell, int x,int y)
+    public void SetCellOnField(Cell cell, int x,int y)
     {
          _tilePool[x].Add(cell);
          _tilePool[x][y].name = (x + "." + y);
-         _tilePool[x][y].SetFieldLink(this);
+         _tilePool[x][y].Initialize(this);
     }
    public Vector2 CreateSpawnPoint()
    {
@@ -58,12 +52,10 @@ public class Field :IViewable
        return new Vector2(_posX, _posY);
    }
    
-  
-
-    void GetStatsFromChar(IFightable obj)
+    void GetStatsFromChar(Character obj)
     {
         _selectable = obj;
-        _pos = obj.Pos();
+        _pos = obj.Position;
         _stamina = 10;
     }
 
@@ -72,17 +64,14 @@ public class Field :IViewable
         var get = x >= 0 && x < width && y >= 0 && y < height;
         return get;
     }
-    public void ShowWalkTile(IFightable obj)
+    public void ShowWalkTile(Character obj)
     {
-        HideTiles();
+      //  HideTiles();
         GetStatsFromChar(obj);
-       // for (var x = (int)_pos.x - _stamina; x <= _stamina + _pos.x; x++) 
-      //  for (var y = (int)_pos.y - _stamina ; y <= _stamina + _pos.y; y++)
-            if (CheckMaxRange((int)obj.GetStats().Pos().x, (int)obj.GetStats().Pos().y) && //_tilePool[(int)obj.GetStats().Pos().x][y].Type == Cell.CellType.Free &&
-                obj.GetStats().side == Character.Fraction.Hero)
-            {
-                _tilePool[(int)obj.GetStats().Pos().x][(int)obj.GetStats().Pos().y].CreateWalkCell();
-            }
+        if (obj.side == Character.Fraction.Hero)
+        {
+            _tilePool[(int)obj.Position.x][(int)obj.Position.y].CreateFreeWalkCells();
+        }
     }
 
     public List<Cell> GetTargetsForEnemy(Character obj)
@@ -92,7 +81,7 @@ public class Field :IViewable
         GetStatsFromChar(obj);
         for (int x = (int) _pos.x - _stamina; x <= _stamina + _pos.x; x++)
         for (int y = (int) _pos.y - _stamina; y <= _stamina + _pos.y; y++)
-            if (CheckMaxRange(x,y) && _tilePool[x][y].Type == Cell.CellType.Hero && obj.GetStats().side == Character.Fraction.Enemy)
+            if (CheckMaxRange(x,y) && _tilePool[x][y].Type == Cell.CellType.Hero && obj.side == Character.Fraction.Enemy)
                     cells.Add(_tilePool[x][y]);
         return cells;
     }
@@ -103,10 +92,10 @@ public class Field :IViewable
         return free;
     }
    
-    public void ShowAttackTiles(IWeapon stats)
+    public void ShowAttackTiles(Weapon stats)
     {
         HideTiles();
-        Vector2 pos = _selectable.Pos();
+        Vector2 pos = _selectable.Position;
         for (int x = (int) pos.x - stats.MaxRange; x <= stats.MaxRange + pos.x; x++) 
         for (int y = (int) pos.y - stats.MaxRange; y <= stats.MaxRange + pos.y; y++) 
             if (CheckMaxRange(x,y) && CheckMinRange(x,y,stats.MinRange,pos) && _tilePool[x][y].Type != Cell.CellType.Hero) 

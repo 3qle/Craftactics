@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 [Serializable]
-public class UI : IUIble
+public class UI
 {
    [Header("Resistance view")]
    public UIResistance UIResistance;
@@ -20,28 +20,31 @@ public class UI : IUIble
    public UIBaseInfo UIBaseInfo;
    
    public TextMeshProUGUI  TurnAnnouncement;
-   public PopUp PopUpText;
+  
    public TextMeshProUGUI TurnCount;
    [Header("Buttons")]
    public Button EndTurnButton;
   
   
-   private IFightable Selected;
-   
-   List<PopUp> PopUpList;
+   private Character Selected;
+
+   public GameObject PopUpContainer;
 
    private Turn _turn;
 
-   public void InjectDependency(Turn turn)
+   private Pool _pool;
+   public void Initialize(Turn turn, Pool pool)
    {
+      _pool = pool;
       _turn = turn;
       LoadButtons();
    }
 
+   
 
    public void LoadButtons()
    {
-      EndTurnButton.onClick.AddListener(_turn.TurnButton);
+      EndTurnButton.onClick.AddListener(_turn.StartNewTurn);
     
       UIWeaponButtonRight.SetButton();
       UIWeaponButtonLeft.SetButton();
@@ -50,10 +53,10 @@ public class UI : IUIble
    public void ShowResistances(Dictionary<Element,ResistanceType> resistanceTypes)
       => UIResistance.ShowResistance(resistanceTypes);
 
-   public void ShowLeftWeapon(IFightable fightable, IWeapon weapon, WeaponHand hand) =>
+   public void ShowLeftWeapon(Character fightable, Weapon weapon, WeaponHand hand) =>
       UIWeaponButtonLeft.ShowButton(fightable, weapon, hand);
    
-   public void ShowRightWeapon(IFightable fightable, IWeapon weapon, WeaponHand hand) =>
+   public void ShowRightWeapon(Character fightable, Weapon weapon, WeaponHand hand) =>
       UIWeaponButtonRight.ShowButton(fightable, weapon, hand);
 
    public void ShowBaseInfo(int hp, int ap, string name)
@@ -75,7 +78,7 @@ public class UI : IUIble
    }
    public void ShowTurnCount(int turns) => TurnCount.text = turns.ToString();
  
-   public void ShowPopUp(ResistanceType result, Vector3 pos, int damage) => PopUpList[0].ShowPopUp(result,pos,damage);
+   public void ShowPopUp(ResistanceType result, Vector3 pos, int damage) => _pool.PopUpList[0].ShowPopUp(result,pos,damage);
    
    public void Reset() => SceneManager.LoadScene(0);
    

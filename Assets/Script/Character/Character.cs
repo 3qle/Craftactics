@@ -6,130 +6,80 @@ using Script.Managers;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public abstract class Character : MonoBehaviour, IFightable
+public abstract class Character : MonoBehaviour
 {
-    private UI _ui;
     private SpriteRenderer _sprite;
-    protected IViewable _field;
+    
+    private UI _ui;
+    [HideInInspector] public Field field;
     private Pool _pool;
+    protected Turn _turn;
+    
     public Health Health;
+    public Stamina Stamina;
     public ElementalResistance Resistance;
-    private Weapon _leftWeapon, _rightWeapon;
-    public IWeapon SelectedWeapon;
-    protected IWeapon[] WeaponsArray;
-
-    protected bool _isWalking, _outOfAp;
-
-    private int _stepDirX, _stepDirY;
+    public Legs Legs;
+    public Hands Hands;
+    
     public string Name;
     
-    public int MaxAP, AP;
-
     public enum Fraction { Hero, Enemy, Boss }
     public Fraction side;
     
-    public Vector3 Pos() => transform.position;
+    public Vector2 Position => transform.position;
     
-    public void Inject(IViewable field, UI ui, Pool pool)
-    {
-        _ui = ui;
-        _field = field;
-        _pool = pool;
-        _pool.AddCharacterToPool(this);
-    }
-
-    public Character GetStats() => this;
+    public void SetPosition(Vector2 dir) => transform.position += (Vector3)dir;
     
-    public virtual void MoveCharacter(Vector3 destination) { }
-    
-    public bool IsDead => Health.isOver;
-
-   
-
-    public void PrepareWeapon(IWeapon weapon)
-    {
-        if (AP >= weapon.ApCost && !_isWalking)
-        {
-            SelectedWeapon = weapon;
-            if (side == Fraction.Hero)
-                _field.ShowAttackTiles(SelectedWeapon);
-        }
-    }
-
-   
-
-    protected void Chache()
+    public void Initialize(Field field, UI ui, Pool pool, Turn turn)
     {
         _sprite = GetComponent<SpriteRenderer>();
-        SetStats(gameObject);
-        _field.SetTileType(this, false);
-        SetWeapons();
+        _ui = ui;
+        this.field = field;
+        _turn = turn;
+        _pool = pool;
+        _pool.AddCharacterToPool(this);
         Resistance.SetResistance();
-        Health.SetMaxHP();
+        Health.SetMax();
+        Hands.Initialize(this);
+        SetStats();
+        field.SetTileType(this, false);
     }
-
-    public void SetWeapons()
+   
+    public void SetStats()
     {
-        _leftWeapon = transform.GetChild(0).GetComponent<Weapon>();
-        _rightWeapon = transform.GetChild(1).GetComponent<Weapon>();
-        WeaponsArray = new IWeapon[] {_leftWeapon, _rightWeapon};
+        name = Name;
+        Stamina.SetMaxStamina();
     }
-    public void SetStats(GameObject obj)
+    
+    public  void Move(Vector2 destination)
     {
-        obj.name = Name;
-        AP = MaxAP;
+        Stamina.Loose(1);
+        StartCoroutine(Legs.Walk(destination,this));
     }
-
-    public int Stamina => AP;
-    public bool OutOfAP => _outOfAp;
-    public bool isDamaged { get; }
-
-    public void PrepareCharacterForNewTurn(List<IFightable> list, TurnState act,int AdditionalSP)
+    
+    public void PrepareForNewTurn()
     {
-        if (act == Script.Managers.TurnState.E && side == Fraction.Enemy
-            || act == Script.Managers.TurnState.P && side == Fraction.Hero)
-        {
-            list.Add(this);
-            AP = MaxAP;
-        }
+       Stamina.SetMaxStamina();
     }
-
  
-    public virtual void SelectCharacter(bool selected)
+    public virtual void Select(bool selected)
     {
+        field.CreateHighLight(transform.position, selected);
+      
+        if(Stamina.SP > 0) 
+           field.ShowWalkTile(this); 
+      
        ShowInfo();
-        _field.ShowWalkTile(this);
-      //  Field.CreateHighLight(transform.position, selected);
     }
 
     public void ShowInfo()
     {
         _ui.ShowResistances(Resistance._resistances); 
-        _ui.ShowLeftWeapon(this,_leftWeapon,WeaponHand.Left); 
-        _ui.ShowRightWeapon(this,_rightWeapon,WeaponHand.Right);
-        _ui.ShowBaseInfo(Health.HealthPoints,AP,Name);
+        _ui.ShowLeftWeapon(this,Hands._leftWeapon,WeaponHand.Left); 
+        _ui.ShowRightWeapon(this,Hands._rightWeapon,WeaponHand.Right);
+        _ui.ShowBaseInfo(Health.HP,Stamina.SP,Name);
     }
-
-    protected void MakeSteps(Vector3 destination)
-    {
-        _isWalking = true;
-        _field.HideTiles();
-
-        Vector3 pos = transform.position;
-        _stepDirX = destination.x == pos.x ? 0 : destination.x > pos.x ? 1 : -1;
-        _stepDirY = destination.y == pos.y ? 0 : destination.y > pos.y ? 1 : -1;
-     //  if (Field.GetField()[(int)pos.x + _stepDirX][(int)pos.y + _stepDirY].Type == Cell.CellType.Free)
-        transform.position += new Vector3(_stepDirX, _stepDirY);
-     
-    }
-
-    protected void FinishSteps()
-    {
-        _field.SetTileType(this, false);
-        _isWalking = false;
-        _field.CreateHighLight(transform.position, true);
-    }
-
+    
     private IEnumerator Flash(int i)
     {
         int count = 3;
@@ -143,35 +93,23 @@ public abstract class Character : MonoBehaviour, IFightable
         }
     }
     
-    public void TakeDamage(IWeapon weapon)
+    public void TakeDamage(Weapon weapon)
     {
-        StartCoroutine(Flash(0));
-        int damage = Health.DecreaseHealth(Resistance.CalculateDamage(weapon));
-      
-     //   Turn.I.ChangeTurnCount(Resistance.GetAttackResult());
+        StartCoroutine(Flash(1));
+        int damage = Health.Loose(Resistance.CalculateDamage(weapon));
         _ui.ShowPopUp(Resistance.GetAttackResult(), transform.position, damage);
-      
-        if(IsDead)KillCharacter();
+        if(Health.isOver)Kill();
     }
-
-    public void KillCharacter()
+    public Weapon Attack()
+    {
+        field.HideTiles();
+        Stamina.Loose(Hands.SelectedWeapon.SPCost);
+        return Hands.SelectedWeapon;
+    }
+    public void Kill()
     {
         _pool.RemoveCharacterFromPool(this);
-        _field.SetTileType(this,true);
+        field.SetTileType(this,true);
         Destroy(gameObject);
-    }
-
-  
-
-    public IWeapon Attack()
-    {
-        _field.HideTiles();
-        AP -= SelectedWeapon.ApCost;
-        return SelectedWeapon;
-    }
-
-  protected void CheckForStamina()
-    {
-        _outOfAp = SelectedWeapon.ApCost > AP;
     }
 }

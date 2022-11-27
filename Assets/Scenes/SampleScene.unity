@@ -3520,7 +3520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1156416167
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3704,9 +3704,9 @@ MonoBehaviour:
       APText: {fileID: 358676331}
       NameText: {fileID: 670534082}
     TurnAnnouncement: {fileID: 771075152}
-    PopUpText: {fileID: 0}
     TurnCount: {fileID: 0}
     EndTurnButton: {fileID: 377769228}
+    PopUpContainer: {fileID: 1251724862}
   pool:
     heroes:
     - {fileID: 7108880036797212019, guid: 938f492cc77aaa743b6bb58bd3d80b68, type: 3}
@@ -3720,12 +3720,17 @@ MonoBehaviour:
     - {fileID: 5696796565254440720, guid: bad893fd5c26a3c4faa689533b241aa1, type: 3}
     - {fileID: 5696796565254440720, guid: 939737e298212bf43a7da3ffb40fa556, type: 3}
     tile: {fileID: 4481398043678152128, guid: 4621efed25d4de2429c23adbc6faf45f, type: 3}
+    PopUpText: {fileID: -3056475794413558354, guid: eb9ffad5b2659a54a8b1c126c4c4b16d, type: 3}
+    PopUpList: []
     HeroesList: []
     EnemiesList: []
   field:
     height: 7
     width: 5
   turn:
+    _field:
+      height: 0
+      width: 0
     Act: 0
     _activeFractionList: []
   maxEnemy: 7

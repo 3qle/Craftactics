@@ -4,16 +4,17 @@ namespace Script.Managers
     {
         void Start()
         {
-            controller.InjectDependency();
-            ui.InjectDependency(turn);
-            turn.InjectDependency(field,ui,pool);
+            controller.Initialize(turn);
+            ui.Initialize(turn,pool);
+            turn.Initialize(field,ui,pool);
             SpawnOnBattleStart();
         }
 
         // Update is called once per frame
         void Update()
         {
-            controller.Click();
+            controller.WaitForInput();
+            controller.ShowSelectedCharInfo();
         }
     }
 }

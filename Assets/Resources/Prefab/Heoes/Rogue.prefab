@@ -31,8 +31,8 @@ Transform:
   m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4810037590223307331}
   - {fileID: 7100785898046958581}
+  - {fileID: 2871560456275075104}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -146,22 +146,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81f7e21f7fd118469de5d4a00559370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  field:
+    height: 0
+    width: 0
   Health:
     healthStat: 0
     HP: 0
+    MaxHP: 5
+  Stamina:
+    MaxSP: 5
+    SP: 0
+    OutOfStamina: 0
   Resistance:
-    physicDefence: 0
-    fireDefence: 0
-    waterDefence: 0
-    electricDefence: 0
-    waveDefence: 0
+    physicDefence: 2
+    fireDefence: 2
+    waterDefence: 2
+    electricDefence: 3
+    waveDefence: 3
     attackResult: 0
+  Legs:
+    _isWalking: 0
+  Hands:
+    _leftWeapon: {fileID: 586103416622292974}
+    _rightWeapon: {fileID: 5580131264440996923}
+    SelectedWeapon: {fileID: 0}
+    WeaponsArray: []
   Name: Rogue
-  MaxHP: 5
-  MaxAP: 5
-  AP: 0
   side: 0
---- !u!1001 &3844071195769182176
+--- !u!1001 &5783071431512225155
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -170,7 +182,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8617723472294663587, guid: 2caee0109e3d95f4eb655c93b76d3cdd, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8617723472294663587, guid: 2caee0109e3d95f4eb655c93b76d3cdd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -214,15 +226,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8854044388882302717, guid: 2caee0109e3d95f4eb655c93b76d3cdd, type: 3}
       propertyPath: m_Name
-      value: Water Knife
+      value: Ice Dagger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2caee0109e3d95f4eb655c93b76d3cdd, type: 3}
---- !u!4 &4810037590223307331 stripped
+--- !u!4 &2871560456275075104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8617723472294663587, guid: 2caee0109e3d95f4eb655c93b76d3cdd, type: 3}
-  m_PrefabInstance: {fileID: 3844071195769182176}
+  m_PrefabInstance: {fileID: 5783071431512225155}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &586103416622292974 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6369173029705280109, guid: 2caee0109e3d95f4eb655c93b76d3cdd, type: 3}
+  m_PrefabInstance: {fileID: 5783071431512225155}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9140523275218505300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -236,7 +259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2040876489173886369, guid: 27907616f8aecc34b96e8c149c525184, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2040876489173886369, guid: 27907616f8aecc34b96e8c149c525184, type: 3}
       propertyPath: m_LocalPosition.x
@@ -285,3 +308,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2040876489173886369, guid: 27907616f8aecc34b96e8c149c525184, type: 3}
   m_PrefabInstance: {fileID: 9140523275218505300}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5580131264440996923 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3722562283354217071, guid: 27907616f8aecc34b96e8c149c525184, type: 3}
+  m_PrefabInstance: {fileID: 9140523275218505300}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

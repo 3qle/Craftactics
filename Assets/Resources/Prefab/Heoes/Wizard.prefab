@@ -31,8 +31,8 @@ Transform:
   m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4719902768878094749}
   - {fileID: 7082377364098422805}
+  - {fileID: 5472607402668012757}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -146,20 +146,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81f7e21f7fd118469de5d4a00559370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  field:
+    height: 0
+    width: 0
   Health:
     healthStat: 0
     HP: 0
+    MaxHP: 5
+  Stamina:
+    MaxSP: 5
+    SP: 0
+    OutOfStamina: 0
   Resistance:
-    physicDefence: 0
-    fireDefence: 0
-    waterDefence: 0
-    electricDefence: 0
-    waveDefence: 0
+    physicDefence: 3
+    fireDefence: 1
+    waterDefence: 1
+    electricDefence: 1
+    waveDefence: 2
     attackResult: 0
+  Legs:
+    _isWalking: 0
+  Hands:
+    _leftWeapon: {fileID: 7208309750693137179}
+    _rightWeapon: {fileID: 5598603560911972315}
+    SelectedWeapon: {fileID: 0}
+    WeaponsArray: []
   Name: Wizard
-  MaxHP: 5
-  MaxAP: 5
-  AP: 0
   side: 0
 --- !u!1001 &6411039464847427447
 PrefabInstance:
@@ -174,7 +186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4229230645586911074, guid: 9ed15de3e05267646b50ebd0810839ed, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4229230645586911074, guid: 9ed15de3e05267646b50ebd0810839ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -223,7 +235,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4229230645586911074, guid: 9ed15de3e05267646b50ebd0810839ed, type: 3}
   m_PrefabInstance: {fileID: 6411039464847427447}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8876955861679593215
+--- !u!114 &5598603560911972315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1534225727708782764, guid: 9ed15de3e05267646b50ebd0810839ed, type: 3}
+  m_PrefabInstance: {fileID: 6411039464847427447}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &8161549113655323575
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -232,11 +255,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4032570485585923132, guid: e66f3d5131d986c4abdcae8a70a573b2, type: 3}
       propertyPath: m_Name
-      value: Water Staff
+      value: Ice Staff
       objectReference: {fileID: 0}
     - target: {fileID: 4229230645586911074, guid: e66f3d5131d986c4abdcae8a70a573b2, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4229230645586911074, guid: e66f3d5131d986c4abdcae8a70a573b2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -280,8 +303,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e66f3d5131d986c4abdcae8a70a573b2, type: 3}
---- !u!4 &4719902768878094749 stripped
+--- !u!4 &5472607402668012757 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4229230645586911074, guid: e66f3d5131d986c4abdcae8a70a573b2, type: 3}
-  m_PrefabInstance: {fileID: 8876955861679593215}
+  m_PrefabInstance: {fileID: 8161549113655323575}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7208309750693137179 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1534225727708782764, guid: e66f3d5131d986c4abdcae8a70a573b2, type: 3}
+  m_PrefabInstance: {fileID: 8161549113655323575}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -8,7 +8,7 @@ public class Cell : MonoBehaviour
    public SpriteRenderer _spriteRenderer;
    private Animator _animator;
    public BoxCollider2D _box;
-   public IFightable CharOnCell;
+   public Character CharOnCell;
    public Cell Up,Left,Right,Down;
    private Field _field;
    public enum CellType { Free, Hero, Enemy, }
@@ -23,33 +23,33 @@ public class Cell : MonoBehaviour
        _animator = GetComponent<Animator>();
    }
 
-   public void SetFieldLink(Field field) => _field = field;
+   public void Initialize(Field field) => _field = field;
    
-
    public void AddFreeNeighbours(int range)
    {
        int x = (int)transform.position.x;
        int y = (int)transform.position.y;
        
-       Left = CheckBorders(x - range, y, _field.GetField()) && _field.GetField()[x - range][y].Type == CellType.Free
-               ? _field.GetField()[x - range][y]
+       Left = CheckBorders(x - range, y, _field._tilePool) && _field._tilePool[x - range][y].Type == CellType.Free
+               ? _field._tilePool[x - range][y]
                : null;
        
-       Right = CheckBorders(x + range, y, _field.GetField()) && _field.GetField()[x + range][y].Type == CellType.Free
-               ? _field.GetField()[x + range][y]
+       Right = CheckBorders(x + range, y, _field._tilePool) && _field._tilePool[x + range][y].Type == CellType.Free
+               ? _field._tilePool[x + range][y]
                : null;
        
-       Down = CheckBorders(x, y - range, _field.GetField()) && _field.GetField()[x][y - range].Type == CellType.Free
-               ? _field.GetField()[x][y - range]
+       Down = CheckBorders(x, y - range, _field._tilePool) && _field._tilePool[x][y - range].Type == CellType.Free
+               ? _field._tilePool[x][y - range]
                : null;
        
-       Up = CheckBorders(x, y + range, _field.GetField()) && _field.GetField()[x][y + range].Type == CellType.Free
-               ? _field.GetField()[x][y + range]
+       Up = CheckBorders(x, y + range, _field._tilePool) && _field._tilePool[x][y + range].Type == CellType.Free
+               ? _field._tilePool[x][y + range]
                : null;
    }
 
    public void CreateFreeWalkCells()
    { 
+      
        AddFreeNeighbours(1);
         if(Left != null && Left._spriteRenderer.color.a == 0 ) 
                Left.CreateWalkCell(); 
@@ -59,23 +59,24 @@ public class Cell : MonoBehaviour
                Down.CreateWalkCell(); 
         if(Up != null && Up._spriteRenderer.color.a == 0) 
                Up.CreateWalkCell();
+      
    }
 
    public Cell CheckFreeNeighbours(Character character)
    {
-       weaponRange = character.SelectedWeapon.MaxRange;
+       weaponRange = character.Hands.SelectedWeapon.MaxRange;
       AddFreeNeighbours(weaponRange);
        Cell c = Left != null
-            && (Left.Type == CellType.Free || (Character) CharOnCell == character) 
+            && (Left.Type == CellType.Free ||CharOnCell == character) 
             ? Left 
             :  Right != null 
-            && (Right.Type == CellType.Free || (Character) CharOnCell == character)
+            && (Right.Type == CellType.Free || CharOnCell == character)
             ? Right
             :  Up != null && 
-            (Up.Type == CellType.Free || (Character) CharOnCell == character) 
+            (Up.Type == CellType.Free || CharOnCell == character) 
             ? Up
             :  Down != null && 
-            (Down.Type == CellType.Free || (Character) CharOnCell == character) 
+            (Down.Type == CellType.Free || CharOnCell == character) 
             ? Down : null;
        return c;
    }
@@ -87,8 +88,9 @@ public class Cell : MonoBehaviour
    }
    public void CreateWalkCell()
    {
-       tag = "WalkTile";
        
+       tag = "WalkTile";
+       Debug.Log(tag);
        SetCellType(tag);
        CreateCell(true);
        CreateFreeWalkCells();
@@ -130,7 +132,7 @@ public class Cell : MonoBehaviour
 
    void CreateCell(bool create)
    {
-       
+      
        _animator.SetBool("Show",create);
        
        // _box.enabled = create;
@@ -140,9 +142,9 @@ public class Cell : MonoBehaviour
    {
        if (!free)
        {
-           if (c.GetStats().side == Character.Fraction.Hero)
+           if (c.side == Character.Fraction.Hero)
                Type = CellType.Hero;
-           if (c.GetStats().side == Character.Fraction.Enemy)
+           if (c.side == Character.Fraction.Enemy)
                Type = CellType.Enemy;
            tag = "CharacterTile";
            CharOnCell = c;
