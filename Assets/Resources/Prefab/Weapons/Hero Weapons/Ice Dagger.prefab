@@ -49,4 +49,5 @@ MonoBehaviour:
   Max: 1
   Cost: 1
   HitsCount: 0
+  WeaponIcon: {fileID: 21300000, guid: e67653cbf113ef4439ac5e140e9de006, type: 3}
   DamageElement: 2

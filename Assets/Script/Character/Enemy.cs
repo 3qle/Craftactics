@@ -29,12 +29,12 @@ public class Enemy : Character
     {
         while (Legs._isWalking) 
             yield return new WaitForEndOfFrame();
-        AttackEnemyTarget();
+        if(!Attributes.stamina.OutOfStamina)AttackEnemyTarget();
     }
 
     void ChooseAction()
     {
-        if(_target == null ||  Stamina.OutOfStamina) 
+        if(_target == null || Attributes.stamina.OutOfStamina) 
            StartCoroutine( StopAction());
         else 
             Move(_pos);
@@ -50,7 +50,7 @@ public class Enemy : Character
 
     private void SearchTarget()
     {
-        if (!Stamina.CheckForStamina(Hands.SelectedWeapon))
+        if (!Attributes.stamina.CheckForStamina(Hands.selectedItem))
         {
             targetList = field.GetTargetsForEnemy(this);
             foreach (var t in targetList)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,31 +8,32 @@ using Random = UnityEngine.Random;
     public class Hands
     {
         private Character _character;
-        public Weapon _leftWeapon, _rightWeapon; 
-        [HideInInspector] public Weapon SelectedWeapon; 
-        [HideInInspector] public Weapon[] WeaponsArray;
-
+    //    public Item leftItem, rightItem; 
+       public Item selectedItem; 
+       
+       
 
         public void Initialize(Character character)
         {
-            WeaponsArray = new[] {_leftWeapon, _rightWeapon};
+           
             _character = character;
+            _character.Bag.Items[0].Initialize(character);
+            _character.Bag.Items[1].Initialize(character);
         }
         
-        public void PrepareWeapon(Weapon weapon)
+        public void PrepareWeapon(Item item)
         {
-            if (_character.Stamina.SP >= weapon.SPCost && !_character.Legs._isWalking)
+            if (_character.Attributes.stamina.SP >= item.SPCost && !_character.Legs._isWalking)
             {
-                SelectedWeapon = weapon;
+                selectedItem = item;
                 if (_character.side == Character.Fraction.Hero)
-                    _character.field.ShowAttackTiles(SelectedWeapon);
+                    _character.field.ShowAttackTiles(selectedItem);
             }
         }
 
         public void PrepareRandomWeapon()
         {
-            int i = Random.Range(0, WeaponsArray.Length);
-            PrepareWeapon(WeaponsArray[i]);
+            PrepareWeapon(_character.Bag.Items[Random.Range(0, _character.Bag.Items.Count)]);
         }
         
        

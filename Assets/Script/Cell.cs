@@ -64,7 +64,7 @@ public class Cell : MonoBehaviour
 
    public Cell CheckFreeNeighbours(Character character)
    {
-       weaponRange = character.Hands.SelectedWeapon.MaxRange;
+       weaponRange = character.Hands.selectedItem.MaxRange;
       AddFreeNeighbours(weaponRange);
        Cell c = Left != null
             && (Left.Type == CellType.Free ||CharOnCell == character) 
@@ -90,7 +90,7 @@ public class Cell : MonoBehaviour
    {
        
        tag = "WalkTile";
-       Debug.Log(tag);
+    //   Debug.Log(tag);
        SetCellType(tag);
        CreateCell(true);
        CreateFreeWalkCells();

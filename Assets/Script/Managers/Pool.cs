@@ -9,11 +9,11 @@ using UnityEngine;
         public Character[] enemies;
         
         public Cell tile;
-        
         public PopUp PopUpText;
-      [HideInInspector]  public List<PopUp> PopUpList;
-      [HideInInspector]  public List<Character> HeroesList = new List<Character>();
-      [HideInInspector]  public List<Character> EnemiesList = new List<Character>();
+        
+        [HideInInspector]  public List<PopUp> PopUpList;
+        [HideInInspector]  public List<Character> HeroesList = new List<Character>();
+        public List<Character> EnemiesList = new List<Character>();
 
       
         public void AddCharacterToPool(Character character)

@@ -13,9 +13,9 @@ public class Turn
     [Header("Turn Settings")]
     private Pool _pool;
     private UI _ui;
-     
-    public TurnState Act;
-    [HideInInspector] public List<Character> _activeFractionList = new List<Character>();
+    
+    public TurnState Act; 
+    public List<Character> _activeFractionList = new List<Character>();
     
     public void Initialize(Field field, UI ui, Pool pool)
     {
@@ -36,8 +36,18 @@ public class Turn
 
     void AddActiveFractionToList()
     {
-        _activeFractionList.Clear(); 
-        _activeFractionList = Act == TurnState.P? _pool.HeroesList : _pool.EnemiesList;
+      //  _activeFractionList.Clear(); 
+      if(Act == TurnState.P) 
+          foreach (var VARIABLE in _pool.HeroesList) 
+          { 
+              _activeFractionList.Add(VARIABLE); 
+          }
+      else
+          foreach (var VARIABLE in _pool.EnemiesList) 
+          { 
+              _activeFractionList.Add(VARIABLE); 
+          }
+      //  _activeFractionList = Act == TurnState.P? _pool.HeroesList : _pool.EnemiesList;
         
         foreach (var character in _activeFractionList) 
             character.PrepareForNewTurn();
@@ -49,7 +59,7 @@ public class Turn
         {
             int i = Random.Range(0, _activeFractionList.Count);
             
-            if (_activeFractionList[i].Stamina.OutOfStamina)
+            if (_activeFractionList[i].Attributes.stamina.OutOfStamina)
             {
                 _activeFractionList.Remove(_activeFractionList[i]);
                 NextEnemyAct();

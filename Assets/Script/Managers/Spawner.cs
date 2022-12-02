@@ -57,10 +57,8 @@ public class Spawner : MonoBehaviour
 
    public void SpawnPopUpText()
    {
-       for (int i = 0; i < 30; i++)
-       {
+       for (int i = 0; i < 30; i++) 
            pool.PopUpList.Add(Instantiate(pool.PopUpText,transform.position,Quaternion.identity,ui.PopUpContainer.transform));
-       }
    }
    
 }

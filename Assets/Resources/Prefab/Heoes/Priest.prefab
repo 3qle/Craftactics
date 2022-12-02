@@ -33,6 +33,7 @@ Transform:
   m_Children:
   - {fileID: 5073789782823241127}
   - {fileID: 6910548228844228262}
+  - {fileID: 6705441683835020351}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6762730824620024007, guid: f5c18b710d7f0004ba19293350be2f14, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19dd33c9f426c2548bac5a4fcafa3780, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,31 +147,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81f7e21f7fd118469de5d4a00559370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sprite: {fileID: 0}
   field:
     height: 0
     width: 0
-  Health:
-    healthStat: 0
-    HP: 0
-    MaxHP: 5
-  Stamina:
-    MaxSP: 5
-    SP: 0
-    OutOfStamina: 0
+  Attributes:
+    health:
+      healthStat: 0
+      HP: 0
+    stamina:
+      SP: 0
+      OutOfStamina: 0
+    defence: {fileID: 0}
+    dexterity: {fileID: 0}
+    wisdon: {fileID: 0}
+    intellect: {fileID: 0}
+    luck: {fileID: 0}
+    Health: 5
+    Stamina: 5
+    Defence: 0
+    Dexterity: 0
+    Wisdom: 0
+    Intellect: 0
+    Strenght: 0
+    Luck: 0
+  Bag:
+    Items: []
+    MaxItems: 2
   Resistance:
     physicDefence: 2
     fireDefence: 3
     waterDefence: 2
     electricDefence: 3
     waveDefence: 1
-    attackResult: 0
+    mentalDefence: 1
+    holyDefence: 0
+    IllDefence: 3
   Legs:
     _isWalking: 0
   Hands:
-    _leftWeapon: {fileID: 7607191210898242153}
-    _rightWeapon: {fileID: 8078516510647693672}
-    SelectedWeapon: {fileID: 0}
-    WeaponsArray: []
+    selectedItem: {fileID: 0}
   Name: Priest
   side: 0
 --- !u!1001 &3128177902101377934
@@ -235,17 +251,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7854345741862778409, guid: bf74b7d3d6f9fc947b9165baac3f2590, type: 3}
   m_PrefabInstance: {fileID: 3128177902101377934}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7607191210898242153 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4826637382187649511, guid: bf74b7d3d6f9fc947b9165baac3f2590, type: 3}
-  m_PrefabInstance: {fileID: 3128177902101377934}
+--- !u!1001 &3462914593444090390
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7108880036797212020}
+    m_Modifications:
+    - target: {fileID: 6937674788313802103, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+      propertyPath: m_Name
+      value: Holy Harp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854345741862778409, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854345741862778409, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854345741862778409, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854345741862778409, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854345741862778409, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854345741862778409, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854345741862778409, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854345741862778409, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854345741862778409, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854345741862778409, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854345741862778409, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+--- !u!4 &6705441683835020351 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7854345741862778409, guid: 345bf7bad34305f42ba8c1e13c094854, type: 3}
+  m_PrefabInstance: {fileID: 3462914593444090390}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7302039089741582788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,14 +375,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4229230645586911074, guid: 2d4d343c28114d6448dd02ed4836a2e1, type: 3}
   m_PrefabInstance: {fileID: 7302039089741582788}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8078516510647693672 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1534225727708782764, guid: 2d4d343c28114d6448dd02ed4836a2e1, type: 3}
-  m_PrefabInstance: {fileID: 7302039089741582788}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

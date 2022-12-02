@@ -11,57 +11,67 @@ using UnityEngine.UI;
 [Serializable]
 public class UI
 {
+   public Console Console;
+   
    [Header("Resistance view")]
    public UIResistance UIResistance;
+   
    [Header("Weapon view")]
-   public UIWeaponButtons UIWeaponButtonLeft;
-   public UIWeaponButtons UIWeaponButtonRight;
+   public UIWeaponButtons WeaponButtons;
+ 
+   
    [Header("Basic Stats view")] 
    public UIBaseInfo UIBaseInfo;
    
+   [Header("Character view")] 
+   public UICharacter UICharacter;
+
    public TextMeshProUGUI  TurnAnnouncement;
-  
-   public TextMeshProUGUI TurnCount;
+
    [Header("Buttons")]
    public Button EndTurnButton;
-  
-  
-   private Character Selected;
-
+   
    public GameObject PopUpContainer;
 
    private Turn _turn;
-
+   private Controller _controller;
    private Pool _pool;
-   public void Initialize(Turn turn, Pool pool)
+   
+   public void Initialize(Turn turn, Pool pool, Controller controller)
    {
+      _controller = controller;
       _pool = pool;
       _turn = turn;
       LoadButtons();
    }
-
-   
-
    public void LoadButtons()
    {
       EndTurnButton.onClick.AddListener(_turn.StartNewTurn);
-    
-      UIWeaponButtonRight.SetButton();
-      UIWeaponButtonLeft.SetButton();
-   } 
+      WeaponButtons.Initialize(Console);
+      UICharacter.Initialize(_pool.HeroesList,_controller,Console);
+   }
+
+   public void ShowHeroesButtons() => UICharacter.Show();
    
    public void ShowResistances(Dictionary<Element,ResistanceType> resistanceTypes)
       => UIResistance.ShowResistance(resistanceTypes);
 
-   public void ShowLeftWeapon(Character fightable, Weapon weapon, WeaponHand hand) =>
-      UIWeaponButtonLeft.ShowButton(fightable, weapon, hand);
+   public void HighLightCharacterButton(int i, bool _selected) 
+      => UICharacter.ShowHighLight(i,_selected);
+   public void ShowActiveItems(Character character) =>
+      WeaponButtons.ShowButton(character);
    
-   public void ShowRightWeapon(Character fightable, Weapon weapon, WeaponHand hand) =>
-      UIWeaponButtonRight.ShowButton(fightable, weapon, hand);
+   
+   public void ShowBaseInfo(Character character)
+      => UIBaseInfo.ShowInfo(character);
+   
+   public void ShowPopUp(ResistanceType result, Vector3 pos, int damage) 
+      => _pool.PopUpList[0].ShowPopUp(result,pos,damage);
+   
+   public void Reset()
+      => SceneManager.LoadScene(0);
 
-   public void ShowBaseInfo(int hp, int ap, string name)
-      => UIBaseInfo.ShowInfo(hp, ap, name);
-  
+
    public void UpdateTurnText(TurnState act)
    {
       // StartCoroutine(ShowTurnAnnouncement(act));
@@ -76,12 +86,7 @@ public class UI
       yield return new WaitForSeconds(1);
       TurnAnnouncement.gameObject.SetActive(false);
    }
-   public void ShowTurnCount(int turns) => TurnCount.text = turns.ToString();
  
-   public void ShowPopUp(ResistanceType result, Vector3 pos, int damage) => _pool.PopUpList[0].ShowPopUp(result,pos,damage);
-   
-   public void Reset() => SceneManager.LoadScene(0);
-   
- 
+  
 
 }

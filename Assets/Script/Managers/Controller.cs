@@ -10,9 +10,11 @@ public class Controller
     private Camera _camera;
     Character _selectable;
     private Turn _turn;
+    private Pool _pool;
     
-    public void Initialize(Turn turn)
+    public void Initialize(Turn turn,Pool pool)
     {
+        _pool = pool;
         _camera = Camera.main;
         _turn = turn;
     }
@@ -35,6 +37,9 @@ public class Controller
                  
                  else  if (hit.collider.CompareTag("CharacterTile")) 
                  {
+                     if(_selectable != null) 
+                       _selectable.Select(false);
+                   
                     _selectable = hit.collider.GetComponent<Cell>().CharOnCell; 
                     _selectable.Select(true);
                   
@@ -42,6 +47,14 @@ public class Controller
                
             }
         }
+    }
+
+    public void SelectFromUi(int i)
+    {
+        if(_selectable != null) 
+            _selectable.Select(false);
+        _selectable = _pool.HeroesList[i];
+        _selectable.Select(true);
     }
 
     public void ShowSelectedCharInfo()

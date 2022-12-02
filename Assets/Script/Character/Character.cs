@@ -8,15 +8,15 @@ using UnityEngine.UIElements;
 
 public abstract class Character : MonoBehaviour
 {
-    private SpriteRenderer _sprite;
+    [HideInInspector]public SpriteRenderer _sprite;
     
     private UI _ui;
     [HideInInspector] public Field field;
     private Pool _pool;
     protected Turn _turn;
-    
-    public Health Health;
-    public Stamina Stamina;
+
+    public Attributes Attributes;
+    public Bag Bag;
     public ElementalResistance Resistance;
     public Legs Legs;
     public Hands Hands;
@@ -25,59 +25,69 @@ public abstract class Character : MonoBehaviour
     
     public enum Fraction { Hero, Enemy, Boss }
     public Fraction side;
-    
+    private bool _selected;
     public Vector2 Position => transform.position;
     
     public void SetPosition(Vector2 dir) => transform.position += (Vector3)dir;
     
-    public void Initialize(Field field, UI ui, Pool pool, Turn turn)
+    
+    public void Initialize(Field _field, UI ui, Pool pool, Turn turn)
     {
         _sprite = GetComponent<SpriteRenderer>();
         _ui = ui;
-        this.field = field;
         _turn = turn;
         _pool = pool;
-        _pool.AddCharacterToPool(this);
+        field = _field;
+        InitializeBag();
         Resistance.SetResistance();
-        Health.SetMax();
-        Hands.Initialize(this);
-        SetStats();
+        Attributes.Initialize();
+         _pool.AddCharacterToPool(this);
         field.SetTileType(this, false);
+        
+        name = Name;
+     
+        
+        Hands.Initialize(this);
+        
+       
     }
    
-    public void SetStats()
-    {
-        name = Name;
-        Stamina.SetMaxStamina();
-    }
-    
+   
     public  void Move(Vector2 destination)
     {
-        Stamina.Loose(1);
+        Attributes.stamina.Loose(1);
         StartCoroutine(Legs.Walk(destination,this));
     }
     
     public void PrepareForNewTurn()
     {
-       Stamina.SetMaxStamina();
+        Attributes.stamina.SetMax(Attributes.Stamina);
     }
  
     public virtual void Select(bool selected)
     {
+        _selected = selected;
         field.CreateHighLight(transform.position, selected);
       
-        if(Stamina.SP > 0) 
-           field.ShowWalkTile(this); 
-      
-       ShowInfo();
+        if( Attributes.stamina.SP > 0 && side == Fraction.Hero) 
+           field.ShowWalkTile(this);
+        
+    
+        if(!_selected)  _ui.Console.Clear();
     }
 
     public void ShowInfo()
     {
+        if (side == Fraction.Hero)
+            _ui.HighLightCharacterButton(_pool.HeroesList.IndexOf(this),_selected);
+       
+  
+        
+        
         _ui.ShowResistances(Resistance._resistances); 
-        _ui.ShowLeftWeapon(this,Hands._leftWeapon,WeaponHand.Left); 
-        _ui.ShowRightWeapon(this,Hands._rightWeapon,WeaponHand.Right);
-        _ui.ShowBaseInfo(Health.HP,Stamina.SP,Name);
+        _ui.ShowActiveItems(this); 
+      
+        _ui.ShowBaseInfo(this);
     }
     
     private IEnumerator Flash(int i)
@@ -93,23 +103,30 @@ public abstract class Character : MonoBehaviour
         }
     }
     
-    public void TakeDamage(Weapon weapon)
+    public void TakeDamage(Item item)
     {
         StartCoroutine(Flash(1));
-        int damage = Health.Loose(Resistance.CalculateDamage(weapon));
+        int damage = Attributes.health.Loose(Resistance.CalculateDamage(item));
         _ui.ShowPopUp(Resistance.GetAttackResult(), transform.position, damage);
-        if(Health.isOver)Kill();
+        if(Attributes.health.isOver)Kill();
     }
-    public Weapon Attack()
+    public Item Attack()
     {
         field.HideTiles();
-        Stamina.Loose(Hands.SelectedWeapon.SPCost);
-        return Hands.SelectedWeapon;
+        Attributes.stamina.Loose(Hands.selectedItem.SPCost);
+        return Hands.selectedItem;
     }
     public void Kill()
     {
         _pool.RemoveCharacterFromPool(this);
         field.SetTileType(this,true);
         Destroy(gameObject);
+    }
+
+    public void InitializeBag()
+    {
+        for (int i = 0; i < Bag.MaxItems; i++)
+         Bag.Initialize(transform.GetChild(i).GetComponent<Item>());
+        
     }
 }

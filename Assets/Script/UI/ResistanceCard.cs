@@ -15,11 +15,6 @@ using UnityEngine.UI;
 
         public Sprite[] Sprites;
 
-        private void Start()
-        {
-        }
-
-        
         public void CreateButton( ResistanceType type)
         {
             ResitanceType = type switch
@@ -33,10 +28,4 @@ using UnityEngine.UI;
             Image.sprite = Sprites[ResitanceType];
             
         }
-
-        void Show()
-        {
-            Debug.Log("show");
-        }
-        
     }

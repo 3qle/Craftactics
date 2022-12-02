@@ -23,8 +23,7 @@ public class Field
         HideTiles();
          _tilePool[(int)pos.x][(int)pos.y].CreateHighLight(create);
     }
-        
-    
+
     public void SetTileType(Character obj, bool free) 
         => _tilePool[(int)obj.Position.x][(int)obj.Position.y].ChangeType(obj, free);
 
@@ -66,12 +65,8 @@ public class Field
     }
     public void ShowWalkTile(Character obj)
     {
-      //  HideTiles();
         GetStatsFromChar(obj);
-        if (obj.side == Character.Fraction.Hero)
-        {
-            _tilePool[(int)obj.Position.x][(int)obj.Position.y].CreateFreeWalkCells();
-        }
+        _tilePool[(int)obj.Position.x][(int)obj.Position.y].CreateFreeWalkCells();
     }
 
     public List<Cell> GetTargetsForEnemy(Character obj)
@@ -81,7 +76,7 @@ public class Field
         GetStatsFromChar(obj);
         for (int x = (int) _pos.x - _stamina; x <= _stamina + _pos.x; x++)
         for (int y = (int) _pos.y - _stamina; y <= _stamina + _pos.y; y++)
-            if (CheckMaxRange(x,y) && _tilePool[x][y].Type == Cell.CellType.Hero && obj.side == Character.Fraction.Enemy)
+            if (CheckMaxRange(x,y) && _tilePool[x][y].Type == Cell.CellType.Hero)
                     cells.Add(_tilePool[x][y]);
         return cells;
     }
@@ -92,13 +87,13 @@ public class Field
         return free;
     }
    
-    public void ShowAttackTiles(Weapon stats)
+    public void ShowAttackTiles(Item item)
     {
         HideTiles();
         Vector2 pos = _selectable.Position;
-        for (int x = (int) pos.x - stats.MaxRange; x <= stats.MaxRange + pos.x; x++) 
-        for (int y = (int) pos.y - stats.MaxRange; y <= stats.MaxRange + pos.y; y++) 
-            if (CheckMaxRange(x,y) && CheckMinRange(x,y,stats.MinRange,pos) && _tilePool[x][y].Type != Cell.CellType.Hero) 
+        for (int x = (int) pos.x - item.MaxRange; x <= item.MaxRange + pos.x; x++) 
+        for (int y = (int) pos.y - item.MaxRange; y <= item.MaxRange + pos.y; y++) 
+            if (CheckMaxRange(x,y) && CheckMinRange(x,y,item.MinRange,pos) && _tilePool[x][y].Type != Cell.CellType.Hero) 
                 _tilePool[x][y].CreateAttackCell();
     }
 

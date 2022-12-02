@@ -50,11 +50,12 @@
      <Compile Include="Assets\Script\Character\ElementType.cs" />
      <Compile Include="Assets\Script\Managers\Pool.cs" />
      <Compile Include="Assets\Script\Character\Character.cs" />
-     <Compile Include="Assets\Script\Character\Weapon.cs" />
+     <Compile Include="Assets\Script\Character\Item.cs" />
      <Compile Include="Assets\Script\Character\Legs.cs" />
      <Compile Include="Assets\Script\Managers\Controller.cs" />
+     <Compile Include="Assets\Script\UI\UICharacter.cs" />
      <Compile Include="Assets\Script\UI\Card.cs" />
-     <Compile Include="Assets\Script\Character\Stamina.cs" />
+     <Compile Include="Assets\Script\Character\Attributes\Stamina.cs" />
      <Compile Include="Assets\Script\Character\ResistanceType.cs" />
      <Compile Include="Assets\Script\Managers\Field.cs" />
      <Compile Include="Assets\Script\Character\WeaponHand.cs" />
@@ -63,13 +64,22 @@
      <Compile Include="Assets\Script\Character\Hero.cs" />
      <Compile Include="Assets\Script\Character\Hands.cs" />
      <Compile Include="Assets\Script\UI\UIResistance.cs" />
-     <Compile Include="Assets\Script\Character\Health.cs" />
+     <Compile Include="Assets\Script\UI\CharacterButton.cs" />
+     <Compile Include="Assets\Script\Character\Attributes\Health.cs" />
      <Compile Include="Assets\Script\Managers\Spawner.cs" />
      <Compile Include="Assets\Script\UI\PopUp.cs" />
      <Compile Include="Assets\Script\UI\UI.cs" />
      <Compile Include="Assets\Script\UI\UIBaseInfo.cs" />
      <Compile Include="Assets\Script\Managers\BattleStarter.cs" />
      <Compile Include="Assets\Script\UI\ResistanceCard.cs" />
+     <Compile Include="Assets\Script\UI\Console.cs" />
+     <Compile Include="Assets\Script\Character\Bag.cs" />
+     <Compile Include="Assets\Script\Character\Attributes\Intellect.cs" />
+     <Compile Include="Assets\Script\Character\Attributes\Defence.cs" />
+     <Compile Include="Assets\Script\Character\Attributes\Dexterity.cs" />
+     <Compile Include="Assets\Script\Character\Attributes\Luck.cs" />
+     <Compile Include="Assets\Script\Character\Attributes\Wisdom.cs" />
+     <Compile Include="Assets\Script\Character\Attributes\Strenght.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -90,6 +100,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <Folder Include="Assets\Resources\Prefab\Weapons\Enemy Weapons" />
      <Folder Include="Assets\TextMesh Pro\Resources" />
+     <Folder Include="Assets\Resources\Sprites\UI\CharacterButton" />
      <Folder Include="Assets\Resources\Animator\Tile" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <Folder Include="Assets\Resources\Prefab\Heoes" />
@@ -100,6 +111,7 @@
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+     <Folder Include="Assets\Resources\Sprites\Heroes" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
@@ -109,10 +121,12 @@
      <Folder Include="Assets\Script\Character" />
      <Folder Include="Assets\TextMesh Pro\Resources\Style Sheets" />
      <Folder Include="Assets\TextMesh Pro\Fonts" />
+     <Folder Include="Assets\Resources\Sprites\UI" />
      <Folder Include="Assets\Resources\Tiles" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <Folder Include="Assets\Resources\Sprites\Affinity" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <Folder Include="Assets\Script\Character\Attributes" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <Folder Include="Assets\Resources\Animator\UI" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
@@ -124,6 +138,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne.json" />
      <Folder Include="Assets\Script" />
+     <Folder Include="Assets\Resources\Sprites\UI\SwapButton" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.42f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

@@ -7,7 +7,8 @@ using UnityEngine;
 public class ElementalResistance 
 {
     
-    public ResistanceType physicDefence, fireDefence, waterDefence, electricDefence, waveDefence, attackResult;
+    public ResistanceType physicDefence, fireDefence, waterDefence, electricDefence, waveDefence,mentalDefence,holyDefence,IllDefence; 
+    private ResistanceType attackResult;
     public Dictionary<Element, ResistanceType> _resistances;
 
   
@@ -20,6 +21,9 @@ public class ElementalResistance
             {Element.Fire, fireDefence},
             {Element.Electric, electricDefence},
             {Element.Wave, waveDefence},
+            {Element.Mental, mentalDefence},
+            {Element.Holy, holyDefence},
+            {Element.Ill,IllDefence},
         };
     }
 
@@ -28,7 +32,7 @@ public class ElementalResistance
         
     }
     
-  public int CalculateDamage(Weapon element)
+  public int CalculateDamage(Item element)
     {
         int damage = element.Damage;
         
@@ -39,6 +43,10 @@ public class ElementalResistance
            Element.Water => waterDefence,
            Element.Physic => physicDefence,
            Element.Wave => waveDefence,
+           Element.Mental => mentalDefence,
+           Element.Holy => holyDefence,
+           Element.Ill => IllDefence,
+           
         };
         damage = attackResult switch
         {
