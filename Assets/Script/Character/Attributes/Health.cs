@@ -21,7 +21,7 @@ public class Health
     //    if (HP <=(float) MaxHP / 4) healthStatus = HealthEnum.AtDead;
     }
     
-    public bool isOver => HP < 0;
+    public bool isOver => HP <= 0;
     public HealthEnum healthStatus => healthStat;
 
     public int Loose(int damage)

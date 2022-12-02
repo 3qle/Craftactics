@@ -14,7 +14,7 @@ public class Card : MonoBehaviour
     public Image Image;
     public TextMeshProUGUI Name, Cost, Dam;
     public Button Button;
-    private UIWeaponButtons _ui;
+    private UIItemButtons _ui;
     private int num;
     public void UpdateButtonInfo(Item item, Character fightable)
     {
@@ -26,7 +26,7 @@ public class Card : MonoBehaviour
         Image.sprite = item.WeaponIcon;
     }
 
-    public void Initialize(int i, UIWeaponButtons ui)
+    public void Initialize(int i, UIItemButtons ui)
     {
         _ui = ui;
         num = i;

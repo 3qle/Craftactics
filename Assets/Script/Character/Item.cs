@@ -14,7 +14,7 @@ public class Item : MonoBehaviour
     private Attributes _attributes;
     
     [HideInInspector] public string Name;
-    [HideInInspector]public int Damage;
+    public int Damage;
     public int MinRange, MaxRange;
     public int SPCost;
     public int HitsCount;
@@ -38,10 +38,11 @@ public class Item : MonoBehaviour
     }
     public void ModifyDamage()
     {
-        Damage =  _attributes.Strenght * StrenghtMultiplier 
+        Damage +=( _attributes.Strenght * StrenghtMultiplier 
                   + _attributes.Dexterity * DexterityMultiplier 
                   + _attributes.Wisdom * WisdomMultiplier 
-                  + _attributes.Intellect * IntellectMultiplier;
+                  + _attributes.Intellect * IntellectMultiplier)
+                  / 100;
     }
 
    

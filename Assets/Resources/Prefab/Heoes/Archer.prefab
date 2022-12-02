@@ -168,8 +168,8 @@ MonoBehaviour:
     Dexterity: 5
     Wisdom: 3
     Intellect: 4
-    Strenght: 1
-    Luck: 0
+    Strenght: 2
+    Luck: 5
   Bag:
     Items: []
     MaxItems: 2
@@ -195,6 +195,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7108880036797212020}
     m_Modifications:
+    - target: {fileID: 6876540284209984590, guid: 434aed6d5f120474f8c4461ba27846a7, type: 3}
+      propertyPath: WeaponElement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8112658595717335936, guid: 434aed6d5f120474f8c4461ba27846a7, type: 3}
       propertyPath: m_RootOrder
       value: 1

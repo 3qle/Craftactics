@@ -43,11 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 
-  WeaponDamage: 3
-  Min: 0
-  Max: 3
-  Cost: 2
+  Name: 
+  Damage: 1
+  MinRange: 1
+  MaxRange: 4
+  SPCost: 2
   HitsCount: 0
   WeaponIcon: {fileID: 21300000, guid: 31f81169e85eaec42bb3d85214bb9440, type: 3}
-  DamageElement: 1
+  WeaponElement: 1
+  StrenghtMultiplier: 30
+  DexterityMultiplier: 20
+  WisdomMultiplier: 0
+  IntellectMultiplier: 0
+  DefenceMultiplier: 0
+  LuckMultiplier: 0

@@ -117,14 +117,14 @@ MonoBehaviour:
     wisdon: {fileID: 0}
     intellect: {fileID: 0}
     luck: {fileID: 0}
-    Health: 5
+    Health: 10
     Stamina: 5
-    Defence: 0
-    Dexterity: 0
-    Wisdom: 0
+    Defence: 1
+    Dexterity: 6
+    Wisdom: 2
     Intellect: 0
-    Strenght: 0
-    Luck: 0
+    Strenght: 2
+    Luck: 1
   Bag:
     Items: []
     MaxItems: 2

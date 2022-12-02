@@ -16,8 +16,8 @@ public class UI
    [Header("Resistance view")]
    public UIResistance UIResistance;
    
-   [Header("Weapon view")]
-   public UIWeaponButtons WeaponButtons;
+   [Header("Item view")]
+   public UIItemButtons itemButtons;
  
    
    [Header("Basic Stats view")] 
@@ -47,7 +47,7 @@ public class UI
    public void LoadButtons()
    {
       EndTurnButton.onClick.AddListener(_turn.StartNewTurn);
-      WeaponButtons.Initialize(Console);
+      itemButtons.Initialize(Console);
       UICharacter.Initialize(_pool.HeroesList,_controller,Console);
    }
 
@@ -59,7 +59,7 @@ public class UI
    public void HighLightCharacterButton(int i, bool _selected) 
       => UICharacter.ShowHighLight(i,_selected);
    public void ShowActiveItems(Character character) =>
-      WeaponButtons.ShowButton(character);
+      itemButtons.ShowButton(character);
    
    
    public void ShowBaseInfo(Character character)
