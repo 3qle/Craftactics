@@ -34,7 +34,7 @@ public class ElementalResistance
     
   public int CalculateDamage(Item element)
     {
-        int damage = element.Damage;
+        int damage = element.ModDamage;
         
         attackResult = element.WeaponElement switch
         {

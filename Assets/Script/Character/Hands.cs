@@ -15,10 +15,9 @@ using Random = UnityEngine.Random;
 
         public void Initialize(Character character)
         {
-           
             _character = character;
-            _character.Bag.Items[0].Initialize(character);
-            _character.Bag.Items[1].Initialize(character);
+            for (int i = 0; i < _character.Bag.Items.Count; i++) 
+                _character.Bag.Items[i].Initialize(character);
         }
         
         public void PrepareWeapon(Item item)

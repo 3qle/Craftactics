@@ -19,7 +19,7 @@ public class Item : MonoBehaviour
     public int SPCost;
     public int HitsCount;
     public Sprite WeaponIcon;
-    
+    [HideInInspector] public int ModDamage;
     public Element WeaponElement;
     private int _maxRange;
     private int _minRange;
@@ -38,7 +38,7 @@ public class Item : MonoBehaviour
     }
     public void ModifyDamage()
     {
-        Damage +=( _attributes.Strenght * StrenghtMultiplier 
+       ModDamage += Damage +( _attributes.Strenght * StrenghtMultiplier 
                   + _attributes.Dexterity * DexterityMultiplier 
                   + _attributes.Wisdom * WisdomMultiplier 
                   + _attributes.Intellect * IntellectMultiplier)

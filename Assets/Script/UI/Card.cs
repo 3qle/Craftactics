@@ -10,20 +10,26 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class Card : MonoBehaviour
 {
-    public Image CardShell;
+    
     public Image Image;
-    public TextMeshProUGUI Name, Cost, Dam;
-    public Button Button;
+    public TextMeshProUGUI  Cost;
+    
     private UIItemButtons _ui;
     private int num;
     public void UpdateButtonInfo(Item item, Character fightable)
     {
-       // Name.text = weapon.Name;
+      
         Cost.text = item.SPCost.ToString();
         Cost.color = fightable.Attributes.stamina.SP >= item.SPCost ? Color.green : Color.red;
-     //   Dam.color = GetDamageColor(weapon.WeaponElement);
-       // Dam.text = weapon.Damage.ToString();
+        Image.enabled = true;
         Image.sprite = item.WeaponIcon;
+    }
+
+    public void ClearButton()
+    {
+        Cost.text = "";
+        Image.enabled = false;
+
     }
 
     public void Initialize(int i, UIItemButtons ui)

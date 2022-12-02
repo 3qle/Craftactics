@@ -71,15 +71,20 @@ public abstract class Character : MonoBehaviour
       
         if( Attributes.stamina.SP > 0 && side == Fraction.Hero) 
            field.ShowWalkTile(this);
-        
-    
-        if(!_selected)  _ui.Console.Clear();
+
+
+        if (!_selected)
+        {
+            _ui.Console.Clear();
+           
+        }
+        if (side == Fraction.Hero)
+            _ui.HighLightCharacterButton(_pool.HeroesList.IndexOf(this),_selected);
     }
 
     public void ShowInfo()
     {
-        if (side == Fraction.Hero)
-            _ui.HighLightCharacterButton(_pool.HeroesList.IndexOf(this),_selected);
+       
        
   
         
@@ -125,8 +130,8 @@ public abstract class Character : MonoBehaviour
 
     public void InitializeBag()
     {
-        for (int i = 0; i < Bag.MaxItems; i++)
-         Bag.Initialize(transform.GetChild(i).GetComponent<Item>());
+        for (int i = 0; i < transform.childCount; i++)
+            Bag.Initialize(transform.GetChild(i).GetComponent<Item>());
         
     }
 }

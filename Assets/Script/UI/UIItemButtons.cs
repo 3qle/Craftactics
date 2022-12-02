@@ -37,8 +37,11 @@ using UnityEngine.UI;
 
         public void ShowButton(Character fightable)
         {
+            foreach (var card in Cards)
+            card.ClearButton();
+            
             _character = fightable;
-                for (int i = 0; i < _character.Bag.MaxItems; i++)
+                for (int i = 0; i < _character.Bag.Items.Count; i++)
                 {
                     Cards[i].UpdateButtonInfo(_character.Bag.Items[i], fightable);
                 }
