@@ -6,7 +6,7 @@ using UnityEngine;
 public class Bag
 {
     public List<Item> Items = new List<Item>();
-    public int MaxItems;
+    
     
     public void Initialize(Item item)
     {

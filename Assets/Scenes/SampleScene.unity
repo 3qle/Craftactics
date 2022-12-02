@@ -4522,7 +4522,7 @@ MonoBehaviour:
   turn:
     Act: 0
     _activeFractionList: []
-  maxEnemy: 7
+  maxEnemy: 15
 --- !u!114 &1187939014 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6943500981730309832, guid: af613948ffd643340bf0e37942a4b624, type: 3}

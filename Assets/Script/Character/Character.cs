@@ -111,7 +111,7 @@ public abstract class Character : MonoBehaviour
     public void TakeDamage(Item item)
     {
         StartCoroutine(Flash(1));
-        int damage = Attributes.health.Loose(Resistance.CalculateDamage(item));
+        int damage = Attributes.health.Loose(Attributes.defense.Calculate(Resistance.CalculateDamage(item)));
         _ui.ShowPopUp(Resistance.GetAttackResult(), transform.position, damage);
         if(Attributes.health.isOver)Kill();
     }
