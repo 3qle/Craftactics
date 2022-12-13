@@ -13,13 +13,15 @@ public class Turn
     [Header("Turn Settings")]
     private Pool _pool;
     private UI _ui;
-    
+    private Controller _controller;
     public TurnState Act; 
     public List<Character> _activeFractionList = new List<Character>();
-    
-    public void Initialize(Field field, UI ui, Pool pool)
+    private Spawner _spawner;
+    private int roundCount;
+    public void Initialize(Field field, UI ui, Pool pool, Controller controller, Spawner spawner)
     {
-        
+        _spawner = spawner;
+        _controller = controller;
         _ui = ui;
         _pool = pool;
         Act = TurnState.E;
@@ -29,6 +31,7 @@ public class Turn
    public void StartNewTurn()
     {
         Act = Act == TurnState.E? TurnState.P:TurnState.E;
+        
         AddActiveFractionToList();
         if(Act == TurnState.E)NextEnemyAct();
         _ui.UpdateTurnText(Act);
@@ -36,18 +39,14 @@ public class Turn
 
     void AddActiveFractionToList()
     {
-      //  _activeFractionList.Clear(); 
-      if(Act == TurnState.P) 
-          foreach (var VARIABLE in _pool.HeroesList) 
-          { 
-              _activeFractionList.Add(VARIABLE); 
-          }
-      else
-          foreach (var VARIABLE in _pool.EnemiesList) 
-          { 
-              _activeFractionList.Add(VARIABLE); 
-          }
-      //  _activeFractionList = Act == TurnState.P? _pool.HeroesList : _pool.EnemiesList;
+        _activeFractionList.Clear();
+        if(Act == TurnState.P)
+            foreach (var character in _pool.HeroesList) 
+                _activeFractionList.Add(character);
+        
+        if(Act == TurnState.E)
+            foreach (var character in _pool.EnemiesList) 
+                _activeFractionList.Add(character);
         
         foreach (var character in _activeFractionList) 
             character.PrepareForNewTurn();
@@ -58,15 +57,28 @@ public class Turn
         if (_activeFractionList.Count > 0 )
         {
             int i = Random.Range(0, _activeFractionList.Count);
-            
-            if (_activeFractionList[i].Attributes.stamina.OutOfStamina)
+            if (_activeFractionList[i].Attributes.stamina.CheckForStamina(_activeFractionList[i].Arms.SelectRandomWeapon()))
             {
                 _activeFractionList.Remove(_activeFractionList[i]);
                 NextEnemyAct();
             }
-            else 
-                _activeFractionList[i].Select(true);
+            else _controller.SelectEnemy(_activeFractionList[i]);
         }
-        if(_activeFractionList.Count == 0) StartNewTurn();
+
+        if (_activeFractionList.Count == 0)
+        {
+            StartNewWave();
+            StartNewTurn();
+        }
+    }
+
+    void StartNewWave()
+    {
+        if (_pool.EnemiesList.Count == 0)
+        {
+            roundCount += 1;
+            _spawner.SpawnEnemies(_spawner.maxEnemy + roundCount);
+        }
+       
     }
 }

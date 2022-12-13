@@ -1,18 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Intellect : MonoBehaviour
+[Serializable]
+public class Intellect  : Attribute
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void SetName()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Name = "INT";
     }
 }

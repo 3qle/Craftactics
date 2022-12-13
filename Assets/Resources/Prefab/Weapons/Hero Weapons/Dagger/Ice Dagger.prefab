@@ -43,17 +43,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Ice Dagger
   Damage: 1
   MinRange: 0
   MaxRange: 1
   SPCost: 1
   HitsCount: 0
   WeaponIcon: {fileID: 21300000, guid: e67653cbf113ef4439ac5e140e9de006, type: 3}
+  ModDamage: 0
   WeaponElement: 2
-  StrenghtMultiplier: 30
-  DexterityMultiplier: 50
+  StrenghtMultiplier: 10
+  DexterityMultiplier: 20
   WisdomMultiplier: 0
-  IntellectMultiplier: 20
+  IntellectMultiplier: 10
   DefenceMultiplier: 0
   LuckMultiplier: 0
+  strBonus: 0

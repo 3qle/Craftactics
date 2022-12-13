@@ -31,6 +31,6 @@ public class Console
     public void ShowDamageStack(Item item)
     {
         DamageStack.text =
-            $"{item.Damage} + STR {item.StrenghtMultiplier}% + DEX {item.DexterityMultiplier}% + INT {item.IntellectMultiplier}% + WIS {item.WisdomMultiplier}%";
+            $"{item.Damage} + STR {item.StrenghtMultiplier}%{(item.strBonus)} + DEX {item.DexterityMultiplier}% + INT {item.IntellectMultiplier}% + WIS {item.WisdomMultiplier}%";
     }
 }

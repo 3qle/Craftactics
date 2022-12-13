@@ -43,11 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Ice Arrow
   Damage: 2
   MinRange: 2
   MaxRange: 4
   SPCost: 2
+  ShopCost: 0
   HitsCount: 0
   WeaponIcon: {fileID: 21300000, guid: e67653cbf113ef4439ac5e140e9de006, type: 3}
   ModDamage: 0
@@ -58,3 +59,4 @@ MonoBehaviour:
   IntellectMultiplier: 0
   DefenceMultiplier: 0
   LuckMultiplier: 0
+  strBonus: 0

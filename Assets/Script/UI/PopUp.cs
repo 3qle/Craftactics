@@ -14,11 +14,12 @@ public class PopUp : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
     }
 
-    public void ShowPopUp(ResistanceType result, Vector3 pos, int damage)
+    public void ShowPopUp(AttackResult result, Vector3 pos, int damage)
     {
         gameObject.SetActive(true);
         transform.position =pos;
-        text.text = result + "\n" + damage;
+        string damagetext = damage <= 0 ? "" : damage.ToString();
+        text.text =$"{result}\n{damagetext}";
         StartCoroutine(DisableText());
     }
 

@@ -9,25 +9,31 @@ using UnityEngine.UI;
 public class UICharacter
 {
     public CharacterButton[] Button;
-    private Console _console;
-
-    public void Initialize(List<Character> list,Controller controller, Console console)
+   
+    private Character _character;
+   
+    public void Initialize(List<Character> list, Controller controller)
     {
-        _console = console;
-        for (int j = 0; j < list.Count; j++)
+       
+      for (int j = 0; j < list.Count; j++)
           Button[j].Itinialize(list[j],controller);
     }
 
     public void Show()
     {
-        foreach (var button in Button)
-        {
+        foreach (var button in Button) 
             button.Show();
-        }
     }
 
-    public void ShowHighLight(int i, bool _selected)
+    public void HighLightButton(Character character)
     {
-        Button[i].HighLightButton(_selected);
+        if (_character != null) 
+            Button[_character.Index].HighLightButton(false);
+        
+        _character =  character;
+        
+        if (_character != null && character.side == Character.Fraction.Hero)
+            Button[_character.Index].HighLightButton(true);
+         
     }
 }

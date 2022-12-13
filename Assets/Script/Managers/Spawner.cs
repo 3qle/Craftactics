@@ -12,6 +12,7 @@ public class Spawner : MonoBehaviour
     public Field field;
     public Turn turn;
     public Controller controller;
+    public Shop shop;
     
     [Header("Spawner Settings")]
     public int maxEnemy;
@@ -22,7 +23,7 @@ public class Spawner : MonoBehaviour
     {
         SpawnCells();
         SpawnHeroes();
-        SpawnEnemies();
+        SpawnEnemies(maxEnemy);
         SpawnPopUpText();
     }
     void SpawnCells()
@@ -46,9 +47,9 @@ public class Spawner : MonoBehaviour
         }
     }
 
-   public void SpawnEnemies()
+   public void SpawnEnemies(int max)
     {
-        for (int i = 0; i < maxEnemy; i++)
+        for (int i = 0; i < max; i++)
         {
             var  enemy =Instantiate(pool.enemies[Random.Range(0, pool.enemies.Length)], field.CreateSpawnPoint(), Quaternion.identity, transform.GetChild(2));
             enemy.Initialize(field,ui, pool,turn);

@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -5202883895502743364, guid: 3638d73188c875c4586a4adb4e9eeeb6, type: 3}
+  m_Sprite: {fileID: 3229708652140166120, guid: 61dc9de40508e4b4bbdc7bfa50012b00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,6 +101,12 @@ MonoBehaviour:
   field:
     height: 0
     width: 0
+  Experience:
+    points: 0
+    pointsGoal: 50
+    level: 1
+    reward: 50
+    freePoint: 0
   Attributes:
     health:
       healthStat: 0
@@ -110,10 +116,16 @@ MonoBehaviour:
       OutOfStamina: 0
     defense:
       DEF: 0
-    dexterity: {fileID: 0}
-    wisdom: {fileID: 0}
-    intellect: {fileID: 0}
-    luck: {fileID: 0}
+    dexterity:
+      DEX: 0
+    wisdom:
+      WIS: 0
+    intellect:
+      INT: 0
+    strenght:
+      STR: 0
+    luck:
+      LCK: 0
     Health: 6
     Stamina: 5
     Defence: 7
@@ -125,20 +137,22 @@ MonoBehaviour:
   Bag:
     Items: []
   Resistance:
-    physicDefence: 1
-    fireDefence: 1
-    waterDefence: 3
-    electricDefence: 3
-    waveDefence: 2
-    mentalDefence: 2
-    holyDefence: 1
-    IllDefence: 1
+    physicDefence: 56
+    fireDefence: 30
+    waterDefence: 72
+    electricDefence: -100
+    waveDefence: 95
+    mentalDefence: -60
+    holyDefence: 70
+    IllDefence: 72
+    attackResult: 0
   Legs:
     _isWalking: 0
   Hands:
     selectedItem: {fileID: 0}
   Name: Scorpion
   side: 1
+  Index: 0
   targetList: []
 --- !u!1001 &1298338306516414705
 PrefabInstance:

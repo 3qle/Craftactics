@@ -4,21 +4,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vector3 = System.Numerics.Vector3;
 
-  [Serializable]
+
     public class Legs
     {
+
         private int _stepDirX, _stepDirY;
         public bool _isWalking;
         private Character _character;
         private Field _field;
-        public IEnumerator Walk(Vector2 destination, Character character )
+        
+        
+        public Legs(Character character)
         {
             _character = character;
             _field = _character.field;
-            _field.SetTileType(character, true);
+        }
+        public IEnumerator Walk(Vector2 destination )
+        {
+            
+            _field.SetTileType(_character, true);
             _field.HideTiles();
            
-            while (character.Position != destination)
+            while (_character.Position != destination)
             {
                 MakeSteps(destination);
                 yield return new WaitForSeconds(0.15f);
@@ -37,10 +44,14 @@ using Vector3 = System.Numerics.Vector3;
         }
 
         public void FinishSteps()
-        {
-            _field.SetTileType(_character, false);
-            _field.ShowWalkTile(_character);
+        { 
             _field.CreateHighLight(_character.Position, true);
+            _field.ShowWalkTile(_character,true);
+            _field.SetTileType(_character, false);
+          
+          
             _isWalking = false;
         }
+        
+        
     }

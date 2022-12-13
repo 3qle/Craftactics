@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 public class Field 
 {
     [Header("Field Settings")]
-    public  List<List<Cell>> _tilePool = new List<List<Cell>>();
+    public  List<List<CellButton>> _tilePool = new List<List<CellButton>>();
     private Character _selectable;
     private int _posX, _posY;
     private int _stamina;
@@ -30,12 +30,12 @@ public class Field
     public void CreateField()
     {
         for (var i = 0; i <= width; i++)
-            _tilePool.Add(new List<Cell>());
+            _tilePool.Add(new List<CellButton>());
     }
 
-    public void SetCellOnField(Cell cell, int x,int y)
+    public void SetCellOnField(CellButton cellButton, int x,int y)
     {
-         _tilePool[x].Add(cell);
+         _tilePool[x].Add(cellButton);
          _tilePool[x][y].name = (x + "." + y);
          _tilePool[x][y].Initialize(this);
     }
@@ -43,7 +43,7 @@ public class Field
    {
        _posX = Random.Range(0, width); 
        _posY = Random.Range(0, height); 
-       while(_tilePool[_posX][_posY].Type != Cell.CellType.Free) 
+       while(_tilePool[_posX][_posY].Type != CellButton.CellType.Free) 
        { 
            _posX = Random.Range(0, width); 
            _posY = Random.Range(0, height);
@@ -63,37 +63,42 @@ public class Field
         var get = x >= 0 && x < width && y >= 0 && y < height;
         return get;
     }
-    public void ShowWalkTile(Character obj)
+    public void ShowWalkTile(Character obj, bool selected)
     {
-        GetStatsFromChar(obj);
-        _tilePool[(int)obj.Position.x][(int)obj.Position.y].CreateFreeWalkCells();
+        if (obj.Attributes.stamina.current > 0 && obj.side ==Character.Fraction.Hero && selected )
+        {
+            GetStatsFromChar(obj);
+            _tilePool[(int)obj.Position.x][(int)obj.Position.y].CreateFreeWalkCells();
+        }
     }
 
-    public List<Cell> GetTargetsForEnemy(Character obj)
+    public List<CellButton> GetTargetsForEnemy(Character obj)
     {
-        var cells = new List<Cell>();
+        var cells = new List<CellButton>();
         HideTiles();
         GetStatsFromChar(obj);
         for (int x = (int) _pos.x - _stamina; x <= _stamina + _pos.x; x++)
         for (int y = (int) _pos.y - _stamina; y <= _stamina + _pos.y; y++)
-            if (CheckMaxRange(x,y) && _tilePool[x][y].Type == Cell.CellType.Hero)
+            if (CheckMaxRange(x,y) && _tilePool[x][y].Type == CellButton.CellType.Hero)
                     cells.Add(_tilePool[x][y]);
         return cells;
     }
 
     public bool CheckForFreeTile(int x, int y)
     {
-        bool free = _tilePool[x][y].Type == Cell.CellType.Free;
+        bool free = _tilePool[x][y].Type == CellButton.CellType.Free;
         return free;
     }
    
     public void ShowAttackTiles(Item item)
     {
-        HideTiles();
+       
         Vector2 pos = _selectable.Position;
+        CreateHighLight(pos,true);
         for (int x = (int) pos.x - item.MaxRange; x <= item.MaxRange + pos.x; x++) 
         for (int y = (int) pos.y - item.MaxRange; y <= item.MaxRange + pos.y; y++) 
-            if (CheckMaxRange(x,y) && CheckMinRange(x,y,item.MinRange,pos) && _tilePool[x][y].Type != Cell.CellType.Hero) 
+            if (CheckMaxRange(x,y) && CheckMinRange(x,y,item.MinRange,pos) && _tilePool[x][y].Type != CellButton.CellType.Hero
+                && _selectable.Attributes.stamina.current >= item.SPCost ) 
                 _tilePool[x][y].CreateAttackCell();
     }
 

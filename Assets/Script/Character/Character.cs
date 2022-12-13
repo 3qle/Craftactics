@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script.Character;
+using Script.Character.Attributes;
 using Script.Managers;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -9,91 +10,68 @@ using UnityEngine.UIElements;
 public abstract class Character : MonoBehaviour
 {
     [HideInInspector]public SpriteRenderer _sprite;
-    
+    [HideInInspector]public Field field;
     private UI _ui;
-    [HideInInspector] public Field field;
     private Pool _pool;
     protected Turn _turn;
-
+    public WeaponMastery WeaponMastery;
+    public Experience Experience;
     public Attributes Attributes;
     public Bag Bag;
-    public ElementalResistance Resistance;
+    public Resistance Resistance;
     public Legs Legs;
-    public Hands Hands;
+    public Arms Arms;
     
     public string Name;
     
     public enum Fraction { Hero, Enemy, Boss }
     public Fraction side;
-    private bool _selected;
+   
     public Vector2 Position => transform.position;
-    
+    public int Index;
     public void SetPosition(Vector2 dir) => transform.position += (Vector3)dir;
     
     
     public void Initialize(Field _field, UI ui, Pool pool, Turn turn)
     {
+        name = Name;
         _sprite = GetComponent<SpriteRenderer>();
         _ui = ui;
         _turn = turn;
         _pool = pool;
         field = _field;
-        InitializeBag();
+        
+        Legs = new Legs(this);
+        Arms = new Arms(this);
+        
         Resistance.SetResistance();
-        Attributes.Initialize();
-         _pool.AddCharacterToPool(this);
+        Attributes.Initialize(Experience);
+        _pool.AddCharacterToPool(this);
         field.SetTileType(this, false);
+        Experience.Initialize(_ui,this);
         
-        name = Name;
-     
-        
-        Hands.Initialize(this);
-        
-       
+        if(side == Fraction.Hero)Index = _pool.HeroesList.IndexOf(this);
     }
    
    
     public  void Move(Vector2 destination)
     {
         Attributes.stamina.Loose(1);
-        StartCoroutine(Legs.Walk(destination,this));
+        StartCoroutine(Legs.Walk(destination));
     }
     
     public void PrepareForNewTurn()
     {
-        Attributes.stamina.SetMax(Attributes.Stamina);
+        Attributes.stamina.SetCurrentToMax();
     }
  
     public virtual void Select(bool selected)
     {
-        _selected = selected;
         field.CreateHighLight(transform.position, selected);
-      
-        if( Attributes.stamina.SP > 0 && side == Fraction.Hero) 
-           field.ShowWalkTile(this);
-
-
-        if (!_selected)
-        {
-            _ui.Console.Clear();
-           
-        }
-        if (side == Fraction.Hero)
-            _ui.HighLightCharacterButton(_pool.HeroesList.IndexOf(this),_selected);
+        field.ShowWalkTile(this, selected);
+        Arms.DeselectWeapon(selected);
     }
-
-    public void ShowInfo()
-    {
-       
-       
-  
-        
-        
-        _ui.ShowResistances(Resistance._resistances); 
-        _ui.ShowActiveItems(this); 
-      
-        _ui.ShowBaseInfo(this);
-    }
+    
     
     private IEnumerator Flash(int i)
     {
@@ -108,30 +86,31 @@ public abstract class Character : MonoBehaviour
         }
     }
     
-    public void TakeDamage(Item item)
+    public int TakeDamage(Character character)
     {
         StartCoroutine(Flash(1));
-        int damage = Attributes.health.Loose(Attributes.defense.Calculate(Resistance.CalculateDamage(item)));
-        _ui.ShowPopUp(Resistance.GetAttackResult(), transform.position, damage);
-        if(Attributes.health.isOver)Kill();
+        int damage = Attributes.health.Loose(!Attributes.dexterity.TryEvade()? Attributes.defense.Calculate(Resistance.CalculateDamage(character.Arms.selectedItem)): Resistance.EvadeHit());
+        _ui.ShowPopUp(Resistance.attackResult, transform.position, damage); 
+        Kill();
+        return Attributes.health.isOver ?Experience.reward: 0;
     }
-    public Item Attack()
+    public Character Attack()
     {
+        
         field.HideTiles();
-        Attributes.stamina.Loose(Hands.selectedItem.SPCost);
-        return Hands.selectedItem;
-    }
-    public void Kill()
-    {
-        _pool.RemoveCharacterFromPool(this);
-        field.SetTileType(this,true);
-        Destroy(gameObject);
+        Attributes.stamina.Loose(Arms.selectedItem.SPCost);
+        return this;
     }
 
-    public void InitializeBag()
+    private void Kill()
     {
-        for (int i = 0; i < transform.childCount; i++)
-            Bag.Initialize(transform.GetChild(i).GetComponent<Item>());
-        
+        if (Attributes.health.isOver)
+        {
+            _pool.RemoveCharacterFromPool(this);
+            field.SetTileType(this,true);
+            Destroy(gameObject);
+        }
     }
+
+   
 }

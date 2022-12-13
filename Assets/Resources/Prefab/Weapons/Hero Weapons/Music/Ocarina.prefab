@@ -43,11 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Ocarina
   Damage: 1
   MinRange: 0
   MaxRange: 5
   SPCost: 2
+  ShopCost: 0
   HitsCount: 0
   WeaponIcon: {fileID: 21300000, guid: f6ded27a344f8b74da4a409cf6b28b78, type: 3}
   ModDamage: 0
@@ -58,3 +59,4 @@ MonoBehaviour:
   IntellectMultiplier: 50
   DefenceMultiplier: 0
   LuckMultiplier: 10
+  strBonus: 0

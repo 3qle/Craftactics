@@ -8,12 +8,13 @@ using UnityEngine.Events;
 public class Controller
 {
     private Camera _camera;
-    Character _selectable;
+    [HideInInspector] public Character _selectable;
     private Turn _turn;
     private Pool _pool;
-    
-    public void Initialize(Turn turn,Pool pool)
+    private UI _ui;
+    public void Initialize(Turn turn,Pool pool,UI ui)
     {
+        _ui = ui;
         _pool = pool;
         _camera = Camera.main;
         _turn = turn;
@@ -29,36 +30,58 @@ public class Controller
 
             if (hit.collider != null)
             {
-                 if (hit.collider.CompareTag("WalkTile")) 
-                    _selectable.Move(hit.collider.transform.position);
-                 
-                 else  if (hit.collider.CompareTag("AttackTile")) 
-                    hit.collider.GetComponent<Cell>().CharOnCell.TakeDamage(_selectable.Attack());
-                 
-                 else  if (hit.collider.CompareTag("CharacterTile")) 
-                 {
-                     if(_selectable != null) 
-                       _selectable.Select(false);
-                   
-                    _selectable = hit.collider.GetComponent<Cell>().CharOnCell; 
-                    _selectable.Select(true);
-                  
-                 }
-               
+                switch (hit.collider.tag)
+                {
+                    case "WalkTile":
+                        _selectable.Move(hit.collider.transform.position);
+                        break;
+                    case "AttackTile":
+                        _selectable.Experience.Add(hit.collider.GetComponent<CellButton>().CharOnCell.TakeDamage(_selectable.Attack()));
+                        Deselect();
+                        Debug.Log(_selectable);
+                        break;
+                    case "CharacterTile":
+                        SelectByMouse(hit.collider.GetComponent<CellButton>().CharOnCell);
+                        break;
+                }
             }
         }
     }
 
     public void SelectFromUi(int i)
     {
-        if(_selectable != null) 
-            _selectable.Select(false);
+        Deselect();
         _selectable = _pool.HeroesList[i];
-        _selectable.Select(true);
+        Select();
     }
 
-    public void ShowSelectedCharInfo()
+    void SelectByMouse(Character character)
     {
-       if(_selectable != null) _selectable.ShowInfo();
+        Deselect();
+        _selectable = character; 
+        Select();
+    }
+   
+    public void SelectEnemy(Character enemy)
+    {
+        Deselect();
+        _selectable = enemy;
+       Select();
+    }
+    
+    void Deselect()
+    {
+        if (_selectable != null)
+        {
+            _selectable.Select(false);
+            _selectable = null;
+            _ui.ShowInfoOnSelect(_selectable);
+        }
+    }
+
+    void Select()
+    {
+        _selectable.Select(true);
+        _ui.ShowInfoOnSelect(_selectable);
     }
 }

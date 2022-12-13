@@ -103,6 +103,12 @@ MonoBehaviour:
   field:
     height: 0
     width: 0
+  Experience:
+    points: 0
+    pointsGoal: 50
+    level: 1
+    reward: 50
+    freePoint: 0
   Attributes:
     health:
       healthStat: 0
@@ -112,10 +118,16 @@ MonoBehaviour:
       OutOfStamina: 0
     defense:
       DEF: 0
-    dexterity: {fileID: 0}
-    wisdom: {fileID: 0}
-    intellect: {fileID: 0}
-    luck: {fileID: 0}
+    dexterity:
+      DEX: 0
+    wisdom:
+      WIS: 0
+    intellect:
+      INT: 0
+    strenght:
+      STR: 0
+    luck:
+      LCK: 0
     Health: 7
     Stamina: 5
     Defence: 9
@@ -127,20 +139,22 @@ MonoBehaviour:
   Bag:
     Items: []
   Resistance:
-    physicDefence: 1
-    fireDefence: 3
-    waterDefence: 1
-    electricDefence: 3
-    waveDefence: 3
-    mentalDefence: 1
-    holyDefence: 3
-    IllDefence: 1
+    physicDefence: 71
+    fireDefence: -100
+    waterDefence: 90
+    electricDefence: -50
+    waveDefence: -100
+    mentalDefence: 82
+    holyDefence: 84
+    IllDefence: -43
+    attackResult: 0
   Legs:
     _isWalking: 0
   Hands:
     selectedItem: {fileID: 0}
   Name: Slime
   side: 1
+  Index: 0
   targetList: []
 --- !u!1001 &1323761253130464371
 PrefabInstance:
@@ -275,7 +289,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6876540284209984590, guid: 66860d054c60f224f9a9ab2169b9dacb, type: 3}
       propertyPath: SPCost
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8112658595717335936, guid: 66860d054c60f224f9a9ab2169b9dacb, type: 3}
       propertyPath: m_RootOrder

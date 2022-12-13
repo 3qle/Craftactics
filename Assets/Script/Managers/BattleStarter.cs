@@ -5,18 +5,17 @@ namespace Script.Managers
         void Start()
         {
             SpawnOnBattleStart();
-            controller.Initialize(turn,pool);
+            controller.Initialize(turn,pool,ui);
             ui.Initialize(turn,pool,controller);
-            turn.Initialize(field,ui,pool);
-          
+            turn.Initialize(field,ui,pool,controller, this);
+            shop.Initialize(pool);
         }
 
         // Update is called once per frame
         void Update()
         {
             controller.WaitForInput();
-            controller.ShowSelectedCharInfo();
-            ui.ShowHeroesButtons();
+            ui.ShowInfoOnUpdate(controller._selectable);
         }
     }
 }

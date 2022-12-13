@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -3385782990185355796, guid: 3638d73188c875c4586a4adb4e9eeeb6, type: 3}
+  m_Sprite: {fileID: 1961183383047197949, guid: 61dc9de40508e4b4bbdc7bfa50012b00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,6 +103,12 @@ MonoBehaviour:
   field:
     height: 0
     width: 0
+  Experience:
+    points: 0
+    pointsGoal: 50
+    level: 1
+    reward: 50
+    freePoint: 0
   Attributes:
     health:
       healthStat: 0
@@ -112,10 +118,16 @@ MonoBehaviour:
       OutOfStamina: 0
     defense:
       DEF: 0
-    dexterity: {fileID: 0}
-    wisdom: {fileID: 0}
-    intellect: {fileID: 0}
-    luck: {fileID: 0}
+    dexterity:
+      DEX: 0
+    wisdom:
+      WIS: 0
+    intellect:
+      INT: 0
+    strenght:
+      STR: 0
+    luck:
+      LCK: 0
     Health: 4
     Stamina: 6
     Defence: 2
@@ -127,20 +139,22 @@ MonoBehaviour:
   Bag:
     Items: []
   Resistance:
-    physicDefence: 3
-    fireDefence: 3
-    waterDefence: 2
-    electricDefence: 3
-    waveDefence: 1
-    mentalDefence: 3
-    holyDefence: 3
-    IllDefence: 0
+    physicDefence: -65
+    fireDefence: -92
+    waterDefence: -49
+    electricDefence: -66
+    waveDefence: 67
+    mentalDefence: -51
+    holyDefence: -73
+    IllDefence: 80
+    attackResult: 0
   Legs:
     _isWalking: 0
   Hands:
     selectedItem: {fileID: 0}
   Name: Rat
   side: 1
+  Index: 0
   targetList: []
 --- !u!1001 &899569654782186547
 PrefabInstance:

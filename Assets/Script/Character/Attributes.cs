@@ -5,23 +5,41 @@ using UnityEngine;
 [Serializable]
 public class Attributes
 {
-    [HideInInspector]public Health health;
-    [HideInInspector]public Stamina stamina;
-    [HideInInspector]public Defense defense;
-    [HideInInspector]public Dexterity dexterity;
-    [HideInInspector]public Wisdom wisdom;
-    [HideInInspector]public Intellect intellect;
-    [HideInInspector]public Strenght strenght;
-    [HideInInspector]public Luck luck;
+    public Health health;
+    public Stamina stamina;
+    public Defense defense;
+    public Dexterity dexterity;
+    public Wisdom wisdom;
+    public Intellect intellect;
+    public Strenght strenght;
+    public Luck luck;
     
-    [Range(0,25)] 
-    public int Health, Stamina, Defence, Dexterity, Wisdom, Intellect, Strenght, Luck;
-
-
-    public void Initialize()
+   
+    private Experience _experience;
+    public List<Attribute> AttributesList;
+    
+    public void Initialize(Experience experience)
     {
-        health.HP = Health;
-        stamina.SP = Stamina;
-        defense.DEF = Defence;
+        _experience = experience;
+       SetAttributes();
+    }
+
+    public void SetAttributes()
+    {
+        AttributesList = new List<Attribute> {health, stamina,defense,dexterity,wisdom,intellect,strenght,luck};
+        foreach (var stat in AttributesList)
+        {
+            stat.SetCurrentToMax();
+            stat.SetName();
+        }
+         
+    }
+
+    public void LevelUp(int i)
+    {
+        _experience.SpendFreePoint();
+        AttributesList[i].LevelUp();
+        foreach (var stat in AttributesList) 
+            stat.SetCurrentToMax();
     }
 }

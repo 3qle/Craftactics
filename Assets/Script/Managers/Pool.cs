@@ -8,7 +8,7 @@ using UnityEngine;
         public Character[] heroes;
         public Character[] enemies;
         
-        public Cell tile;
+        public CellButton tile;
         public PopUp PopUpText;
         
         [HideInInspector]  public List<PopUp> PopUpList;
@@ -22,6 +22,7 @@ using UnityEngine;
                 HeroesList.Add(character);
             if(character.side == Character.Fraction.Enemy && !EnemiesList.Contains(character))
                 EnemiesList.Add(character);
+   
         }
       
         public void RemoveCharacterFromPool(Character character)

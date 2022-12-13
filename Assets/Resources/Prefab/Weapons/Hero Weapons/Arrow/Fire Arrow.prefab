@@ -43,13 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Fire Arrow
   Damage: 2
   MinRange: 2
   MaxRange: 4
   SPCost: 2
+  ShopCost: 0
   HitsCount: 0
   WeaponIcon: {fileID: 21300000, guid: 31f81169e85eaec42bb3d85214bb9440, type: 3}
+  ModDamage: 0
   WeaponElement: 1
   StrenghtMultiplier: 10
   DexterityMultiplier: 20
@@ -57,3 +59,4 @@ MonoBehaviour:
   IntellectMultiplier: 0
   DefenceMultiplier: 0
   LuckMultiplier: 0
+  strBonus: 0

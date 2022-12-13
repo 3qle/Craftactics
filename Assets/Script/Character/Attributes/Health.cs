@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Health 
+public class Health  : Attribute
 {
   
     public enum HealthEnum { Healthy, Wounded, Weaken, AtDead }
-    public HealthEnum healthStat;
+    HealthEnum healthStat;
 
-   [HideInInspector] public int HP;
+   
    
     
     public void SetEnemyHealthStatus()
@@ -21,16 +21,18 @@ public class Health
     //    if (HP <=(float) MaxHP / 4) healthStatus = HealthEnum.AtDead;
     }
     
-    public bool isOver => HP <= 0;
+    public bool isOver => current <= 0;
     public HealthEnum healthStatus => healthStat;
 
     public int Loose(int damage)
     {
-        HP -= damage;
+        current -= damage;
         return damage;
     }
-    public void SetMax(int hp) => HP = hp;
 
-    
-    
+
+    public override void SetName()
+    {
+        Name = "HLTH";
+    }
 }

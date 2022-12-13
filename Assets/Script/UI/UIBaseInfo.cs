@@ -8,16 +8,23 @@ namespace Script.UI
     [Serializable]
     public  class UIBaseInfo
     {
-        public TextMeshProUGUI HPText, APText, NameText;
+        public GameObject StatsContainer;
+        public TextMeshProUGUI HPText, APText, NameText, LevelText;
         public Image HpBar, SpBar;
-      
-        public void ShowInfo(global::Character character)
+       
+        public void Show(global::Character character)
         {
-           HPText.text =  character.Attributes.health.HP.ToString();
-            APText.text =character.Attributes.stamina.SP.ToString();
-            NameText.text = character.Name;
-            HpBar.fillAmount = (float)character.Attributes.health.HP / character.Attributes.Health;
-            SpBar.fillAmount = (float)character.Attributes.stamina.SP / character.Attributes.Stamina;
+            HPText.text = character == null? "": character.Attributes.health.current.ToString();
+            APText.text =character == null? "": character.Attributes.stamina.current.ToString();
+            NameText.text = character == null? "": character.Name;
+            LevelText.text = character == null? "": character.Experience.level.ToString();
+            
+            HpBar.fillAmount =character == null? 0: (float)character.Attributes.health.current / character.Attributes.health.max;
+            SpBar.fillAmount = character == null? 0: (float)character.Attributes.stamina.current / character.Attributes.stamina.max;
         }
+        
+        public void ShowStatsContainer(bool show) => 
+            StatsContainer.gameObject.transform.localScale =
+            show ? new Vector3(1, 1, 1) : new Vector3(0, 0, 0);
     }
 }

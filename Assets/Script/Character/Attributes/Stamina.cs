@@ -1,24 +1,26 @@
 ﻿ using System;
  using UnityEngine;
 
- [Serializable]
-public class Stamina
+[Serializable]
+public class Stamina  : Attribute
 {
    
-  [HideInInspector]  public int SP;
-    public bool OutOfStamina;
-    public void SetMax(int sp)
-    {
-        SP = sp;
-    }
 
+   [HideInInspector] public bool OutOfStamina;
+  
     public void Loose(int amount)
     {
-        SP -= amount;
+        current -= amount;
     }
+    
     public bool CheckForStamina(Item item)
     {
-        OutOfStamina = item.SPCost > SP + 1;
+        OutOfStamina = item.SPCost + 1 > current ;
         return OutOfStamina;
+    }
+
+    public override void SetName()
+    {
+        Name = "STM";
     }
 }

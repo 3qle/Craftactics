@@ -8,8 +8,10 @@ public class Bag
     public List<Item> Items = new List<Item>();
     
     
-    public void Initialize(Item item)
+    public void AddItem(Item item)
     {
         Items.Add(item);
     }
+    
+    
 }

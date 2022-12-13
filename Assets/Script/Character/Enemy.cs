@@ -10,16 +10,13 @@ public class Enemy : Character
 {
     private Vector2 _pos;
     private Character _target;
-    private ElementalResistance _targetResistance;
-    public List<Cell> targetList = new List<Cell>();
-    private Cell _targetCell;
+    public List<CellButton> targetList = new List<CellButton>();
     
     public override void Select(bool selected)
     {
         base.Select(selected);
         if (!selected || _turn.Act != TurnState.E) return;
         
-        Hands.PrepareRandomWeapon();
         SearchTarget();
         ChooseAction();
         StartCoroutine(WaitForAttack());
@@ -29,12 +26,12 @@ public class Enemy : Character
     {
         while (Legs._isWalking) 
             yield return new WaitForEndOfFrame();
-        if(!Attributes.stamina.OutOfStamina)AttackEnemyTarget();
+        AttackEnemyTarget();
     }
 
     void ChooseAction()
     {
-        if(_target == null || Attributes.stamina.OutOfStamina) 
+        if(_target == null) 
            StartCoroutine( StopAction());
         else 
             Move(_pos);
@@ -42,7 +39,6 @@ public class Enemy : Character
     
     private IEnumerator StopAction()
     {
-        _target = null;
         Select(false);
         yield return new WaitForSeconds(1);
         _turn.NextEnemyAct();
@@ -50,18 +46,15 @@ public class Enemy : Character
 
     private void SearchTarget()
     {
-        if (!Attributes.stamina.CheckForStamina(Hands.selectedItem))
+         targetList = field.GetTargetsForEnemy(this);
+        foreach (var cell in targetList)
         {
-            targetList = field.GetTargetsForEnemy(this);
-            foreach (var t in targetList)
+            if (cell.CheckFreeNeighbours(this) != null)
             {
-                if (t.CheckFreeNeighbours(this) != null)
-                {
-                    _target = t.CharOnCell;
-                    _pos = t.CheckFreeNeighbours(this).transform.position;
-                }
+                _target = cell.CharOnCell;
+                _pos = cell.CheckFreeNeighbours(this).transform.position;
             }
-        }
+        } 
     }
     
     public void AttackEnemyTarget()

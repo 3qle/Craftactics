@@ -1,18 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class Dexterity : MonoBehaviour
+[Serializable]
+public class Dexterity  : Attribute
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public bool TryEvade() => Random.Range(0,25) < current ;
+
+
+   public override void SetName()
+   {
+      Name = "DEX";
+   }
 }

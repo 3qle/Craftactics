@@ -1,22 +1,15 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
 using Script.Character;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-using Image = UnityEngine.UI.Image;
-
 
 public class Item : MonoBehaviour
 {
     private Attributes _attributes;
     
-    [HideInInspector] public string Name;
+    public string Name;
     public int Damage;
     public int MinRange, MaxRange;
-    public int SPCost;
+    public int SPCost, ShopCost;
     public int HitsCount;
     public Sprite WeaponIcon;
     [HideInInspector] public int ModDamage;
@@ -24,13 +17,13 @@ public class Item : MonoBehaviour
     private int _maxRange;
     private int _minRange;
     public int StrenghtMultiplier, DexterityMultiplier, WisdomMultiplier, IntellectMultiplier, DefenceMultiplier, LuckMultiplier;
-    
-    void Start()
+    public int strBonus;
+   
+    private void Start()
     {
-        Name = name;
+        name = Name;
     }
 
- 
     public void Initialize(Character character)
     {
         _attributes = character.Attributes;
@@ -38,11 +31,12 @@ public class Item : MonoBehaviour
     }
     public void ModifyDamage()
     {
-       ModDamage += Damage +( _attributes.Strenght * StrenghtMultiplier 
-                  + _attributes.Dexterity * DexterityMultiplier 
-                  + _attributes.Wisdom * WisdomMultiplier 
-                  + _attributes.Intellect * IntellectMultiplier)
+       ModDamage = Damage +( _attributes.strenght.current * StrenghtMultiplier 
+                  + _attributes.dexterity.current * DexterityMultiplier 
+                  + _attributes.wisdom.current * WisdomMultiplier 
+                  + _attributes.intellect.current * IntellectMultiplier)
                   / 100;
+       strBonus =(_attributes.strenght.current * StrenghtMultiplier)/100;
     }
 
    

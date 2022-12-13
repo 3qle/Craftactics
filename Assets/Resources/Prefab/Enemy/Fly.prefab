@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -3350462572187037778, guid: 3638d73188c875c4586a4adb4e9eeeb6, type: 3}
+  m_Sprite: {fileID: 876784968147787122, guid: 61dc9de40508e4b4bbdc7bfa50012b00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,44 +102,56 @@ MonoBehaviour:
   field:
     height: 0
     width: 0
+  Experience:
+    points: 0
+    pointsGoal: 50
+    level: 1
+    reward: 50
   Attributes:
     health:
-      healthStat: 0
-      HP: 0
+      current: 0
+      max: 0
     stamina:
-      SP: 0
+      current: 0
+      max: 0
       OutOfStamina: 0
     defense:
-      DEF: 0
-    dexterity: {fileID: 0}
-    wisdom: {fileID: 0}
-    intellect: {fileID: 0}
-    luck: {fileID: 0}
-    Health: 3
-    Stamina: 5
-    Defence: 1
-    Dexterity: 7
-    Wisdom: 1
-    Intellect: 1
-    Strenght: 3
-    Luck: 5
+      current: 0
+      max: 0
+    dexterity:
+      current: 0
+      max: 0
+    wisdom:
+      current: 0
+      max: 0
+    intellect:
+      current: 0
+      max: 0
+    strenght:
+      current: 0
+      max: 0
+    luck:
+      current: 0
+      max: 0
   Bag:
     Items: []
   Resistance:
-    physicDefence: 3
-    fireDefence: 3
-    waterDefence: 1
-    electricDefence: 3
-    waveDefence: 2
-    mentalDefence: 3
-    holyDefence: 3
-    IllDefence: 0
+    physicDefence: -56
+    fireDefence: -80
+    waterDefence: 82
+    electricDefence: -66
+    waveDefence: 54
+    mentalDefence: -100
+    holyDefence: -65
+    IllDefence: 93
+    attackResult: 0
   Legs:
     _isWalking: 0
   Hands:
     selectedItem: {fileID: 0}
   Name: Fly
   side: 1
+  Index: 0
   targetList: []
 --- !u!1001 &2069865692260428954
 PrefabInstance:
