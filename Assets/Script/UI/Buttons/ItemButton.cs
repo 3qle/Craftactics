@@ -11,13 +11,13 @@ using UnityEngine.UI;
 
 public class ItemButton : MonoBehaviour
 {
-    
     public Image Image, HighLight;
     public TextMeshProUGUI  Cost;
-    
+    private Spawner _spawner;
     private UIItem _ui;
     private UIShop _uiShop;
     private Item _item;
+    private Character _character;
     private int num;
     private Button Button;
 
@@ -34,22 +34,8 @@ public class ItemButton : MonoBehaviour
         Image.sprite = item.WeaponIcon;
     }
 
-    public void ShowInShop(Item item, UIShop uiShop, bool show)
-    {
-        _item = item;
-        _uiShop = uiShop;
-        Image.enabled = true;
-        Button.enabled = show;
-        SetShopButton();
-        if (show)
-        {
-            Cost.text = item.ShopCost.ToString();
-            Image.sprite = item.WeaponIcon;
-        }
-        else
-         ClearButton();
-    }
-
+   
+    
     public void ClearButton()
     {
         Cost.text = "";
@@ -66,24 +52,7 @@ public class ItemButton : MonoBehaviour
     
     public void SelectWeapon() => _ui.SelectWeapon(num);
 
-    public void SelectInShop(bool show)
-    {
-        if (show)
-        {
-            foreach (var VARIABLE in _uiShop.ItemButtons) 
-                VARIABLE.SelectInShop(false);
-        
-            _item.Initialize(_uiShop.SelectedCharacter);
-            _uiShop.ShowConsole(_item);
-        }
-       
-        HighLightButton(show);
-    }
-
-    public void SetShopButton()
-    {
-        Button.onClick.AddListener(() => SelectInShop(true));
-    }
+    
 
     public void HighLightButton(bool selected) => HighLight.enabled = selected;
     

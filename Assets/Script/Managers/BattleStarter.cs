@@ -5,10 +5,10 @@ namespace Script.Managers
         void Start()
         {
             SpawnOnBattleStart();
-            controller.Initialize(turn,pool,ui);
-            ui.Initialize(turn,pool,controller);
+            controller.Initialize(this);
+            ui.Initialize(turn,pool,controller,shop.UIShop);
             turn.Initialize(field,ui,pool,controller, this);
-            shop.Initialize(pool);
+            shop.Initialize(this);
         }
 
         // Update is called once per frame

@@ -5,56 +5,83 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = System.Object;
 
-namespace Script.Shop
-{
+
     public class CategoryButton : MonoBehaviour
     {
       public  Image Icon;
       public ItemType Type;
-        public Item[] List;
+        public Item[] ItemList;
+        public Character[] CharacterList;
         public List<Item> Items;
+        public List<Character> Characters;
        [HideInInspector] public Button Button;
         private UIShop _uiShop;
-        private List<ItemButton> _container;
+        private List<ShopButton> _container;
+        private Spawner _spawner;
         private void Awake()
         {
-            GetItems();
+           if(Type != ItemType.Hero) GetItems();
+           else 
+               GetCharacters();
+           
             Button = GetComponent<Button>();
         }
 
-        public void Initialize(List<ItemButton> container, UIShop ui,int i)
+        public void Initialize(List<ShopButton> container, UIShop ui,int i,Spawner spawner)
         {
+            _spawner = spawner;
             _container = container;
             _uiShop = ui;
-            Button.onClick.AddListener(() => ShowCategory(true));
+            Button.onClick.AddListener(() => OpenCategory(true));
         }
         
-        public void ShowCategory(bool show)
+        public void OpenCategory(bool show)
         {
             if(show)
-                _uiShop.SetSelectedCategory(this);
+                _uiShop.SelectCategory(this);
 
             for (int i = 0; i < Items.Count; i++) 
-                _container[i].ShowInShop(Items[i],_uiShop,show);
-            
+                _container[i].ShowItemInShop(Items[i],_uiShop,show);
+            for (int i = 0; i < Characters.Count; i++) 
+                _container[i].ShowCharInShop(_spawner.pool.HeroesList[i],_uiShop,show,_spawner);
             Button.image.sprite = Resources.Load<Sprite>("Sprites/UI/CharacterButton/" + show);
         }
         
         public void GetItems()
         {
-            List = Resources.LoadAll<Item>($"Prefab/Weapons/Hero Weapons/{name}/");
-            foreach (var item in List) 
+            ItemList = Resources.LoadAll<Item>($"Prefab/Weapons/Hero Weapons/{name}/");
+            foreach (var item in ItemList) 
                 Items.Add(Instantiate(item,transform));
         }
 
-        public void EnableButton(global::Character character)
+        public void GetCharacters()
         {
-            foreach (var type in character.WeaponMastery.Types)
-                if (type == Type)
-                {
-                    Button.enabled = Icon.enabled = true; break;
-                }
-                else Button.enabled = Icon.enabled = false;
+            CharacterList = Resources.LoadAll<Character>($"Prefab/Weapons/Hero Weapons/{name}/");
+            foreach (var item in CharacterList) 
+                Characters.Add(Instantiate(item,transform));
+        }
+
+        public void EnableCategory(Character character)
+        {
+            if (character != null)
+            {
+                foreach (var type in character.MasteryTypes.Types)
+                    if (type == Type)
+                    {
+                        Button.enabled = Icon.enabled = true; break;
+                    }
+                    else Button.enabled = Icon.enabled = false;
+            }
+            else
+            {
+                if(Type == ItemType.Hero) 
+                    Button.enabled = Icon.enabled = true;
+            }
+           
+        }
+
+        public void Disable()
+        {
+            Button.enabled = Icon.enabled = false;
         }
     }
-}

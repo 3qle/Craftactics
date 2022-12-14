@@ -9,51 +9,66 @@ using UnityEngine.UIElements;
 
 public abstract class Character : MonoBehaviour
 {
-    [HideInInspector]public SpriteRenderer _sprite;
+   public SpriteRenderer _sprite;
     [HideInInspector]public Field field;
     private UI _ui;
     private Pool _pool;
     protected Turn _turn;
-    public WeaponMastery WeaponMastery;
+    public WeaponMastery MasteryTypes;
     public Experience Experience;
     public Attributes Attributes;
     public Bag Bag;
     public Resistance Resistance;
     public Legs Legs;
     public Arms Arms;
-    
+    private Controller _controller;
+    private UIShop _shop;
     public string Name;
     
     public enum Fraction { Hero, Enemy, Boss }
     public Fraction side;
+    public bool Bought;
    
-    public Vector2 Position => transform.position;
-    public int Index;
+
+    public int Index,Cost;
     public void SetPosition(Vector2 dir) => transform.position += (Vector3)dir;
-    
-    
-    public void Initialize(Field _field, UI ui, Pool pool, Turn turn)
+
+    public void Enable(CharacterButton button)
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, 1);
+       _ui.UICharacter.AddCharacterToButton(this,button);
+       field.SetTileType(this, false);
+       Index = _pool.HeroesList.IndexOf(this);
+    }
+    public void Initialize(Field _field, UI ui, Pool pool, Turn turn, Controller controller,UIShop shop)
+    {
+        _shop = shop;
         name = Name;
         _sprite = GetComponent<SpriteRenderer>();
         _ui = ui;
         _turn = turn;
         _pool = pool;
         field = _field;
+        _controller = controller;
         
+       
+        _pool.AddCharacterToPool(this);
+        if (side == Fraction.Enemy) 
+            field.SetTileType(this, false);
+        
+        InitializeAtrributes(ui);
+ 
+    }
+
+    public void InitializeAtrributes(UI ui)
+    {
         Legs = new Legs(this);
         Arms = new Arms(this);
         
         Resistance.SetResistance();
         Attributes.Initialize(Experience);
-        _pool.AddCharacterToPool(this);
-        field.SetTileType(this, false);
-        Experience.Initialize(_ui,this);
-        
-        if(side == Fraction.Hero)Index = _pool.HeroesList.IndexOf(this);
+        Experience.Initialize(ui,this);
     }
-   
-   
     public  void Move(Vector2 destination)
     {
         Attributes.stamina.Loose(1);
@@ -67,7 +82,8 @@ public abstract class Character : MonoBehaviour
  
     public virtual void Select(bool selected)
     {
-        field.CreateHighLight(transform.position, selected);
+        Debug.Log(transform.position);
+        field.CreateHighLight(this, selected);
         field.ShowWalkTile(this, selected);
         Arms.DeselectWeapon(selected);
     }

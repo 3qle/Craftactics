@@ -24,6 +24,7 @@ using UnityEngine.UI;
         public void SelectWeapon(int i)
         {
             DeselectButtons();
+            if (i > _character.Bag.Items.Count) return;
             Cards[i].HighLightButton(true);
             _character.Arms.SelectWeapon(_character.Bag.Items[i]);
             _console.ShowInfo(_character.Bag.Items[i]);
@@ -46,11 +47,11 @@ using UnityEngine.UI;
             ClearButtons();
             _character = fightable;
         }
-
-        public void UpdateButtons()
+ 
+        public void UpdateButtons(Character character)
         {
-            if(_character != null)
-                for (int i = 0; i < _character.Bag.Items.Count; i++) 
-                    Cards[i].UpdateButtonInfo(_character.Bag.Items[i], _character);
+            if(character != null)
+                for (int i = 0; i < character.Bag.Items.Count; i++) 
+                    Cards[i].UpdateButtonInfo(character.Bag.Items[i], character);
         }
     }

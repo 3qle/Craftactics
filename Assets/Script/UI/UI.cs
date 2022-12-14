@@ -42,12 +42,13 @@ public class UI
    private Controller _controller;
    private Pool _pool;
    
-   public void Initialize(Turn turn, Pool pool, Controller controller)
+   public void Initialize(Turn turn, Pool pool, Controller controller, UIShop shop)
    {
       _controller = controller;
       _pool = pool;
       _turn = turn;
       LoadButtons();
+    
    }
    public void LoadButtons()
    {
@@ -56,7 +57,8 @@ public class UI
       StatsButton.onClick.AddListener(ShowStats);
       StatusButton.onClick.AddListener(ShowStatus);
       UIItem.Initialize(Console);
-      UICharacter.Initialize(_pool.HeroesList,_controller);
+      UICharacter.Initialize(_controller);
+  
    }
 
    void ShowStatus()
@@ -71,19 +73,18 @@ public class UI
    }
 
    public void ShowInfoOnUpdate(Character character)
-   {
+   { 
       UICharacter.Show();
       UIResistance.Show(character);
       UIBaseInfo.Show(character);
       UIExperience.Show(character);
-      UIItem.UpdateButtons();
+      UIItem.UpdateButtons(character);
+      UIExperience.SetButtons(character);
    }
 
    public void ShowInfoOnSelect(Character character)
    {
       UIItem.ChangeItems(character);
-      UICharacter.HighLightButton(character);
-      UIExperience.SetButtons(character);
    }
    
    public void ShowPopUp(AttackResult result, Vector3 pos, int damage) 

@@ -8,15 +8,21 @@ using UnityEngine.UI;
 [Serializable]
 public class UICharacter
 {
-    public CharacterButton[] Button;
-   
+    public List<CharacterButton> Button;
+    List<Character> characters = new List<Character>();
     private Character _character;
+    private UIShop _shop;
    
-    public void Initialize(List<Character> list, Controller controller)
+    public void Initialize(Controller controller)
     {
-       
-      for (int j = 0; j < list.Count; j++)
-          Button[j].Itinialize(list[j],controller);
+        foreach (var button in Button)
+         button.Itinialize(controller);
+    }
+
+    public void AddCharacterToButton(Character character, CharacterButton button)
+    {
+        characters.Add(character);
+        Button[Button.IndexOf(button)].AttachCharacter(character);
     }
 
     public void Show()
@@ -25,15 +31,5 @@ public class UICharacter
             button.Show();
     }
 
-    public void HighLightButton(Character character)
-    {
-        if (_character != null) 
-            Button[_character.Index].HighLightButton(false);
-        
-        _character =  character;
-        
-        if (_character != null && character.side == Character.Fraction.Hero)
-            Button[_character.Index].HighLightButton(true);
-         
-    }
+
 }

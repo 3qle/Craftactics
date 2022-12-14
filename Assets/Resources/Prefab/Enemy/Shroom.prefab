@@ -102,41 +102,52 @@ MonoBehaviour:
   field:
     height: 0
     width: 0
+  MasteryTypes:
+    Types: 
   Experience:
     points: 0
     pointsGoal: 50
     level: 1
     reward: 50
-    freePoint: 0
   Attributes:
     health:
-      healthStat: 0
-      HP: 0
+      current: 0
+      Name: 
+      max: 5
     stamina:
-      SP: 0
+      current: 0
+      Name: 
+      max: 5
       OutOfStamina: 0
     defense:
-      DEF: 0
+      current: 0
+      Name: 
+      max: 2
     dexterity:
-      DEX: 0
+      current: 0
+      Name: 
+      max: 1
     wisdom:
-      WIS: 0
+      current: 0
+      Name: 
+      max: 1
     intellect:
-      INT: 0
+      current: 0
+      Name: 
+      max: 5
     strenght:
-      STR: 0
+      current: 0
+      Name: 
+      max: 3
     luck:
-      LCK: 0
-    Health: 3
-    Stamina: 7
-    Defence: 7
-    Dexterity: 2
-    Wisdom: 1
-    Intellect: 5
-    Strenght: 6
-    Luck: 7
+      current: 0
+      Name: 
+      max: 0
   Bag:
-    Items: []
+    Items:
+    - {fileID: 4888590415966279892}
+    - {fileID: 7122696080718801332}
+    - {fileID: 5143960478032348784}
   Resistance:
     physicDefence: -39
     fireDefence: -100
@@ -147,13 +158,11 @@ MonoBehaviour:
     holyDefence: -100
     IllDefence: 33
     attackResult: 0
-  Legs:
-    _isWalking: 0
-  Hands:
-    selectedItem: {fileID: 0}
   Name: Shroom
   side: 1
+  Bought: 0
   Index: 0
+  Cost: 0
   targetList: []
 --- !u!1001 &1733151629667709502
 PrefabInstance:
@@ -217,6 +226,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: aab9d452015117342bd77033f258a0b5, type: 3}
   m_PrefabInstance: {fileID: 1733151629667709502}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5143960478032348784 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: aab9d452015117342bd77033f258a0b5, type: 3}
+  m_PrefabInstance: {fileID: 1733151629667709502}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2069865692260428954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -283,6 +303,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: 713faf714e95bb141b63612baa9d043e, type: 3}
   m_PrefabInstance: {fileID: 2069865692260428954}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4888590415966279892 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: 713faf714e95bb141b63612baa9d043e, type: 3}
+  m_PrefabInstance: {fileID: 2069865692260428954}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4446889761771118074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -345,3 +376,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: e91ec72a7922e604788787306a0e3c8f, type: 3}
   m_PrefabInstance: {fileID: 4446889761771118074}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7122696080718801332 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: e91ec72a7922e604788787306a0e3c8f, type: 3}
+  m_PrefabInstance: {fileID: 4446889761771118074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

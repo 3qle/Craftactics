@@ -9,15 +9,18 @@ public class Controller
 {
     private Camera _camera;
     [HideInInspector] public Character _selectable;
+    private CharacterButton _characterButton;
     private Turn _turn;
     private Pool _pool;
     private UI _ui;
-    public void Initialize(Turn turn,Pool pool,UI ui)
+    private UIShop _uiShop;
+    public void Initialize(BattleStarter starter)
     {
-        _ui = ui;
-        _pool = pool;
+        _ui = starter.ui;
+        _pool = starter.pool;
         _camera = Camera.main;
-        _turn = turn;
+        _turn = starter.turn;
+        _uiShop = starter.shop.UIShop;
     }
 
     public   void WaitForInput()
@@ -48,14 +51,16 @@ public class Controller
         }
     }
 
-    public void SelectFromUi(int i)
+    public void SelectFromUi(Character character, CharacterButton button)
     {
         Deselect();
-        _selectable = _pool.HeroesList[i];
+        _characterButton = button;
+        _selectable = character;
+        _uiShop.SelectCharacter(character,button);
         Select();
     }
 
-    void SelectByMouse(Character character)
+   public void SelectByMouse(Character character)
     {
         Deselect();
         _selectable = character; 
@@ -66,22 +71,25 @@ public class Controller
     {
         Deselect();
         _selectable = enemy;
-       Select();
+        Select();
     }
     
     void Deselect()
     {
-        if (_selectable != null)
-        {
-            _selectable.Select(false);
-            _selectable = null;
-            _ui.ShowInfoOnSelect(_selectable);
-        }
+        _characterButton?.HighLightButton(false);
+        _selectable?.Select(false);
+        _selectable = null;
+        _ui.ShowInfoOnSelect(_selectable);
     }
 
+    public void SelectFromShop(Character character)
+    {
+        _selectable = character;
+    }
     void Select()
     {
-        _selectable.Select(true);
+        _characterButton.HighLightButton(true);
+        _selectable?.Select(true);
         _ui.ShowInfoOnSelect(_selectable);
     }
 }

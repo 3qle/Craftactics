@@ -36,7 +36,7 @@ public class ExperienceButton : MonoBehaviour
     {
         points = _attributes == null ? "" : _attributes.AttributesList[_index].max.ToString();
         name = _attributes == null ? "" : _attributes.AttributesList[_index].Name;
-        ButtonText.text = $"{name}\n{points}";
+        ButtonText.text = $"{name} {points}";
     }
 
     public void Click()

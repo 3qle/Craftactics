@@ -18,14 +18,14 @@ public class Field
     public int height,width;
 
 
-    public void CreateHighLight(Vector3 pos, bool create)
+    public void CreateHighLight(Character obj, bool create)
     {
         HideTiles();
-         _tilePool[(int)pos.x][(int)pos.y].CreateHighLight(create);
+        _tilePool[(int)obj.transform.position.x][(int)obj.transform.position.y].CreateHighLight(create);
     }
 
     public void SetTileType(Character obj, bool free) 
-        => _tilePool[(int)obj.Position.x][(int)obj.Position.y].ChangeType(obj, free);
+        => _tilePool[(int)obj.transform.position.x][(int)obj.transform.position.y].ChangeType(obj, free);
 
     public void CreateField()
     {
@@ -54,7 +54,7 @@ public class Field
     void GetStatsFromChar(Character obj)
     {
         _selectable = obj;
-        _pos = obj.Position;
+        _pos = obj.transform.position;
         _stamina = 10;
     }
 
@@ -68,7 +68,7 @@ public class Field
         if (obj.Attributes.stamina.current > 0 && obj.side ==Character.Fraction.Hero && selected )
         {
             GetStatsFromChar(obj);
-            _tilePool[(int)obj.Position.x][(int)obj.Position.y].CreateFreeWalkCells();
+            _tilePool[(int)obj.transform.position.x][(int)obj.transform.position.y].CreateFreeWalkCells();
         }
     }
 
@@ -93,8 +93,8 @@ public class Field
     public void ShowAttackTiles(Item item)
     {
        
-        Vector2 pos = _selectable.Position;
-        CreateHighLight(pos,true);
+        Vector2 pos = _selectable.transform.position;
+        CreateHighLight(_selectable,true);
         for (int x = (int) pos.x - item.MaxRange; x <= item.MaxRange + pos.x; x++) 
         for (int y = (int) pos.y - item.MaxRange; y <= item.MaxRange + pos.y; y++) 
             if (CheckMaxRange(x,y) && CheckMinRange(x,y,item.MinRange,pos) && _tilePool[x][y].Type != CellButton.CellType.Hero

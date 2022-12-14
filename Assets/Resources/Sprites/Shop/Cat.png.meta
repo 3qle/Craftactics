@@ -29,6 +29,9 @@ TextureImporter:
   - first:
       213: 3291272260663919752
     second: Cat_8
+  - first:
+      213: 5115001047623075895
+    second: Cat_9
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -315,6 +318,27 @@ TextureImporter:
       bones: []
       spriteID: 88448f3eea2fcad20800000000000000
       internalID: 3291272260663919752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cat_9
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73803553a522cf640800000000000000
+      internalID: 5115001047623075895
       vertices: []
       indices: 
       edges: []

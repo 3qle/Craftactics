@@ -5,12 +5,11 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     private Attributes _attributes;
-    
     public string Name;
     public int Damage;
     public int MinRange, MaxRange;
     public int SPCost, ShopCost;
-    public int HitsCount;
+       
     public Sprite WeaponIcon;
     [HideInInspector] public int ModDamage;
     public Element WeaponElement;
@@ -23,7 +22,6 @@ public class Item : MonoBehaviour
     {
         name = Name;
     }
-
     public void Initialize(Character character)
     {
         _attributes = character.Attributes;
@@ -31,14 +29,14 @@ public class Item : MonoBehaviour
     }
     public void ModifyDamage()
     {
-       ModDamage = Damage +( _attributes.strenght.current * StrenghtMultiplier 
-                  + _attributes.dexterity.current * DexterityMultiplier 
-                  + _attributes.wisdom.current * WisdomMultiplier 
-                  + _attributes.intellect.current * IntellectMultiplier)
-                  / 100;
-       strBonus =(_attributes.strenght.current * StrenghtMultiplier)/100;
+        ModDamage = Damage +( _attributes.strenght.current * StrenghtMultiplier 
+                              + _attributes.dexterity.current * DexterityMultiplier 
+                              + _attributes.wisdom.current * WisdomMultiplier 
+                              + _attributes.intellect.current * IntellectMultiplier)
+            / 100;
+        strBonus =(_attributes.strenght.current * StrenghtMultiplier)/100;
     }
-
    
-    
+
+
 }

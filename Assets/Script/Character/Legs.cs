@@ -25,7 +25,7 @@ using Vector3 = System.Numerics.Vector3;
             _field.SetTileType(_character, true);
             _field.HideTiles();
            
-            while (_character.Position != destination)
+            while ((Vector2)_character.transform.position != destination)
             {
                 MakeSteps(destination);
                 yield return new WaitForSeconds(0.15f);
@@ -37,7 +37,7 @@ using Vector3 = System.Numerics.Vector3;
         {
             _isWalking = true;
             
-            Vector2 pos = _character.Position;
+            Vector2 pos = _character.transform.position;
             _stepDirX = destination.x == pos.x ? 0 : destination.x > pos.x ? 1 : -1;
             _stepDirY = destination.y == pos.y ? 0 : destination.y > pos.y ? 1 : -1; 
             _character.SetPosition(new Vector2(_stepDirX, _stepDirY));
@@ -45,7 +45,7 @@ using Vector3 = System.Numerics.Vector3;
 
         public void FinishSteps()
         { 
-            _field.CreateHighLight(_character.Position, true);
+            _field.CreateHighLight(_character, true);
             _field.ShowWalkTile(_character,true);
             _field.SetTileType(_character, false);
           

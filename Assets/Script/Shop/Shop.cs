@@ -7,10 +7,16 @@ public class Shop
 {
  public UIShop UIShop;
  public Wallet Wallet;
+ public bool inShop;
 
- public void Initialize(Pool pool)
+ public void Initialize(Spawner spawner)
+ { 
+  UIShop.Initialize(spawner,this);
+ }
+
+ public void Show()
  {
-  UIShop.Initialize(pool);
+  
  }
  
 }

@@ -38,7 +38,7 @@ public class Experience
   {
     if (i > 0)
     {
-      _ui.ShowPopUp(AttackResult.Exp,_character.Position,i);
+      _ui.ShowPopUp(AttackResult.Exp,_character.transform.position,i);
       points += i;
       LevelUp();
     }

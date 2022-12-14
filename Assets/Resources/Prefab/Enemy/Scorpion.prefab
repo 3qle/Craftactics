@@ -101,41 +101,51 @@ MonoBehaviour:
   field:
     height: 0
     width: 0
+  MasteryTypes:
+    Types: 
   Experience:
     points: 0
     pointsGoal: 50
     level: 1
     reward: 50
-    freePoint: 0
   Attributes:
     health:
-      healthStat: 0
-      HP: 0
+      current: 0
+      Name: 
+      max: 3
     stamina:
-      SP: 0
+      current: 0
+      Name: 
+      max: 4
       OutOfStamina: 0
     defense:
-      DEF: 0
+      current: 0
+      Name: 
+      max: 8
     dexterity:
-      DEX: 0
+      current: 0
+      Name: 
+      max: 2
     wisdom:
-      WIS: 0
+      current: 0
+      Name: 
+      max: 2
     intellect:
-      INT: 0
+      current: 0
+      Name: 
+      max: 1
     strenght:
-      STR: 0
+      current: 0
+      Name: 
+      max: 4
     luck:
-      LCK: 0
-    Health: 6
-    Stamina: 5
-    Defence: 7
-    Dexterity: 4
-    Wisdom: 2
-    Intellect: 2
-    Strenght: 7
-    Luck: 2
+      current: 0
+      Name: 
+      max: 0
   Bag:
-    Items: []
+    Items:
+    - {fileID: 3207652995770377427}
+    - {fileID: 5578551721309668543}
   Resistance:
     physicDefence: 56
     fireDefence: 30
@@ -146,13 +156,11 @@ MonoBehaviour:
     holyDefence: 70
     IllDefence: 72
     attackResult: 0
-  Legs:
-    _isWalking: 0
-  Hands:
-    selectedItem: {fileID: 0}
   Name: Scorpion
   side: 1
+  Bought: 0
   Index: 0
+  Cost: 0
   targetList: []
 --- !u!1001 &1298338306516414705
 PrefabInstance:
@@ -220,6 +228,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
   m_PrefabInstance: {fileID: 1298338306516414705}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5578551721309668543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
+  m_PrefabInstance: {fileID: 1298338306516414705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8353543525754966173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -282,3 +301,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8112658595717335936, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
   m_PrefabInstance: {fileID: 8353543525754966173}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3207652995770377427 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
+  m_PrefabInstance: {fileID: 8353543525754966173}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
