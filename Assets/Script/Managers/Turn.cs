@@ -18,12 +18,12 @@ public class Turn
     public List<Character> _activeFractionList = new List<Character>();
     private Spawner _spawner;
     private int roundCount;
-    public void Initialize(Field field, UI ui, Pool pool, Controller controller, Spawner spawner)
+    public void Initialize(BattleStarter starter)
     {
-        _spawner = spawner;
-        _controller = controller;
-        _ui = ui;
-        _pool = pool;
+        _spawner = starter;
+        _controller = starter.controller;
+        _ui = starter.ui;
+        _pool = starter.pool;
         Act = TurnState.E;
         StartNewTurn();
     }
@@ -62,23 +62,23 @@ public class Turn
                 _activeFractionList.Remove(_activeFractionList[i]);
                 NextEnemyAct();
             }
-            else _controller.SelectEnemy(_activeFractionList[i]);
+            else _controller.SelectByMouse(_activeFractionList[i]);
         }
 
         if (_activeFractionList.Count == 0)
         {
-            StartNewWave();
-            StartNewTurn();
+            if (_pool.EnemiesList.Count == 0)
+                StartNewWave();
+            else
+                StartNewTurn();
         }
     }
 
     void StartNewWave()
     {
-        if (_pool.EnemiesList.Count == 0)
-        {
-            roundCount += 1;
-            _spawner.SpawnEnemies(_spawner.maxEnemy + roundCount);
-        }
-       
+        roundCount += 1;
+        _spawner.SpawnEnemies(_spawner.maxEnemy + roundCount);
+        _spawner.shop.OpenShop(true);
+        
     }
 }

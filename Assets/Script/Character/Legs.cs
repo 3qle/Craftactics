@@ -7,23 +7,21 @@ using Vector3 = System.Numerics.Vector3;
 
     public class Legs
     {
-
         private int _stepDirX, _stepDirY;
         public bool _isWalking;
         private Character _character;
-        private Field _field;
+     
         
         
         public Legs(Character character)
         {
             _character = character;
-            _field = _character.field;
         }
         public IEnumerator Walk(Vector2 destination )
         {
             
-            _field.SetTileType(_character, true);
-            _field.HideTiles();
+            _character.field.SetTileType(_character, true);
+            _character.field.HideTiles();
            
             while ((Vector2)_character.transform.position != destination)
             {
@@ -45,9 +43,9 @@ using Vector3 = System.Numerics.Vector3;
 
         public void FinishSteps()
         { 
-            _field.CreateHighLight(_character, true);
-            _field.ShowWalkTile(_character,true);
-            _field.SetTileType(_character, false);
+            _character.field.CreateHighLight(_character, true);
+            _character.field.ShowWalkTile(_character,true);
+            _character.field.SetTileType(_character, false);
           
           
             _isWalking = false;

@@ -68,20 +68,22 @@ using Object = System.Object;
                 foreach (var type in character.MasteryTypes.Types)
                     if (type == Type)
                     {
-                        Button.enabled = Icon.enabled = true; break;
+                        Enable(true); break;
                     }
-                    else Button.enabled = Icon.enabled = false;
+                    else Enable(false);
             }
             else
             {
-                if(Type == ItemType.Hero) 
-                    Button.enabled = Icon.enabled = true;
+                if (Type == ItemType.Hero)
+                    Enable(true);
             }
-           
+
+            if (character?.side == Character.Fraction.Enemy)
+                Enable(false);
         }
 
-        public void Disable()
+        public void Enable(bool enable)
         {
-            Button.enabled = Icon.enabled = false;
+            Button.enabled = Icon.enabled = enable;
         }
     }

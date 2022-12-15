@@ -44,7 +44,7 @@
      <Compile Include="Assets\Script\Managers\App.cs" />
      <Compile Include="Assets\Script\UI\Buttons\CellButton.cs" />
      <Compile Include="Assets\Script\Character\Attributes\Dexterity.cs" />
-     <Compile Include="Assets\Script\Managers\TurnState.cs" />
+     <Compile Include="Assets\Script\Enum\TurnState.cs" />
      <Compile Include="Assets\Script\Character\Attributes\Intellect.cs" />
      <Compile Include="Assets\Script\UI\UIItem.cs" />
      <Compile Include="Assets\Script\Character\Resistance.cs" />
@@ -72,6 +72,7 @@
      <Compile Include="Assets\Script\UI\UIExperience.cs" />
      <Compile Include="Assets\Script\Managers\Field.cs" />
      <Compile Include="Assets\Script\Managers\Turn.cs" />
+     <Compile Include="Assets\Script\UI\Buttons\ShopButton.cs" />
      <Compile Include="Assets\Script\Character\Attributes.cs" />
      <Compile Include="Assets\Script\Character\Hero.cs" />
      <Compile Include="Assets\Script\Character\Arms.cs" />
@@ -89,7 +90,6 @@
      <Compile Include="Assets\Script\UI\UIBaseInfo.cs" />
      <Compile Include="Assets\Script\Managers\BattleStarter.cs" />
      <Compile Include="Assets\Script\UI\Buttons\ResistanceButton.cs" />
-     <Compile Include="Assets\Script\UI\Buttons\ShopButton.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <Folder Include="Assets\Resources\Prefab\Weapons\Hero Weapons\Arrow" />

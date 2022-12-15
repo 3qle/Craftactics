@@ -8,7 +8,6 @@ namespace Script.UI
     [Serializable]
     public  class UIBaseInfo
     {
-        public GameObject StatsContainer;
         public TextMeshProUGUI HPText, APText, NameText, LevelText;
         public Image HpBar, SpBar;
        
@@ -23,8 +22,6 @@ namespace Script.UI
             SpBar.fillAmount = character == null? 0: (float)character.Attributes.stamina.current / character.Attributes.stamina.max;
         }
         
-        public void ShowStatsContainer(bool show) => 
-            StatsContainer.gameObject.transform.localScale =
-            show ? new Vector3(1, 1, 1) : new Vector3(0, 0, 0);
+       
     }
 }

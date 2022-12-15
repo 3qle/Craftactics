@@ -13,40 +13,34 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class UI
 {
-   public Console Console;
-   
-   [Header("Resistance view")]
-   public UIResistance UIResistance;
-
-   [Header("Experience view")] public UIExperience UIExperience;
-   [Header("Item view")]
-   public UIItem UIItem;
-   
-   [Header("Basic Stats view")] 
-   public UIBaseInfo UIBaseInfo;
-   
-   [Header("Character view")] 
-   public UICharacter UICharacter;
-
-   public TextMeshProUGUI  TurnAnnouncement;
-
-   [Header("Buttons")] 
-   public Button EndTurnButton;
-   public Button ResetButton;
-   public Button StatusButton;
-   public Button StatsButton;
-   
-   public GameObject PopUpContainer;
-
    private Turn _turn;
    private Controller _controller;
    private Pool _pool;
+   private Shop _shop;
+   public Console Console;
+   public UIResistance ResistanceUI;
+   public UIExperience ExperienceUI;
+   public UIItem ItemUI;
+   public UIBaseInfo InfoUI;
+   public UICharacter CharacterUI;
    
-   public void Initialize(Turn turn, Pool pool, Controller controller, UIShop shop)
+   [Header("Buttons")] 
+   public Button EndTurnButton;
+   public Button ResetButton;
+   public Button BuyButton;
+   public GameObject PopUpContainer;
+   public TextMeshProUGUI  TurnAnnouncement;
+   
+   public void Initialize(BattleStarter starter)
    {
-      _controller = controller;
-      _pool = pool;
-      _turn = turn;
+      _controller = starter.controller;
+      _pool = starter.pool;
+      _turn = starter.turn;
+      _shop = starter.shop;
+      ResistanceUI.Initialize();
+      ExperienceUI.Initialize(starter);
+      ItemUI.Initialize(Console);
+      CharacterUI.Initialize(_controller);
       LoadButtons();
     
    }
@@ -54,37 +48,25 @@ public class UI
    {
       EndTurnButton.onClick.AddListener(_turn.StartNewTurn);
       ResetButton.onClick.AddListener(Reset);
-      StatsButton.onClick.AddListener(ShowStats);
-      StatusButton.onClick.AddListener(ShowStatus);
-      UIItem.Initialize(Console);
-      UICharacter.Initialize(_controller);
-  
+      BuyButton.onClick.AddListener(_shop.UIShop.Buy);
    }
 
-   void ShowStatus()
-   {
-      UIResistance.ShowResistanceContainer(true);
-      UIBaseInfo.ShowStatsContainer(false);
-   }
-   void ShowStats()
-   {
-      UIResistance.ShowResistanceContainer(false);
-      UIBaseInfo.ShowStatsContainer(true);
-   }
+  
 
    public void ShowInfoOnUpdate(Character character)
    { 
-      UICharacter.Show();
-      UIResistance.Show(character);
-      UIBaseInfo.Show(character);
-      UIExperience.Show(character);
-      UIItem.UpdateButtons(character);
-      UIExperience.SetButtons(character);
+      CharacterUI.Show();
+      ResistanceUI.Show(character);
+      InfoUI.Show(character);
+      ExperienceUI.Show(character);
+      ItemUI.UpdateButtons(character);
+    
    }
 
    public void ShowInfoOnSelect(Character character)
    {
-      UIItem.ChangeItems(character);
+      ExperienceUI.SetButtons(character);
+      ItemUI.ChangeItems(character);
    }
    
    public void ShowPopUp(AttackResult result, Vector3 pos, int damage) 

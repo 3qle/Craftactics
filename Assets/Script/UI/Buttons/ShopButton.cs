@@ -8,8 +8,8 @@
         private Spawner _spawner;
         private UIItem _ui;
         private UIShop _uiShop;
-        private Item _item;
-        private Character _character;
+        public Item _item;
+        public Character _character;
         private int num;
         private Button Button;
         private void Awake()
@@ -21,6 +21,9 @@
         {
             _item = item;
             _uiShop = uiShop;
+            
+            if(item.Bought) return;
+            
             Image.enabled = true;
             Button.enabled = show;
             SetShopButton();
@@ -33,12 +36,17 @@
             else
                 ClearButton();
         }
+
+       
         
         public void SetShopButton()
         {
+            Button.onClick.RemoveAllListeners();
+            
             Button.onClick.AddListener(() =>
             {
-                if(_item != null)SelectItemInShop(true);
+                if(_item != null)
+                    SelectItemInShop(true);
                 else
                  SelectCharInShop(true);
                 
@@ -49,11 +57,9 @@
         {
             if (show)
             {
-                foreach (var VARIABLE in _uiShop.ItemButtons) 
-                    VARIABLE.HighLightButton(false);
-        
+                _uiShop.HideButtons();
                 _item.Initialize(_uiShop.SelectedCharacter);
-                _uiShop.ShowConsole(_item);
+                _uiShop.SelectItemInShop(this);
             }
        
             HighLightButton(show);
@@ -62,13 +68,9 @@
         {
             if (show)
             {
-                foreach (var VARIABLE in _uiShop.ItemButtons) 
-                    VARIABLE.HighLightButton(false);
-                
-                _uiShop.SelectedCharacter = _character;
-                
+                _uiShop.HideButtons();
+                _uiShop.SelectCharacterInShop(this);
                 _spawner.controller.SelectFromShop(_character);
-             //   _spawner.ui.UICharacter.HighLightButton(_character);
             }
        
             HighLightButton(show);
@@ -78,6 +80,7 @@
             _spawner = spawner;
             _character = item;
             _uiShop = uiShop;
+            if(item.Bought) return;
             Image.enabled = true;
             Button.enabled = show;
             SetShopButton();

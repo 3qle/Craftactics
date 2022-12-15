@@ -42,9 +42,9 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < pool.heroes.Length; i++)
         {
-            var  enemy =Instantiate(pool.heroes[i], new Vector3(i,0,-10), Quaternion.identity, transform.GetChild(2));
-            enemy.Initialize(field,ui, pool,turn,controller,shop.UIShop);
-            
+            var  hero =Instantiate(pool.heroes[i], new Vector3(i,0,-10), Quaternion.identity, transform.GetChild(2));
+            hero.Initialize(this);
+            pool.AddCharacterToPool(hero);
         }
     }
 
@@ -53,7 +53,8 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < max; i++)
         {
             var  enemy =Instantiate(pool.enemies[Random.Range(0, pool.enemies.Length)], field.CreateSpawnPoint(), Quaternion.identity, transform.GetChild(2));
-            enemy.Initialize(field,ui, pool,turn,controller,shop.UIShop);
+            enemy.Initialize(this);
+            pool.AddCharacterToPool(enemy);
         }
    }
 

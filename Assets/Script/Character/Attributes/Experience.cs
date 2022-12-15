@@ -8,7 +8,7 @@ public class Experience
 {
  [HideInInspector] public int points, pointsGoal = 50;
   public int level, reward;
-  int freePoint;
+  public int freePoint;
   private UI _ui;
   private Character _character;
   
@@ -29,7 +29,7 @@ public class Experience
       level += 1;
       points -= pointsGoal;
       RaiseGoal();
-      _ui.UIExperience.ActivateButtons(true);
+     // _ui.ExperienceUI.ActivateButtons(true);
     } 
   }
   

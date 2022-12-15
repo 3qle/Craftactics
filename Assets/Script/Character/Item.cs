@@ -17,7 +17,7 @@ public class Item : MonoBehaviour
     private int _minRange;
     public int StrenghtMultiplier, DexterityMultiplier, WisdomMultiplier, IntellectMultiplier, DefenceMultiplier, LuckMultiplier;
     public int strBonus;
-   
+    public bool Bought;
     private void Start()
     {
         name = Name;

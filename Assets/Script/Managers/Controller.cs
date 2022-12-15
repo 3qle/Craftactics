@@ -11,13 +11,11 @@ public class Controller
     [HideInInspector] public Character _selectable;
     private CharacterButton _characterButton;
     private Turn _turn;
-    private Pool _pool;
     private UI _ui;
     private UIShop _uiShop;
     public void Initialize(BattleStarter starter)
     {
         _ui = starter.ui;
-        _pool = starter.pool;
         _camera = Camera.main;
         _turn = starter.turn;
         _uiShop = starter.shop.UIShop;
@@ -31,65 +29,52 @@ public class Controller
         {
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
-            if (hit.collider != null)
-            {
-                switch (hit.collider.tag)
-                {
-                    case "WalkTile":
-                        _selectable.Move(hit.collider.transform.position);
-                        break;
-                    case "AttackTile":
-                        _selectable.Experience.Add(hit.collider.GetComponent<CellButton>().CharOnCell.TakeDamage(_selectable.Attack()));
-                        Deselect();
-                        Debug.Log(_selectable);
-                        break;
-                    case "CharacterTile":
-                        SelectByMouse(hit.collider.GetComponent<CellButton>().CharOnCell);
-                        break;
-                }
-            }
+             switch (hit.collider?.tag) 
+             {
+                 case "WalkTile": 
+                     _selectable.Move(hit.collider.transform.position);
+                     break;
+                 case "AttackTile": 
+                     AttackTarget(hit.collider.GetComponent<CellButton>().CurrentCharacter);
+                     break;
+                 case "CharacterTile": 
+                     SelectByMouse(hit.collider.GetComponent<CellButton>().CurrentCharacter);
+                     break; 
+             }
         }
     }
 
-    public void SelectFromUi(Character character, CharacterButton button)
+    void AttackTarget(Character character)
     {
-        Deselect();
+        _selectable.Experience.Add(character.TakeDamage(_selectable.Attack()));
+        Select(false);
+    }
+    void Select(bool select)
+    {
+        _characterButton?.HighLightButton(select, _selectable);
+        _selectable?.Select(select); 
+       _ui.ShowInfoOnSelect(_selectable);
+    }
+    public void SelectCharacterButton(Character character, CharacterButton button)
+    {
+        Select(false);
         _characterButton = button;
         _selectable = character;
         _uiShop.SelectCharacter(character,button);
-        Select();
+        Select(true);
     }
 
    public void SelectByMouse(Character character)
     {
-        Deselect();
+        Select(false);
         _selectable = character; 
-        Select();
+        Select(true);
     }
    
-    public void SelectEnemy(Character enemy)
-    {
-        Deselect();
-        _selectable = enemy;
-        Select();
-    }
-    
-    void Deselect()
-    {
-        _characterButton?.HighLightButton(false);
-        _selectable?.Select(false);
-        _selectable = null;
-        _ui.ShowInfoOnSelect(_selectable);
-    }
-
-    public void SelectFromShop(Character character)
+   public void SelectFromShop(Character character)
     {
         _selectable = character;
-    }
-    void Select()
-    {
-        _characterButton.HighLightButton(true);
-        _selectable?.Select(true);
         _ui.ShowInfoOnSelect(_selectable);
     }
+   
 }

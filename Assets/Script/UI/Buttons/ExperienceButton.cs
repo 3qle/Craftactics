@@ -20,16 +20,18 @@ public class ExperienceButton : MonoBehaviour
         button = GetComponent<Button>();
         ButtonText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         _image = GetComponent<Image>();
+        Activate(false);
     }
 
     public void SetButton(Character character, int index, UIExperience uiExperience)
     {
+        button.onClick.RemoveAllListeners();
         ui = uiExperience;
         _index = index;
         _attributes = character?.Attributes;
        button.onClick.AddListener(Click);
        UpdateText();
-       Activate(false);
+       //Activate(false);
     }
 
     public void UpdateText()
@@ -48,6 +50,7 @@ public class ExperienceButton : MonoBehaviour
 
   public  void Activate(bool show)
     {
+        Debug.Log(show);
         _image.sprite = Resources.Load<Sprite>("Sprites/UI/CharacterButton/" + show);
         button.enabled = show;
     }

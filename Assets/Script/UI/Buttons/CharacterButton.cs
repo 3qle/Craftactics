@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class CharacterButton : MonoBehaviour
 {
     public Image CharacterImage, ButtonImage;
@@ -11,18 +12,30 @@ public class CharacterButton : MonoBehaviour
    
     private Character _character;
     private Controller _controller;
-  
-   
-    public void Itinialize( Controller controller)
-    {
-        _controller = controller;
-    }
+    private Button characterButton;
 
-    public void AttachCharacter(Character character)
+    public void Itinialize(Controller controller)
     {
-        _character = character;
+      _controller = controller;
+      characterButton = GetComponent<Button>();
+      characterButton.onClick.AddListener(Select);
     }
- 
+       
+    
+    public void AttachCharacter(Character character) 
+        => _character = character;
+
+    public void HighLightButton(bool selected, Character character)
+    {
+        if( character == null ||character.side == Character.Fraction.Hero ) 
+            ButtonImage.sprite = Resources.Load<Sprite>("Sprites/UI/CharacterButton/" + selected);
+    }
+    
+       
+    
+    public void Select()
+        => _controller.SelectCharacterButton(_character,this);
+    
     public void Show()
     {
         if (_character != null)
@@ -31,16 +44,6 @@ public class CharacterButton : MonoBehaviour
             CharacterImage.sprite = _character._sprite.sprite;
             HPbar.fillAmount =(float)_character.Attributes.health.current / _character.Attributes.health.max;
             SPbar.fillAmount =(float)_character.Attributes.stamina.current / _character.Attributes.stamina.max;
-        }
-   }
-
-
-    public void HighLightButton(bool selected) => ButtonImage.sprite = Resources.Load<Sprite>("Sprites/UI/CharacterButton/" + selected);
-    
-    public void Select(int i)
-    {
-        _controller.SelectFromUi(_character,this);
-        //HighLightButton(true);
+        } 
     }
-    
 }

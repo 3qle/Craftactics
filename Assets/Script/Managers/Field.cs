@@ -42,7 +42,7 @@ public class Field
    public Vector2 CreateSpawnPoint()
    {
        _posX = Random.Range(0, width); 
-       _posY = Random.Range(0, height); 
+       _posY = Random.Range(1, height); 
        while(_tilePool[_posX][_posY].Type != CellButton.CellType.Free) 
        { 
            _posX = Random.Range(0, width); 

@@ -11,7 +11,12 @@ public class Enemy : Character
     private Vector2 _pos;
     private Character _target;
     public List<CellButton> targetList = new List<CellButton>();
-    
+
+    private void Start()
+    {
+        field.SetTileType(this, false);
+    }
+
     public override void Select(bool selected)
     {
         base.Select(selected);
@@ -51,7 +56,7 @@ public class Enemy : Character
         {
             if (cell.CheckFreeNeighbours(this) != null)
             {
-                _target = cell.CharOnCell;
+                _target = cell.CurrentCharacter;
                 _pos = cell.CheckFreeNeighbours(this).transform.position;
             }
         } 

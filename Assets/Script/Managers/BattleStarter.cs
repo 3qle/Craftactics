@@ -6,8 +6,8 @@ namespace Script.Managers
         {
             SpawnOnBattleStart();
             controller.Initialize(this);
-            ui.Initialize(turn,pool,controller,shop.UIShop);
-            turn.Initialize(field,ui,pool,controller, this);
+            ui.Initialize(this);
+            turn.Initialize( this);
             shop.Initialize(this);
         }
 

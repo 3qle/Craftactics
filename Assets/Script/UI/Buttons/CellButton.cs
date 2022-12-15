@@ -7,7 +7,7 @@ public class CellButton : MonoBehaviour
 {
    public SpriteRenderer _spriteRenderer;
    private Animator _animator;
-   public Character CharOnCell;
+   public Character CurrentCharacter;
    public CellButton Up,Left,Right,Down;
    private Field _field;
    public enum CellType { Free, Hero, Enemy, }
@@ -63,16 +63,16 @@ public class CellButton : MonoBehaviour
        weaponRange = character.Arms.selectedItem.MaxRange;
       AddFreeNeighbours(weaponRange);
        CellButton c = Left != null
-            && (Left.Type == CellType.Free ||CharOnCell == character) 
+            && (Left.Type == CellType.Free ||CurrentCharacter == character) 
             ? Left 
             :  Right != null 
-            && (Right.Type == CellType.Free || CharOnCell == character)
+            && (Right.Type == CellType.Free || CurrentCharacter == character)
             ? Right
             :  Up != null && 
-            (Up.Type == CellType.Free || CharOnCell == character) 
+            (Up.Type == CellType.Free || CurrentCharacter == character) 
             ? Up
             :  Down != null && 
-            (Down.Type == CellType.Free || CharOnCell == character) 
+            (Down.Type == CellType.Free || CurrentCharacter == character) 
             ? Down : null;
        return c;
    }
@@ -137,12 +137,12 @@ public class CellButton : MonoBehaviour
            if (c.side == Character.Fraction.Enemy)
                Type = CellType.Enemy;
            tag = "CharacterTile";
-           CharOnCell = c;
+           CurrentCharacter = c;
        }
        else
        {
            Type = CellType.Free;
-           CharOnCell = null;
+           CurrentCharacter = null;
        }
    }
  public  void  CreateHighLight(bool create)
