@@ -22,5 +22,9 @@ public class Stamina  : Attribute
     public override void SetName()
     {
         Name = "STM";
+        start = max;
+        SetCurrentToMax();
+        attributeType = AtrributeTypes.Stamina;
+        notShow = true;
     }
 }

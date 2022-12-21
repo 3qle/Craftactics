@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Script.Character;
+using Script.Enum;
 using Script.Managers;
 using Script.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
- [Serializable]
+
     public class UIItem
     {
         public Transform Container;
         List<ItemButton> Items = new List<ItemButton>();
         private Character _character;
         private Console _console;
-        public void Initialize(Console console)
+        private UIShop _uiShop;
+        public UIItem(Spawner starter, Transform container)
         {
-            _console = console;
+            _console = starter.ui.Console;
+            _uiShop = starter.shop.UIShop;
+            Container = container;
 
             for (int i = 0; i < Container.childCount; i++)
             {
@@ -29,10 +34,14 @@ using UnityEngine.UI;
         public void SelectWeapon(int i)
         {
             DeselectButtons();
-            if (i > _character.Bag.Items.Count) return;
+            if (_character == null || i >= _character.Bag.Items.Count) return;
             Items[i].HighLightButton(true);
-            _character.Arms.SelectWeapon(_character.Bag.Items[i]);
+          
             _console.ShowInfo(_character.Bag.Items[i]);
+            if (_character.entityType == EntityType.Enemy) return;
+           
+            _character.Arms.SelectWeapon(_character.Bag.Items[i],_character);
+            _uiShop.SelectCharacterItem(_character.Bag.Items[i]) ;
         }
 
         public void DeselectButtons()
@@ -46,7 +55,7 @@ using UnityEngine.UI;
             foreach (var card in Items) 
                 card.ClearButton();
         }
-        public void ChangeItems(Character fightable)
+        public void ChangeCharacter(Character fightable)
         {
             _console.Clear();
             ClearButtons();
@@ -56,7 +65,7 @@ using UnityEngine.UI;
         public void UpdateButtons(Character character)
         {
             if(character != null)
-                for (int i = 0; i < character.Bag.Items.Count; i++) 
-                    Items[i].UpdateButtonInfo(character.Bag.Items[i], character);
+                foreach (var button in Items)
+                  button.UpdateButtonInfo(character, Items.IndexOf(button));
         }
     }

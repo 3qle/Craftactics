@@ -1,20 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-[Serializable]
+
 public class UICharacter
 {
-    public Transform Container;
-    List<CharacterButton> Buttons = new List<CharacterButton>();
-    List<Character> characters = new List<Character>();
+    Transform Container;
+  public  List<CharacterButton> Buttons = new List<CharacterButton>();
+   [HideInInspector] public List<Character> characters = new List<Character>();
 
    
-    public void Initialize(Controller controller)
+    public  UICharacter(Controller controller , Transform container)
     {
+        Container = container;
         for (int i = 0; i < Container.childCount; i++)
         {
             Buttons.Add(Container.GetChild(i).GetComponent<CharacterButton>());
@@ -22,10 +24,19 @@ public class UICharacter
         }
     }
 
-    public void AddCharacterToButton(Character character, CharacterButton button)
+    public void AddCharacterToButton(Character character)
     {
-        characters.Add(character);
-        Buttons[Buttons.IndexOf(button)].AttachCharacter(character);
+        if (!characters.Contains(character))
+        {
+            characters.Add(character);
+            Buttons[characters.IndexOf(character)].AttachCharacter(character);
+        }
+        else 
+        {
+            Buttons[characters.IndexOf(character)].AttachCharacter(null); 
+            characters.Remove(character); 
+        }
+       
     }
 
     public void Show()

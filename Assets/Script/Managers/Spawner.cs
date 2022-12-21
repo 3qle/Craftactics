@@ -1,12 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.Character;
+using Script.Enum;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
+    [Header("Spawner Settings")]
+    public int maxEnemy; 
+   
+    public Transform EntityContainer;
+    
+    [Header("Settings")]
     public UI ui;
     public Pool pool;
     public Field field;
@@ -14,21 +22,18 @@ public class Spawner : MonoBehaviour
     public Controller controller;
     public Shop shop;
     
-    [Header("Spawner Settings")]
-    public int maxEnemy;
     int _spawnX, _spawnY;
-
-
-    public void SpawnOnBattleStart()
+    private Entity[] Entities;
+   public void SpawnOnBattleStart()
     {
         SpawnCells();
-      SpawnHeroes();
         SpawnEnemies(maxEnemy);
         SpawnPopUpText();
+        GetEntities();
     }
     void SpawnCells()
     {
-        field.CreateField();
+        field.CreateField(this);
         for (var x = 0; x < field.width; x++)
         for (var y = 0; y < field.height; y++)
         {
@@ -37,16 +42,7 @@ public class Spawner : MonoBehaviour
         }
     }
    
-
-    public void SpawnHeroes()
-    {
-        for (int i = 0; i < pool.heroes.Length; i++)
-        {
-            var  hero =Instantiate(pool.heroes[i], new Vector3(i,0,-10), Quaternion.identity, transform.GetChild(2));
-            hero.Initialize(this);
-            pool.AddCharacterToPool(hero);
-        }
-    }
+    
 
    public void SpawnEnemies(int max)
     {
@@ -63,5 +59,14 @@ public class Spawner : MonoBehaviour
        for (int i = 0; i < 30; i++) 
            pool.PopUpList.Add(Instantiate(pool.PopUpText,transform.position,Quaternion.identity,ui.PopUpContainer.transform));
    }
+
    
+   public void GetEntities()
+   {
+       Entities = Resources.LoadAll<Entity>($"Prefab/Entities/");
+       foreach (var item in Entities) 
+          pool.AddShopEntities(Instantiate(item,EntityContainer),this);
+   }
+   
+  
 }

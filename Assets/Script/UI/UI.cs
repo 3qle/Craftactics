@@ -23,12 +23,17 @@ public class UI
    public UIItem ItemUI;
    public UIBaseInfo InfoUI;
    public UICharacter CharacterUI;
-   
+   public UIScore ScoreUI;
    [Header("Buttons")] 
    public Button EndTurnButton;
    public Button ResetButton;
    public Button BuyButton;
+   public Button ShopButton;
+   public Button SellButton;
+   [Header("Containers")]
    public GameObject PopUpContainer;
+   public Transform CharacterButtons, ItemButtons, StatButtons, ResistanceButtons;
+   
    public TextMeshProUGUI  TurnAnnouncement;
    
    public void Initialize(BattleStarter starter)
@@ -37,10 +42,12 @@ public class UI
       _pool = starter.pool;
       _turn = starter.turn;
       _shop = starter.shop;
-      ResistanceUI.Initialize();
-      ExperienceUI.Initialize(starter);
-      ItemUI.Initialize(Console);
-      CharacterUI.Initialize(_controller);
+      
+      CharacterUI =  new UICharacter(_controller, CharacterButtons);
+      ResistanceUI = new UIResistance(ResistanceButtons);
+      ExperienceUI = new UIExperience(starter,StatButtons);
+      ItemUI = new UIItem(starter, ItemButtons);
+     
       LoadButtons();
     
    }
@@ -48,7 +55,9 @@ public class UI
    {
       EndTurnButton.onClick.AddListener(_turn.StartNewTurn);
       ResetButton.onClick.AddListener(Reset);
-      BuyButton.onClick.AddListener(_shop.UIShop.Buy);
+      BuyButton.onClick.AddListener(() =>_shop.UIShop.Buy(true));
+      ShopButton.onClick.AddListener(() => _shop.OpenShop(false));
+      SellButton.onClick.AddListener(() => _shop.UIShop.Buy(false));
    }
 
   
@@ -60,16 +69,17 @@ public class UI
       InfoUI.Show(character);
       ExperienceUI.Show(character);
       ItemUI.UpdateButtons(character);
-    
+      ExperienceUI.SetButtons(character);
+     
    }
 
    public void ShowInfoOnSelect(Character character)
    {
-      ExperienceUI.SetButtons(character);
-      ItemUI.ChangeItems(character);
+    
+      ItemUI.ChangeCharacter(character);
    }
    
-   public void ShowPopUp(AttackResult result, Vector3 pos, int damage) 
+   public void ShowPopUp(AttackResult result, Vector3 pos, float damage) 
       => _pool.PopUpList[Random.Range(0,_pool.PopUpList.Count)].ShowPopUp(result,pos,damage);
    
    public void Reset()

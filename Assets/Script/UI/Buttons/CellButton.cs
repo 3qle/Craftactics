@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.Enum;
 using UnityEngine;
 
 public class CellButton : MonoBehaviour
@@ -60,8 +61,8 @@ public class CellButton : MonoBehaviour
 
    public CellButton CheckFreeNeighbours(Character character)
    {
-       weaponRange = character.Arms.selectedItem.MaxRange;
-      AddFreeNeighbours(weaponRange);
+       weaponRange = character.Arms.selectedItem.Range.MaxRange; 
+       AddFreeNeighbours(weaponRange);
        CellButton c = Left != null
             && (Left.Type == CellType.Free ||CurrentCharacter == character) 
             ? Left 
@@ -103,9 +104,10 @@ public class CellButton : MonoBehaviour
        CreateCell(false);
    }
 
-   public void CreateAttackCell()
+   public void CreateAttackCell(bool toEnemy)
    {
-       tag = Type == CellType.Enemy? "AttackTile" : "VoidTile";
+       Debug.Log($"select");
+       tag = toEnemy ? Type == CellType.Enemy ? "AttackTile":"VoidTile" : Type == CellType.Hero ? "AttackTile" : "VoidTile";
        SetCellType(tag);
        CreateCell(true);
    }
@@ -132,9 +134,9 @@ public class CellButton : MonoBehaviour
    {
        if (!free)
        {
-           if (c.side == Character.Fraction.Hero)
+           if (c.entityType == EntityType.Hero)
                Type = CellType.Hero;
-           if (c.side == Character.Fraction.Enemy)
+           if (c.entityType == EntityType.Enemy)
                Type = CellType.Enemy;
            tag = "CharacterTile";
            CurrentCharacter = c;

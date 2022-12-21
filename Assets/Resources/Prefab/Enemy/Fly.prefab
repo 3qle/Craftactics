@@ -80,7 +80,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -98,17 +98,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c62eb21c0595546940a491c2671f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
+  ShopCost: 0
+  Bought: 0
+  Icon: {fileID: 0}
+  entityType: 14
+  Name: Fly
+  side: 1
   field:
     height: 0
     width: 0
   MasteryTypes:
     Types: 
-  Experience:
-    points: 0
-    pointsGoal: 50
-    level: 1
-    reward: 50
   Attributes:
     health:
       current: 0
@@ -119,27 +119,23 @@ MonoBehaviour:
       Name: 
       max: 4
       OutOfStamina: 0
-    defense:
+    accuracy:
       current: 0
       Name: 
-      max: 2
-    dexterity:
+      max: 0
+    support:
       current: 0
       Name: 
-      max: 7
-    wisdom:
+      max: 0
+    magic:
       current: 0
       Name: 
-      max: 1
-    intellect:
+      max: 0
+    strength:
       current: 0
       Name: 
-      max: 1
-    strenght:
-      current: 0
-      Name: 
-      max: 2
-    luck:
+      max: 0
+    music:
       current: 0
       Name: 
       max: 0
@@ -158,9 +154,6 @@ MonoBehaviour:
     holyDefence: -65
     IllDefence: 93
     attackResult: 0
-  Name: Fly
-  side: 1
-  Index: 0
   targetList: []
 --- !u!1001 &2069865692260428954
 PrefabInstance:

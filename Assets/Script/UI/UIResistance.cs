@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Script.Character;
 using UnityEngine;
 
-[System.Serializable]
+
 public class UIResistance
 {
     public Transform Container;
@@ -13,14 +13,10 @@ public class UIResistance
         {
             if (character != null)
             {
-                Resistances[0].CreateButton(character.Resistance._resistances[Element.Physic]);
-                Resistances[2].CreateButton(character.Resistance._resistances[Element.Water]);
-                Resistances[1].CreateButton(character.Resistance._resistances[Element.Fire]);
-                Resistances[3].CreateButton(character.Resistance._resistances[Element.Electric]);
-                Resistances[4].CreateButton(character.Resistance._resistances[Element.Wave]);
-                Resistances[5].CreateButton(character.Resistance._resistances[Element.Mental]);
-                Resistances[6].CreateButton(character.Resistance._resistances[Element.Holy]);
-                Resistances[7].CreateButton(character.Resistance._resistances[Element.Ill]);
+                for (int i = 0; i < character.Resistance.ResistanceClasses.Length; i++)
+                {
+                    Resistances[i].CreateButton(character.Resistance.ResistanceClasses[i].amount);
+                }
             }
             else
              foreach (var card in Resistances) 
@@ -31,8 +27,9 @@ public class UIResistance
             Container.gameObject.transform.localScale =
                 show ? new Vector3(1, 1, 1) : new Vector3(0, 0, 0);
 
-        public void Initialize()
+        public UIResistance(Transform container)
         {
+            Container = container;
             for (int i = 0; i < Container.childCount; i++) 
                 Resistances.Add(Container.GetChild(i).GetComponent<ResistanceButton>());
         }

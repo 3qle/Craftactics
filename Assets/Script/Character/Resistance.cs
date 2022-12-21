@@ -6,56 +6,53 @@ using UnityEngine;
 [Serializable]
 public class Resistance 
 {
-    [Range(-100,100)]
-    public int physicDefence, fireDefence, waterDefence, electricDefence, waveDefence,mentalDefence,holyDefence,IllDefence; 
+ 
     [HideInInspector]public AttackResult attackResult;
-    public Dictionary<Element, int> _resistances;
-    private int resistAmount;
-    
-   public void SetResistance()
-    {
-        _resistances = new Dictionary<Element, int>
-        {
-            {Element.Physic, physicDefence},
-            {Element.Water, waterDefence},
-            {Element.Fire, fireDefence},
-            {Element.Electric, electricDefence},
-            {Element.Wave, waveDefence},
-            {Element.Mental, mentalDefence},
-            {Element.Holy, holyDefence},
-            {Element.Ill,IllDefence},
-        };
-    }
    
-    
-  public int CalculateDamage(Item item)
-  {
-      float damage;
+    private int resistAmount;
+    private int _duration;
+   public ResistanceClass physicDefence, fireDefence, waterDefence, electricDefence, waveDefence,mentalDefence,holyDefence,IllDefence;
+   public ResistanceClass[] ResistanceClasses;
+   public void SetResistance()
+   {
+       ResistanceClasses = new[]
+       {
+           physicDefence, fireDefence, waterDefence, electricDefence, waveDefence, mentalDefence, holyDefence,
+           IllDefence
+       };
+       foreach (var VARIABLE in ResistanceClasses) 
+           VARIABLE.Set();
+   }
 
-        resistAmount = item.WeaponElement switch
-        {
-           Element.Electric => electricDefence,
-           Element.Fire => fireDefence, 
-           Element.Water => waterDefence,
-           Element.Physic => physicDefence,
-           Element.Wave => waveDefence,
-           Element.Mental => mentalDefence,
-           Element.Holy => holyDefence,
-           Element.Ill => IllDefence,
-           
-        };
-        damage = item.ModDamage - ((float)item.ModDamage * resistAmount/100);
+   public void ChangeResistance(Element key,int amount,int duration)
+   {
+       foreach (var res in ResistanceClasses) 
+           if(res.Element == key)res.Add(amount,duration);
+   }
+
+   public void CheckActiveModifiers()
+   {
+       foreach (var VARIABLE in ResistanceClasses) 
+           VARIABLE.CheckDuration();
+   }
+  public float CalculateDamage(ItemDamage item)
+  {
+      foreach (var resistance in ResistanceClasses) 
+          if (resistance.Element == item.WeaponElement)
+              resistAmount = resistance.amount;
+      
+       float damage = item.Points - item.Points * resistAmount/100;
         attackResult = 
             resistAmount < 0 ? AttackResult.Weak :
             resistAmount == 100 ? AttackResult.Absorb :
             resistAmount > 0 ? AttackResult.Block :
             AttackResult.Neutral;
         
-      return (int)damage;
+      return damage;
       
     }
 
-  public int EvadeHit()
+  public float EvadeHit()
   {
       attackResult = AttackResult.Miss;
       return 0;

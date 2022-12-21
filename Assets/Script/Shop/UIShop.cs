@@ -1,61 +1,43 @@
-﻿ 
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Script.Character;
+using Script.Enum;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-
 
 [Serializable]
 public class UIShop
 {
     private Console Console;
-    private Pool _pool;
-    private Spawner _spawner;
-    [HideInInspector]public Shop _shop;
+    private Spawner _spawner; 
+    private Shop _shop;
     private List<CategoryButton> CategoryButtons = new List<CategoryButton>();
     private List<ShopButton> ItemButtons = new List<ShopButton>();
-    private List<Button> EnemyPreview = new List<Button>();
-
-   
-    public TextMeshProUGUI CoinsText;
-    public Button ShopButton;
-    public GameObject ItemContainer, CategoryContainer, PreviewContainer;
-   
+    
+    public GameObject ShopButtonsContainer, CategoryContainer;
+    
+   [HideInInspector]  public Character SelectedCharacter;
+    private Entity SelectedEntity;
+    private ShopButton SelectedButton;
     private CategoryButton SelectedCategory;
-    public Character SelectedCharacter;
-    public CharacterButton SelectedCharacterButton;
-    private Item SelectedItem;
-    public ShopButton SelectedButton;
-  
-   
-
-  
+    
    public void Initialize(Spawner spawner,Shop shop )
    {
        Console = spawner.ui.Console;
        _spawner = spawner;
        _shop = shop;
-       _pool = spawner.pool;
-       CreateItemContainer(); 
-       CreateItemCategories(); 
-       LoadEnemyButtons();
-       ShowNextEnemy();
-       ShowNextEnemy(); 
-       UpdateCoins();
-       ShopButton.onClick.AddListener(() => shop.OpenShop(false));
+       GetShopButtons(); 
+       GetCategoryButtons();
+       EnableValidCategories();
+      CategoryButtons[0].OpenCategory();
    }
    
-   
-    public void CreateItemContainer()
+    public void GetShopButtons()
     {
-        for (int i = 0; i < ItemContainer.transform.childCount; i++)
-            ItemButtons.Add(ItemContainer.transform.GetChild(i).GetComponent<ShopButton>());
+        for (int i = 0; i < ShopButtonsContainer.transform.childCount; i++)
+            ItemButtons.Add(ShopButtonsContainer.transform.GetChild(i).GetComponent<ShopButton>());
     }
 
-    public void CreateItemCategories()
+    public void GetCategoryButtons()
     {
         for (int i = 0; i < CategoryContainer.transform.childCount; i++)
         {
@@ -67,109 +49,66 @@ public class UIShop
     public void SelectCategory(CategoryButton button)
     {
         Console.Clear();
-        SelectedCategory?.OpenCategory(false);
+        SelectedCategory?.CloseCategory();
         SelectedCategory = button;
     }
 
-    public void HideButtons()
+    public void HideShopButtons()
     {
         foreach (var button in ItemButtons) 
             button.HighLightButton(false);
     }
 
-    public void SelectCharacter(Character character,CharacterButton button)
+    public void SelectCharacter(Character character)
     {
-        if (_shop.inShop)
+        if (_shop.inShop && character != null)
         {
-            Console.Clear();
-            SelectedCharacterButton = button;
             SelectedCharacter = character;
             SelectCategory(SelectedCategory);
             EnableValidCategories();
         }
     }
 
+    public void SelectCharacterItem(Item item)
+    {
+        SelectedEntity = item;
+    }
     void EnableValidCategories()
     {
         foreach (var button in CategoryButtons) 
             button.Enable(false);
-        foreach(var butn in CategoryButtons)
-            butn.EnableCategory(SelectedCharacter);
+        for (int i = 0; i < SelectedCharacter?.MasteryTypes.Types.Count; i++) 
+            CategoryButtons[i+1].EnableCategory(SelectedCharacter,i);
+        OpenCharacterCategory();
     }
-    public void SelectItemInShop(ShopButton button)
+
+    void OpenCharacterCategory()
+    {
+        CategoryButtons[0].Enable(_spawner.ui.CharacterUI.characters.Count < 5);
+    }
+    public void SelectItemInShop(ShopButton button, Entity item)
     {
         SelectedButton = button;
-        SelectedItem = button._item;
-        Console.ShowInfo(button._item);
+        SelectedEntity = item;
+        if(SelectedEntity.entityType != EntityType.Hero) 
+            Console.ShowInfo((Item)item);
+        else 
+            _spawner.controller.SelectFromShop((Character)SelectedEntity);
     }
-    public void SelectCharacterInShop(ShopButton button)
+  
+    public void Buy(bool buy)
     {
-        SelectedButton = button;
-        SelectedCharacter = button._character;
-    }
-    public void Buy()
-    {
-        if (SelectedCategory.Type != ItemType.Hero) BuyItem();
-        else BuyCharacter(); 
-        UpdateCoins();
-    }
-    public void BuyItem()
-    {
-        if (_shop.Wallet.IsEnough(SelectedItem.ShopCost))
+        if (_shop.Wallet.IsEnough(SelectedEntity.ShopCost) || !buy)
         {
-            _shop.Wallet.Spend(SelectedItem.ShopCost);
-            SelectedCharacter.Bag.AddItem(SelectedItem);
+            SelectedEntity.Buy(SelectedCharacter,buy);
             _spawner.ui.ItemUI.UpdateButtons(SelectedCharacter);
-            SelectedButton.ClearButton();
-           SelectedButton._item.Bought = true;
+            _shop.Wallet.Use(SelectedEntity.ShopCost, buy);
+            SelectedButton.ClearButton(SelectedEntity.Bought);
+            SelectedCategory.OpenCategory();
         }
     }
-    public void BuyCharacter()
-    {
-        if (_shop.Wallet.IsEnough(SelectedCharacter.Cost))
-        {
-            _shop.Wallet.Spend(SelectedCharacter.Cost);
-            SelectedCharacter.EnableHero(SelectedCharacterButton);
-            SelectCharacter(SelectedCharacter,SelectedCharacterButton);
-            SelectedButton.ClearButton();
-            SelectedButton._character.Bought = true;
-        }
-    }
-
-    public void UpdateCoins()
-    {
-        CoinsText.text = _shop.Wallet.GetCoins();
-    }
-    public void ShowShop()
-    {
-       
-    }
-
-    public void LoadEnemyButtons()
-    {
-        for (int i = 0; i < PreviewContainer.transform.childCount; i++)
-         EnemyPreview.Add(PreviewContainer.transform.GetChild(i).GetComponent<Button>());
-    }
-
-    public void ShowNextEnemy()
-    {
-        foreach (var button in EnemyPreview)
-            button.gameObject.SetActive(false);
-        for (int i = 0; i < _pool.EnemiesList.Count; i++)
-        {
-            EnemyPreview[i].gameObject.SetActive(true);
-            var enemy = _pool.EnemiesList[i];
-            EnemyPreview[i].transform.GetChild(0).GetComponent<Image>().sprite = enemy._sprite.sprite;
-            EnemyPreview[i].onClick.AddListener(() => SelectEnemyPreview(enemy));
-        }
-    }
-
-    void SelectEnemyPreview(Character enemy)
-    {
-        _spawner.controller.SelectByMouse(enemy);
-        SelectedCharacter = enemy;
-        EnableValidCategories();
-        SelectedCategory?.OpenCategory(false);
-    }
-
+    
+  
+ 
+   
 }

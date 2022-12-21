@@ -5,6 +5,7 @@ using Script.Character;
 using Script.Managers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 [Serializable]
@@ -17,7 +18,7 @@ public class Turn
     public TurnState Act; 
     public List<Character> _activeFractionList = new List<Character>();
     private Spawner _spawner;
-    private int roundCount;
+   public int roundCount;
     public void Initialize(BattleStarter starter)
     {
         _spawner = starter;
@@ -51,18 +52,23 @@ public class Turn
         foreach (var character in _activeFractionList) 
             character.PrepareForNewTurn();
     }
-   
+
+    public void RemoveEnemy(Character enemy)
+    {
+        _activeFractionList.Remove(enemy);
+        if(_pool.HeroesList.Count != 0)
+        NextEnemyAct();
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
     public void NextEnemyAct()
     {
         if (_activeFractionList.Count > 0 )
         {
             int i = Random.Range(0, _activeFractionList.Count);
-            if (_activeFractionList[i].Attributes.stamina.CheckForStamina(_activeFractionList[i].Arms.SelectRandomWeapon()))
-            {
-                _activeFractionList.Remove(_activeFractionList[i]);
-                NextEnemyAct();
-            }
-            else _controller.SelectByMouse(_activeFractionList[i]);
+             _controller.SelectByMouse(_activeFractionList[i]);
         }
 
         if (_activeFractionList.Count == 0)

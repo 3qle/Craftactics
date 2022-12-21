@@ -2,44 +2,43 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
+
 [Serializable]
 public class Attributes
 {
     public Health health;
     public Stamina stamina;
-    public Defense defense;
-    public Dexterity dexterity;
-    public Wisdom wisdom;
-    public Intellect intellect;
-    public Strenght strenght;
-    public Luck luck;
+    public Accuracy accuracy;
+    public Support support;
+    public Magic magic;
+    public Strenght strength;
+    public Flow flow;
     
    
-    private Experience _experience;
     public List<Attribute> AttributesList;
     
-    public void Initialize(Experience experience)
+    public void Initialize()
     {
-        _experience = experience;
-       SetAttributes();
+        SetAttributes();
     }
 
     public void SetAttributes()
     {
-        AttributesList = new List<Attribute> {health, stamina,defense,dexterity,wisdom,intellect,strenght,luck};
+        AttributesList = new List<Attribute> {strength,accuracy,magic,support,flow, health, stamina};
         foreach (var stat in AttributesList)
         {
             stat.SetCurrentToMax();
             stat.SetName();
-        }
-         
+        } 
+        stamina.SetName(); 
+        health.SetName();
     }
 
-    public void LevelUp(int i)
+    public void CheckActiveModifiers()
     {
-        _experience.SpendFreePoint();
-        AttributesList[i].LevelUp();
-        foreach (var stat in AttributesList) 
-            stat.SetCurrentToMax();
+        foreach (var attribute in AttributesList) 
+            attribute.DecreaseDuration();
     }
 }

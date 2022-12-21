@@ -15,9 +15,9 @@ using UnityEngine.UI;
         
         public void CreateButton( float resistAmount)
         {
-            Fill.sprite = Sprites[resistAmount > 0 ? 2 : 0];
+            Fill.color = resistAmount > 0 ? new Color(0.12f,0.7f,0.24f) : new Color(.7f,.12f,.13f);
             resistAmount = resistAmount < 0 ? -resistAmount : resistAmount;
-            Fill.fillAmount = resistAmount/100;
+            Fill.transform.localScale = new Vector3(resistAmount/100, transform.localScale.y,transform.localScale.z);
         }
 
         public void ClearButton()

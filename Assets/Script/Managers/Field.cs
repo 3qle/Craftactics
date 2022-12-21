@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.Enum;
+using Script.Managers;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +13,7 @@ public class Field
 {
     [Header("Field Settings")]
     public  List<List<CellButton>> _tilePool = new List<List<CellButton>>();
-    private Character _selectable;
+ 
     private int _posX, _posY;
     private int _stamina;
     private Vector3 _pos;
@@ -27,10 +29,12 @@ public class Field
     public void SetTileType(Character obj, bool free) 
         => _tilePool[(int)obj.transform.position.x][(int)obj.transform.position.y].ChangeType(obj, free);
 
-    public void CreateField()
+    public void CreateField(Spawner starter)
     {
+       
         for (var i = 0; i <= width; i++)
             _tilePool.Add(new List<CellButton>());
+        
     }
 
     public void SetCellOnField(CellButton cellButton, int x,int y)
@@ -53,7 +57,6 @@ public class Field
    
     void GetStatsFromChar(Character obj)
     {
-        _selectable = obj;
         _pos = obj.transform.position;
         _stamina = 10;
     }
@@ -65,7 +68,7 @@ public class Field
     }
     public void ShowWalkTile(Character obj, bool selected)
     {
-        if (obj.Attributes.stamina.current > 0 && obj.side ==Character.Fraction.Hero && selected )
+        if (obj.Attributes.stamina.current > 0 && obj.entityType == EntityType.Hero && selected )
         {
             GetStatsFromChar(obj);
             _tilePool[(int)obj.transform.position.x][(int)obj.transform.position.y].CreateFreeWalkCells();
@@ -90,29 +93,9 @@ public class Field
         return free;
     }
    
-    public void ShowAttackTiles(Item item)
-    {
-       
-        Vector2 pos = _selectable.transform.position;
-        CreateHighLight(_selectable,true);
-        for (int x = (int) pos.x - item.MaxRange; x <= item.MaxRange + pos.x; x++) 
-        for (int y = (int) pos.y - item.MaxRange; y <= item.MaxRange + pos.y; y++) 
-            if (CheckMaxRange(x,y) && CheckMinRange(x,y,item.MinRange,pos) && _tilePool[x][y].Type != CellButton.CellType.Hero
-                && _selectable.Attributes.stamina.current >= item.SPCost ) 
-                _tilePool[x][y].CreateAttackCell();
-    }
-
-    bool CheckMinRange(int x,int y, int min, Vector2 pos)
-    {
-        var checkX = x > pos.x
-            ? pos.x + min < x 
-            : pos.x - min > x;
-        var checkY = y > pos.y
-            ? pos.y + min < y
-            : pos.y - min > y;
-        return checkX || checkY;
-    }
     
+
+   
     public void HideTiles()
     {
         for (int i = 0; i < _tilePool.Count; i++) 

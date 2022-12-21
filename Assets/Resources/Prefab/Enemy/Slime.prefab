@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -4018630516772485805, guid: 3638d73188c875c4586a4adb4e9eeeb6, type: 3}
+  m_Sprite: {fileID: 2731795287329381114, guid: 61dc9de40508e4b4bbdc7bfa50012b00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -99,57 +99,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c62eb21c0595546940a491c2671f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
+  entityType: 14
+  Icon: {fileID: 0}
+  Name: Slime
+  ShopCost: 0
+  QuantityInShop: 0
+  QuantityInBag: 0
+  instantUse: 0
   field:
     height: 0
     width: 0
-  MasteryTypes:
-    Types: 
-  Experience:
-    points: 0
-    pointsGoal: 50
-    level: 1
-    reward: 50
-  Attributes:
-    health:
-      current: 0
-      Name: 
-      max: 5
-    stamina:
-      current: 0
-      Name: 
-      max: 6
-      OutOfStamina: 0
-    defense:
-      current: 0
-      Name: 
-      max: 2
-    dexterity:
-      current: 0
-      Name: 
-      max: 5
-    wisdom:
-      current: 0
-      Name: 
-      max: 4
-    intellect:
-      current: 0
-      Name: 
-      max: 4
-    strenght:
-      current: 0
-      Name: 
-      max: 2
-    luck:
-      current: 0
-      Name: 
-      max: 0
-  Bag:
-    Items:
-    - {fileID: 5562105161854982205}
-    - {fileID: 1667263568386634486}
-    - {fileID: 5153086200381393290}
-    - {fileID: 266138892226636004}
   Resistance:
     physicDefence: 71
     fireDefence: -100
@@ -160,11 +119,51 @@ MonoBehaviour:
     holyDefence: 84
     IllDefence: -43
     attackResult: 0
-  Name: Slime
-  side: 1
-  Bought: 0
-  Index: 0
-  Cost: 0
+  Attributes:
+    health:
+      attributeType: 0
+      Name: 
+      current: 0
+      max: 5
+    stamina:
+      attributeType: 0
+      Name: 
+      current: 0
+      max: 4
+      OutOfStamina: 0
+    accuracy:
+      attributeType: 0
+      Name: 
+      current: 0
+      max: 0
+    support:
+      attributeType: 0
+      Name: 
+      current: 0
+      max: 0
+    magic:
+      attributeType: 0
+      Name: 
+      current: 0
+      max: 0
+    strength:
+      attributeType: 0
+      Name: 
+      current: 0
+      max: 0
+    flow:
+      attributeType: 0
+      Name: 
+      current: 0
+      max: 0
+  MasteryTypes:
+    Types: 
+  Bag:
+    Items:
+    - {fileID: 5562105161854982205}
+    - {fileID: 1667263568386634486}
+    - {fileID: 5153086200381393290}
+    - {fileID: 266138892226636004}
   targetList: []
 --- !u!1001 &1323761253130464371
 PrefabInstance:

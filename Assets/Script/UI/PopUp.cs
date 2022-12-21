@@ -14,7 +14,7 @@ public class PopUp : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
     }
 
-    public void ShowPopUp(AttackResult result, Vector3 pos, int damage)
+    public void ShowPopUp(AttackResult result, Vector3 pos, float damage)
     {
         gameObject.SetActive(true);
         transform.position =pos;

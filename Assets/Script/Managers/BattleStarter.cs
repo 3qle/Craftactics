@@ -1,11 +1,18 @@
+using System;
+
 namespace Script.Managers
 {
     public class BattleStarter : Spawner
     {
-        void Start()
+        private void Awake()
         {
             SpawnOnBattleStart();
-            controller.Initialize(this);
+        }
+
+        void Start()
+        {
+            controller = new Controller(this);
+            
             ui.Initialize(this);
             turn.Initialize( this);
             shop.Initialize(this);

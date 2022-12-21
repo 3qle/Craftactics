@@ -3,49 +3,52 @@ using System.Collections;
 using System.Collections.Generic;
 using Script.Character;
 using Script.Character.Attributes;
+using Script.Enum;
 using Script.Managers;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public abstract class Character : MonoBehaviour
+public abstract class Character : Entity
 {
-    public SpriteRenderer _sprite;
     [HideInInspector]public Field field;
-    private UI _ui;
+    protected UI _ui;
     private Pool _pool;
     protected Turn _turn;
-    public WeaponMastery MasteryTypes;
-    public Experience Experience;
-    public Attributes Attributes;
-    public Bag Bag;
+    private Wallet _wallet;
+
+    [Header("Character Settings")]
     public Resistance Resistance;
+    public Attributes Attributes;
+    public WeaponMastery MasteryTypes;
+    public Bag Bag;
     public Legs Legs;
     public Arms Arms;
-   
-    public string Name;
-    
-    public enum Fraction { Hero, Enemy, Boss }
-    public Fraction side;
-    public bool Bought;
-    public int Cost;
+  
+
     public void SetPosition(Vector2 dir) => transform.position += (Vector3)dir;
 
-    public void EnableHero(CharacterButton button)
-    {
-        transform.position = new Vector3(transform.position.x, transform.position.y, 1);
-       _ui.CharacterUI.AddCharacterToButton(this,button);
-       field.SetTileType(this, false);
-      
+    public override void Buy(Character character,bool buy)
+    { 
+        SetQuantity(buy);
+        _ui.CharacterUI.AddCharacterToButton(this);
+        transform.position = new Vector3(buy?_ui.CharacterUI.characters.IndexOf(this):transform.position.x, transform.position.y, buy ? 1 : -100);
+        field.SetTileType(this, !buy);
+        _pool.AddCharacterToPool(this);
     }
-    public void Initialize(Spawner starter)
+    
+    public override void Initialize(Spawner starter)
     {
         name = Name;
-        _sprite = GetComponent<SpriteRenderer>();
+        Icon = GetComponent<SpriteRenderer>();
         _ui = starter.ui;
         _turn = starter.turn;
         _pool = starter.pool;
         field = starter.field;
-        
+        _wallet = starter.shop.Wallet;
+        if (entityType == EntityType.Enemy)
+        {
+            field.SetTileType(this, false);
+        }
         InitializeAttributes();
     }
 
@@ -55,8 +58,7 @@ public abstract class Character : MonoBehaviour
         Arms = new Arms(this);
         
         Resistance.SetResistance();
-        Attributes.Initialize(Experience);
-        Experience.Initialize(_ui,this);
+        Attributes.Initialize();
     }
     public  void Move(Vector2 destination)
     {
@@ -67,6 +69,8 @@ public abstract class Character : MonoBehaviour
     public void PrepareForNewTurn()
     {
         Attributes.stamina.SetCurrentToMax();
+        Attributes.CheckActiveModifiers();
+        Resistance.CheckActiveModifiers();
     }
  
     public virtual void Select(bool selected)
@@ -75,7 +79,7 @@ public abstract class Character : MonoBehaviour
         {
             field.CreateHighLight(this, selected);
             field.ShowWalkTile(this, selected);
-            Arms.DeselectWeapon(selected);
+         //   Arms.DeselectWeapon(selected);
         }
     }
     
@@ -85,41 +89,56 @@ public abstract class Character : MonoBehaviour
         int count = 3;
         while (count > 0)
         {
-            _sprite.color = i == 0 ? Color.green : i == 1 ? Color.red : Color.gray;
+            Icon.color = i == 0 ? Color.green : i == 1 ? Color.red : Color.gray;
             yield return new WaitForSeconds(0.1f);
-            _sprite.color = Color.white;
+            Icon.color = Color.white;
             yield return new WaitForSeconds(0.1f);
             count -= 1;
         }
     }
     
-    public int TakeDamage(Character character)
+    public void TakeDamage(ItemDamage weapon)
     {
-        StartCoroutine(Flash(1));
-        int damage = Attributes.health.Loose(!Attributes.dexterity.TryEvade()
-            ? Attributes.defense.Calculate(Resistance.CalculateDamage(character.Arms.selectedItem))
-            : Resistance.EvadeHit());
-        
-        _ui.ShowPopUp(Resistance.attackResult, transform.position, damage); 
-        Kill();
-        return Attributes.health.isOver ?Experience.reward: 0;
+       if(entityType == EntityType.Hero) 
+           _ui.ScoreUI.SetScore(0 , _wallet.Coins);
+       
+      
+       float damage = Attributes.health.Loose( (float)Math.Round(!Attributes.accuracy.TryEvade()
+            ? Resistance.CalculateDamage(weapon)
+            : Resistance.EvadeHit(), 1));
+       
+       _ui.ShowPopUp(Resistance.attackResult, transform.position, damage); 
+       
+       Kill();
     }
-    public Character Attack()
+    public ItemDamage Attack()
     {
         field.HideTiles();
         Attributes.stamina.Loose(Arms.selectedItem.SPCost);
-        return this;
+        return Arms.selectedItem.Damage;
     }
 
+    public void UseItem(Character target)
+    {
+        field.HideTiles();
+        Attributes.stamina.Loose(Arms.selectedItem.SPCost);
+        Arms.selectedItem.Use(target);
+        }
     private void Kill()
     {
         if (Attributes.health.isOver)
-        {
-            _pool.RemoveCharacterFromPool(this);
+        { 
             field.SetTileType(this,true);
+            if(entityType == EntityType.Hero)
+                Buy(this,false);
+            _pool.RemoveCharacterFromPool(this);
+         
+            _wallet.Add(_ui.ScoreUI.SetScore(50,_wallet.Coins));
             Destroy(gameObject);
         }
+        else
+        {
+            StartCoroutine(Flash(1));
+        }
     }
-
-   
 }

@@ -1,15 +1,18 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - Card
-    - Cell
+    - CategoryButton
+    - CellButton
     - CharacterButton
     - Enemy
+    - ExperienceButton
     - Hero
     - Item
+    - ItemButton
     - PopUp
-    - ResistanceCard
+    - ResistanceButton
     - Script.Managers.BattleStarter
+    - ShopButton
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
@@ -50,6 +53,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.GridLayoutGroup
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
     - UnityEngine.UI.VerticalLayoutGroup
@@ -94,49 +98,57 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1480}
     - Class: 114
-      Script: {instanceID: 1634}
+      Script: {instanceID: 1482}
     - Class: 114
-      Script: {instanceID: 1758}
+      Script: {instanceID: 1636}
     - Class: 114
-      Script: {instanceID: 1864}
+      Script: {instanceID: 1760}
     - Class: 114
-      Script: {instanceID: 2226}
+      Script: {instanceID: 1866}
     - Class: 114
-      Script: {instanceID: 2276}
+      Script: {instanceID: 1976}
     - Class: 114
-      Script: {instanceID: 2708}
+      Script: {instanceID: 2234}
     - Class: 114
-      Script: {instanceID: 2878}
+      Script: {instanceID: 2284}
     - Class: 114
-      Script: {instanceID: 2928}
+      Script: {instanceID: 2718}
     - Class: 114
-      Script: {instanceID: 3118}
+      Script: {instanceID: 2886}
     - Class: 114
-      Script: {instanceID: 3214}
+      Script: {instanceID: 2888}
     - Class: 114
-      Script: {instanceID: 3368}
+      Script: {instanceID: 2940}
     - Class: 114
-      Script: {instanceID: 3492}
+      Script: {instanceID: 3130}
     - Class: 114
-      Script: {instanceID: 3534}
+      Script: {instanceID: 3226}
     - Class: 114
-      Script: {instanceID: 3904}
+      Script: {instanceID: 3380}
     - Class: 114
-      Script: {instanceID: 4270}
+      Script: {instanceID: 3544}
     - Class: 114
-      Script: {instanceID: 4438}
+      Script: {instanceID: 3916}
     - Class: 114
-      Script: {instanceID: 4910}
+      Script: {instanceID: 4148}
     - Class: 114
-      Script: {instanceID: 5142}
+      Script: {instanceID: 4284}
     - Class: 114
-      Script: {instanceID: 5310}
+      Script: {instanceID: 4452}
     - Class: 114
-      Script: {instanceID: 5468}
+      Script: {instanceID: 4928}
     - Class: 114
-      Script: {instanceID: 5874}
+      Script: {instanceID: 5160}
     - Class: 114
-      Script: {instanceID: 5906}
+      Script: {instanceID: 5328}
+    - Class: 114
+      Script: {instanceID: 5490}
+    - Class: 114
+      Script: {instanceID: 5816}
+    - Class: 114
+      Script: {instanceID: 5896}
+    - Class: 114
+      Script: {instanceID: 5928}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -170,6 +182,12 @@ ScriptsOnlyBuild:
     className: Image
   - hash:
       serializedVersion: 2
+      Hash: 69415240821be7986b27e72bf9609a30
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Button
+  - hash:
+      serializedVersion: 2
       Hash: 5ab533713adae59372fb3e10a585c186
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -194,10 +212,10 @@ ScriptsOnlyBuild:
     className: App
   - hash:
       serializedVersion: 2
-      Hash: 7e66e38a54dbc8acb7847eb28587ce4c
+      Hash: eaf6360a2185c8c3218d6f42e6150c73
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Cell
+    className: CellButton
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -222,12 +240,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: LayoutElement
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Dexterity
   - hash:
       serializedVersion: 2
       Hash: 6bc76e17f0d5e93f3eea7f5a2fe227f3
@@ -263,13 +275,7 @@ ScriptsOnlyBuild:
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Intellect
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Luck
+    className: ExperienceButton
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -284,7 +290,7 @@ ScriptsOnlyBuild:
     className: SpriteSkinUpdateHelper
   - hash:
       serializedVersion: 2
-      Hash: 9875efdbf38875817ddf2e34c9f45fbe
+      Hash: f75078a83e3713f524f6693893db5ad4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Enemy
@@ -336,6 +342,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: AspectRatioFitter
+  - hash:
+      serializedVersion: 2
+      Hash: 853a65eaddd0d5423353353ef992b5ff
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CategoryButton
   - hash:
       serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
@@ -404,7 +416,7 @@ ScriptsOnlyBuild:
     className: LimbSolver2D
   - hash:
       serializedVersion: 2
-      Hash: 5141e1340c0c22dc7b9dfb6c5dc0cbe9
+      Hash: 087fe01b3def9641cc81547b8e27ca19
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Item
@@ -452,28 +464,16 @@ ScriptsOnlyBuild:
     className: ToggleGroup
   - hash:
       serializedVersion: 2
-      Hash: 69415240821be7986b27e72bf9609a30
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Button
-  - hash:
-      serializedVersion: 2
       Hash: 349d08daa6108b9a28f8c38fd40ce96f
     assemblyName: Unity.2D.SpriteShape.Runtime.dll
     namespaceName: UnityEngine.U2D
     className: SpriteShapeController
   - hash:
       serializedVersion: 2
-      Hash: badbd3124b2eb31a253d07bcdf4ce66c
+      Hash: 1789f78cf5a75507944d33c5365a1266
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Card
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Wisdom
+    className: ItemButton
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -548,13 +548,19 @@ ScriptsOnlyBuild:
     className: PositionAsUV1
   - hash:
       serializedVersion: 2
+      Hash: c3990ecedbd72c58228f895754dcbd1a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ShopButton
+  - hash:
+      serializedVersion: 2
       Hash: 87ff43d2baf3385cba327d8f803a4ebb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AudioPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 25fed12e12324790d6a409863d68140c
+      Hash: ebee506a8dbb53ede87414a2653d48c0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Hero
@@ -686,7 +692,7 @@ ScriptsOnlyBuild:
     className: SpriteLibraryAsset
   - hash:
       serializedVersion: 2
-      Hash: a6cc4b8f5cff4382858fd2829138aaaa
+      Hash: 236e488c761fa0fec1fca2617e11f6f2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Spawner
@@ -758,17 +764,17 @@ ScriptsOnlyBuild:
     className: FabrikSolver2D
   - hash:
       serializedVersion: 2
-      Hash: a6cc4b8f5cff4382858fd2829138aaaa
+      Hash: 236e488c761fa0fec1fca2617e11f6f2
     assemblyName: Assembly-CSharp.dll
     namespaceName: Script.Managers
     className: BattleStarter
   - hash:
       serializedVersion: 2
-      Hash: eff8334b45ad0fc1cbed50b12b3e988e
+      Hash: 8aead537dad7c57659303b7d3e003f08
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: ResistanceCard
+    className: ResistanceButton
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: "C:/Users/3q/Desktop/\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430/Craftactics.exe"
+  playerPath: C:/Users/3q/Desktop/Chtonicraft 0.85/Craftactics.exe

@@ -21,11 +21,11 @@ public class Experience
     _character = character;
   }
   
-  void LevelUp()
+  public void LevelUp()
   {
     if (points >= pointsGoal)
     {
-      freePoint = 1;
+      freePoint += 1;
       level += 1;
       points -= pointsGoal;
       RaiseGoal();

@@ -12,19 +12,24 @@ public class Enemy : Character
     private Character _target;
     public List<CellButton> targetList = new List<CellButton>();
 
-    private void Start()
-    {
-        field.SetTileType(this, false);
-    }
-
-    public override void Select(bool selected)
-    {
+     
+   public override void Select(bool selected)
+   {
+      
         base.Select(selected);
         if (!selected || _turn.Act != TurnState.E) return;
-        
-        SearchTarget();
-        ChooseAction();
-        StartCoroutine(WaitForAttack());
+
+        if (Attributes.stamina.CheckForStamina(Arms.SelectRandomWeapon(this)))
+        {
+            _turn.RemoveEnemy(this);
+        }
+        else
+        {
+            SearchTarget();
+            ChooseAction();
+            StartCoroutine(WaitForAttack());
+        }
+       
     }
 
     IEnumerator WaitForAttack()
@@ -44,6 +49,7 @@ public class Enemy : Character
     
     private IEnumerator StopAction()
     {
+        Debug.Log("stop");
         Select(false);
         yield return new WaitForSeconds(1);
         _turn.NextEnemyAct();
@@ -51,10 +57,11 @@ public class Enemy : Character
 
     private void SearchTarget()
     {
+        Arms.SelectRandomWeapon(this);
          targetList = field.GetTargetsForEnemy(this);
         foreach (var cell in targetList)
         {
-            if (cell.CheckFreeNeighbours(this) != null)
+            if (cell?.CheckFreeNeighbours(this) != null)
             {
                 _target = cell.CurrentCharacter;
                 _pos = cell.CheckFreeNeighbours(this).transform.position;
@@ -64,7 +71,17 @@ public class Enemy : Character
     
     public void AttackEnemyTarget()
     {
-        _target.TakeDamage(Attack());
-        StartCoroutine( StopAction());
+        if (_target != null)
+        {
+            UseItem(_target);
+            StartCoroutine( StopAction());
+        }
+        else
+            StartCoroutine( StopAction());
+        
+      
     }
+
+   
+
 }

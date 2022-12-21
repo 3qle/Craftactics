@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class ExperienceButton : MonoBehaviour
 {
+    public Sprite[] Sprites;
     Button button;
     private TextMeshProUGUI ButtonText;
     private int _index;
@@ -15,44 +16,48 @@ public class ExperienceButton : MonoBehaviour
     private UIExperience ui;
     private Image _image;
     private string points, name;
-    private void Start()
+    private void Awake()
     {
-        button = GetComponent<Button>();
         ButtonText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         _image = GetComponent<Image>();
-        Activate(false);
+       
     }
 
     public void SetButton(Character character, int index, UIExperience uiExperience)
     {
-        button.onClick.RemoveAllListeners();
         ui = uiExperience;
         _index = index;
-        _attributes = character?.Attributes;
-       button.onClick.AddListener(Click);
-       UpdateText();
-       //Activate(false);
+        _attributes = character?.Attributes; UpdateText();
+        Activate();
+   
     }
 
     public void UpdateText()
     {
-        points = _attributes == null ? "" : _attributes.AttributesList[_index].max.ToString();
-        name = _attributes == null ? "" : _attributes.AttributesList[_index].Name;
-        ButtonText.text = $"{name} {points}";
+        var stat = _attributes?.AttributesList[_index];
+        if (stat != null)
+        {
+            ButtonText.color = stat.current > stat.max
+                ? Color.green
+                : stat.current == stat.max
+                    ? Color.white
+                    : Color.red;
+            
+            points = _attributes == null ? "" : _attributes.AttributesList[_index].current.ToString();
+            name = _attributes == null ? "" : _attributes.AttributesList[_index].Name;
+            ButtonText.text = points;
+        }
+        
+       
+         
     }
 
-    public void Click()
-    {
-        _attributes.LevelUp(_index);
-        UpdateText();
-        ui.ActivateButtons(false);
-    }
+   
 
-  public  void Activate(bool show)
+  public  void Activate()
     {
-        Debug.Log(show);
-        _image.sprite = Resources.Load<Sprite>("Sprites/UI/CharacterButton/" + show);
-        button.enabled = show;
+        if(_attributes != null)
+        _image.sprite = Resources.Load<Sprite>("Sprites/Stats/" + name);
     }
     
 }

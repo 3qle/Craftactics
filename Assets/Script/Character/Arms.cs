@@ -3,28 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-
     public class Arms
     {
-        private Character _character;
-        public Item selectedItem; 
-       
-        
-        public Arms (Character character)
+        public Item selectedItem;
+
+        public Arms (Character character )
         {
-            _character = character;
-            foreach (var item in _character.Bag.Items)
-                item.Initialize(character);
+            
         }
         
-        public void SelectWeapon(Item item)
+        
+        public void SelectWeapon(Item item, Character character)
         {
-            if (!_character.Legs._isWalking)
+           
+            if (!character.Legs._isWalking && item && character.Attributes.stamina.current >= item.SPCost)
             {
                 selectedItem = item;
-                item.ModifyDamage();
-                if (_character.side == Character.Fraction.Hero)
-                    _character.field.ShowAttackTiles(selectedItem);
+                item.Select(character);
             }
         }
 
@@ -32,9 +27,9 @@ using Random = UnityEngine.Random;
         {
             selectedItem = select?selectedItem:null;
         }
-        public Item SelectRandomWeapon()
+        public Item SelectRandomWeapon(Character character)
         {
-            SelectWeapon(_character.Bag.Items[Random.Range(0, _character.Bag.Items.Count)]);
+            SelectWeapon(character.Bag.Items[Random.Range(0, character.Bag.Items.Count)],character);
             return selectedItem;
         }
         

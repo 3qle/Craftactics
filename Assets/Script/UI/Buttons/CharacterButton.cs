@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Script.Enum;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,7 +28,7 @@ public class CharacterButton : MonoBehaviour
 
     public void HighLightButton(bool selected, Character character)
     {
-        if( character == null ||character.side == Character.Fraction.Hero ) 
+        if( character == null ||character.entityType == EntityType.Hero ) 
             ButtonImage.sprite = Resources.Load<Sprite>("Sprites/UI/CharacterButton/" + selected);
     }
     
@@ -38,12 +39,9 @@ public class CharacterButton : MonoBehaviour
     
     public void Show()
     {
-        if (_character != null)
-        {
-            CharacterImage.enabled = true;
-            CharacterImage.sprite = _character._sprite.sprite;
-            HPbar.fillAmount =(float)_character.Attributes.health.current / _character.Attributes.health.max;
-            SPbar.fillAmount =(float)_character.Attributes.stamina.current / _character.Attributes.stamina.max;
-        } 
+        CharacterImage.enabled =  _character != null;
+        CharacterImage.sprite = _character?.Icon.sprite;
+        HPbar.fillAmount =_character? _character.Attributes.health.current / _character.Attributes.health.max:0;
+        SPbar.fillAmount =_character?_character.Attributes.stamina.current / _character.Attributes.stamina.max:0;
     }
 }

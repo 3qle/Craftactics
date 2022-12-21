@@ -5,7 +5,12 @@ using UnityEngine;
 public class Hero : Character
 {
 
-    
-    
-    
+    protected  void Awake()
+    {
+        Icon = GetComponent<SpriteRenderer>();
+    }
+
+
+ 
+
 }

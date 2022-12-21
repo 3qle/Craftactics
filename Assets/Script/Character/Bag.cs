@@ -10,7 +10,22 @@ public class Bag
     
     public void AddItem(Item item)
     {
-        Items.Add(item);
+        if (!Items.Contains(item))
+        {
+            Items.Add(item);
+            item.SetQuantity(true);
+        }
+        else 
+        {
+          foreach (var _item in Items)
+              if(_item.entityType == item.entityType)
+                  _item.SetQuantity(true); 
+        }
+    }
+
+    public void Remove(Item item)
+    {
+        Items.Remove(item);
     }
     
     

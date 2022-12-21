@@ -24,9 +24,10 @@ public class Health  : Attribute
     public bool isOver => current <= 0;
     public HealthEnum healthStatus => healthStat;
 
-    public int Loose(int damage)
+    public float Loose(float damage)
     {
         current -= damage;
+        current =(float)Math.Round(current, 1);
         return damage;
     }
 
@@ -34,5 +35,9 @@ public class Health  : Attribute
     public override void SetName()
     {
         Name = "HLTH";
+        start = max;
+        SetCurrentToMax();
+        attributeType = AtrributeTypes.Health;
+        notShow = true;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using Script.Managers;
 using UnityEngine.Events;
-[Serializable]
+
 public class Controller
 {
     private Camera _camera;
@@ -13,7 +13,7 @@ public class Controller
     private Turn _turn;
     private UI _ui;
     private UIShop _uiShop;
-    public void Initialize(BattleStarter starter)
+    public Controller (BattleStarter starter)
     {
         _ui = starter.ui;
         _camera = Camera.main;
@@ -34,7 +34,7 @@ public class Controller
                  case "WalkTile": 
                      _selectable.Move(hit.collider.transform.position);
                      break;
-                 case "AttackTile": 
+                 case "AttackTile":
                      AttackTarget(hit.collider.GetComponent<CellButton>().CurrentCharacter);
                      break;
                  case "CharacterTile": 
@@ -44,9 +44,9 @@ public class Controller
         }
     }
 
-    void AttackTarget(Character character)
+    void AttackTarget(Character target)
     {
-        _selectable.Experience.Add(character.TakeDamage(_selectable.Attack()));
+       _selectable.UseItem(target);
         Select(false);
     }
     void Select(bool select)
@@ -60,7 +60,7 @@ public class Controller
         Select(false);
         _characterButton = button;
         _selectable = character;
-        _uiShop.SelectCharacter(character,button);
+        _uiShop.SelectCharacter(character);
         Select(true);
     }
 
