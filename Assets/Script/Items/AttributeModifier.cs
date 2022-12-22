@@ -21,6 +21,7 @@ public class AttributeModifier : ItemProperty
 
     public override TextMeshProUGUI Text(TextMeshProUGUI text)
     {
+        Icon = Resources.Load<Sprite>("Sprites/Stats/" + attributeType);
         text.text = Points > 0 ? Points.ToString() : (-Points).ToString();
         text.color = Points > 0 ? Color.green : Color.red;
         return text;

@@ -34,7 +34,7 @@ public class Health  : Attribute
 
     public override void SetName()
     {
-        Name = "HLTH";
+        Name = "Health";
         start = max;
         SetCurrentToMax();
         attributeType = AtrributeTypes.Health;

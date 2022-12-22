@@ -28,11 +28,9 @@ public class Shop
 
  public void OpenShop(bool open)
  {
-  if ((_spawner.ui.CharacterUI.characters.Count > 0 && _spawner.ui.CharacterUI.characters[0].Bag.Items.Count > 0 && !open) || open)
-
-{
+  if ((_spawner.pool.ActiveHeroes.Count > 0 && _spawner.pool.ActiveHeroes[0].Bag.Items.Count > 0 && !open) || open)
+  {
    Wallet.Use(0,true);
-   _spawner.controller.SelectByMouse(null);
    UIShop.Initialize(_spawner,this);
    ShopContainer.localScale = open ? new Vector3(1, 1, 1) : Vector3.zero;
    _turn.Act = open ? TurnState.Shop : TurnState.E;

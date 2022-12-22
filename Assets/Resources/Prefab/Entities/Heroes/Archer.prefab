@@ -138,38 +138,45 @@ MonoBehaviour:
       Name: 
       current: 0
       max: 3
+      notShow: 0
     stamina:
       attributeType: 0
       Name: 
       current: 0
       max: 3
+      notShow: 0
       OutOfStamina: 0
     accuracy:
       attributeType: 0
       Name: 
       current: 0
       max: 5
+      notShow: 0
     support:
       attributeType: 0
       Name: 
       current: 0
-      max: 0
+      max: 1
+      notShow: 0
     magic:
       attributeType: 0
       Name: 
       current: 0
       max: 0
+      notShow: 0
     strength:
       attributeType: 0
       Name: 
       current: 0
       max: 3
+      notShow: 0
     flow:
       attributeType: 0
       Name: 
       current: 0
       max: 0
+      notShow: 0
   MasteryTypes:
-    Types: 08000000060000000c0000000f000000
+    Types: 100000000f00000008000000060000000c000000
   Bag:
     Items: []

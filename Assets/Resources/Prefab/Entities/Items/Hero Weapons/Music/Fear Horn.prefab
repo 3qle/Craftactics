@@ -48,25 +48,45 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Name: Fear Horn
   ShopCost: 100
-  Quantity: 1
+  QuantityInShop: 1
+  QuantityInBag: 0
   instantUse: 0
   SPCost: 2
-  AttributeModifiers: []
+  AttributeModifiers:
+  - Using: 1
+    Icon: {fileID: 0}
+    Points: -10
+    Duration: 1
+    attributeType: 3
+    TemporaryEffect: 0
+  - Using: 1
+    Icon: {fileID: 0}
+    Points: -5
+    Duration: 2
+    attributeType: 2
+    TemporaryEffect: 0
+  ResistanceModifiers: []
   Damage:
-    Using: 0
-    WeaponElement: 0
-    Damage: 0
-    StrenghtMultiplier: 0
+    Using: 1
+    Icon: {fileID: 0}
+    Points: 1
+    Duration: 0
+    WeaponElement: 3
+    StrenghtMultiplier: 40
     AccuracyMultiplier: 0
-    SupportMultiplier: 0
+    SupportMultiplier: 10
     MagicMultiplier: 0
-    MusicMultiplier: 0
-    ModDamage: 0
-    strBonus: 0
+    MusicMultiplier: 30
+    raw: 0
+    Stack: 
   Range:
-    Using: 0
+    Using: 1
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
+    ToEnemy: 1
     MinRange: 0
-    MaxRange: 0
+    MaxRange: 5
 --- !u!212 &-6237708201903618523
 SpriteRenderer:
   m_ObjectHideFlags: 0

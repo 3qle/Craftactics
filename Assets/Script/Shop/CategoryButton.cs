@@ -41,14 +41,16 @@ using Object = System.Object;
         public void OpenCategory()
         {
             _uiShop.SelectCategory(this);
-            foreach (var item in _spawner.pool.EntityPool) 
-                if (item.entityType == categoryType && !item.Bought)
-                {
-                    _container[buttonIndex].ShowItemInShop(item,_spawner,true);
-                    buttonIndex++;
-                }
-            buttonIndex = 0;
-            Button.image.sprite = Resources.Load<Sprite>("Sprites/Shop/CategoryButton/" + true);
+                foreach (var item in _spawner.pool.EntityPool) 
+                    if (item.entityType == categoryType && !item.Bought)
+                    {
+                        _container[buttonIndex].ShowItemInShop(item,_spawner,true);
+                        buttonIndex++;
+                    }
+                buttonIndex = 0;
+                Button.image.sprite = Resources.Load<Sprite>("Sprites/Shop/CategoryButton/" + true);
+            
+            
         }
 
         public void Refresh()

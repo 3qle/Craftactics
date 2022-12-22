@@ -98,7 +98,7 @@ MonoBehaviour:
   entityType: 2
   Icon: {fileID: 7108880036797212023}
   Name: Rogue
-  ShopCost: 0
+  ShopCost: 100
   QuantityInShop: 1
   QuantityInBag: 0
   instantUse: 0
@@ -138,38 +138,45 @@ MonoBehaviour:
       Name: 
       current: 0
       max: 4
+      notShow: 0
     stamina:
       attributeType: 0
       Name: 
       current: 0
       max: 5
+      notShow: 0
       OutOfStamina: 0
     accuracy:
       attributeType: 0
       Name: 
       current: 0
       max: 2
+      notShow: 0
     support:
       attributeType: 0
       Name: 
       current: 0
       max: 1
+      notShow: 0
     magic:
       attributeType: 0
       Name: 
       current: 0
       max: 0
+      notShow: 0
     strength:
       attributeType: 0
       Name: 
       current: 0
       max: 3
+      notShow: 0
     flow:
       attributeType: 0
       Name: 
       current: 0
       max: 0
+      notShow: 0
   MasteryTypes:
-    Types: 0900000008000000040000000f000000
+    Types: 100000000f000000090000000800000004000000
   Bag:
     Items: []

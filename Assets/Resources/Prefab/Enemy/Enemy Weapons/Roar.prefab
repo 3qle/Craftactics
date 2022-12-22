@@ -51,20 +51,32 @@ MonoBehaviour:
   QuantityInShop: 0
   QuantityInBag: 0
   instantUse: 0
-  SPCost: 2
-  AttributeModifiers: []
-  ResistanceModifiers: []
+  SPCost: 3
+  AttributeModifiers:
+  - Using: 1
+    Icon: {fileID: 0}
+    Points: -10
+    Duration: 2
+    attributeType: 3
+    TemporaryEffect: 0
+  ResistanceModifiers:
+  - Using: 1
+    Icon: {fileID: 0}
+    Points: -30
+    Duration: 1
+    Element: 0
   Damage:
     Using: 1
     Icon: {fileID: 21300000, guid: d6eee6c539c84544190c87536d86743c, type: 3}
     Points: 1
     Duration: 0
-    WeaponElement: 0
-    StrenghtMultiplier: 20
+    WeaponElement: 3
+    StrenghtMultiplier: 0
     AccuracyMultiplier: 0
-    SupportMultiplier: 0
+    SupportMultiplier: 10
     MagicMultiplier: 0
-    MusicMultiplier: 0
+    MusicMultiplier: 30
+    raw: 0
     Stack: 
   Range:
     Using: 1
@@ -72,8 +84,8 @@ MonoBehaviour:
     Points: 0
     Duration: 0
     ToEnemy: 0
-    MinRange: 3
-    MaxRange: 1
+    MinRange: 0
+    MaxRange: 5
 --- !u!212 &7521242935906692207
 SpriteRenderer:
   m_ObjectHideFlags: 0

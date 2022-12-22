@@ -15,8 +15,10 @@ public class ResistanceModifier :ItemProperty
 
     public override TextMeshProUGUI Text(TextMeshProUGUI text)
     {
-        text.text =$"{Points.ToString()}%";
+        Icon = Resources.Load<Sprite>("Sprites/Affinity/" + Element);
+       
         text.color = Points > 0 ? Color.green : Color.red;
+        text.text = (Points >0? Points: -Points).ToString()+"%";
         return text;
     }
 }

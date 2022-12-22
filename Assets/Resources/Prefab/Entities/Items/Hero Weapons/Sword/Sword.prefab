@@ -48,25 +48,33 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Name: Sword
   ShopCost: 40
-  Quantity: 1
+  QuantityInShop: 1
+  QuantityInBag: 0
   instantUse: 0
   SPCost: 1
   AttributeModifiers: []
+  ResistanceModifiers: []
   Damage:
-    Using: 0
+    Using: 1
+    Icon: {fileID: 0}
+    Points: 1
+    Duration: 0
     WeaponElement: 0
-    Damage: 0
-    StrenghtMultiplier: 0
-    AccuracyMultiplier: 0
+    StrenghtMultiplier: 10
+    AccuracyMultiplier: 10
     SupportMultiplier: 0
     MagicMultiplier: 0
     MusicMultiplier: 0
-    ModDamage: 0
-    strBonus: 0
+    raw: 0
+    Stack: 
   Range:
-    Using: 0
+    Using: 1
+    Icon: {fileID: 0}
+    Points: 1
+    Duration: 0
+    ToEnemy: 1
     MinRange: 0
-    MaxRange: 0
+    MaxRange: 1
 --- !u!212 &-8807677406019826971
 SpriteRenderer:
   m_ObjectHideFlags: 0

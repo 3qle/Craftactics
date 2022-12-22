@@ -23,17 +23,18 @@ public abstract class Character : Entity
     public Bag Bag;
     public Legs Legs;
     public Arms Arms;
-  
+
+    [HideInInspector] public bool Selected;
 
     public void SetPosition(Vector2 dir) => transform.position += (Vector3)dir;
 
     public override void Buy(Character character,bool buy)
     { 
         SetQuantity(buy);
-        _ui.CharacterUI.AddCharacterToButton(this);
-        transform.position = new Vector3(buy?_ui.CharacterUI.characters.IndexOf(this):transform.position.x, transform.position.y, buy ? 1 : -100);
-        field.SetTileType(this, !buy);
         _pool.AddCharacterToPool(this);
+        _ui.InfoUI.AddCharacterToButton(this, _pool.ActiveHeroes.IndexOf(this));
+        transform.position = new Vector3(buy?_pool.ActiveHeroes.IndexOf(this):transform.position.x, transform.position.y, buy ? 1 : -100);
+        field.SetTileType(this, !buy);
     }
     
     public override void Initialize(Spawner starter)
@@ -75,6 +76,7 @@ public abstract class Character : Entity
  
     public virtual void Select(bool selected)
     {
+        Selected = selected;
         if (_turn.Act != TurnState.Shop)
         {
             field.CreateHighLight(this, selected);

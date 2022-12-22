@@ -20,6 +20,7 @@ public class Item : Entity
     protected  void Awake()
     {
         Icon = GetComponent<SpriteRenderer>();
+        Icon.sprite =  Resources.Load<Sprite>("Sprites/Shop/Category/" + entityType);
         name = Name;
         SetProperties();
         transform.position = new Vector3(0, 0, -100);
@@ -81,6 +82,7 @@ public class Item : Entity
     public override void Initialize(Spawner spawner)
     {
         _field = spawner.field;
+        
        
     }
    

@@ -108,47 +108,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1976}
     - Class: 114
-      Script: {instanceID: 2234}
+      Script: {instanceID: 2232}
     - Class: 114
-      Script: {instanceID: 2284}
+      Script: {instanceID: 2282}
     - Class: 114
-      Script: {instanceID: 2718}
+      Script: {instanceID: 2722}
     - Class: 114
-      Script: {instanceID: 2886}
+      Script: {instanceID: 2890}
     - Class: 114
-      Script: {instanceID: 2888}
+      Script: {instanceID: 2892}
     - Class: 114
-      Script: {instanceID: 2940}
+      Script: {instanceID: 2944}
     - Class: 114
-      Script: {instanceID: 3130}
+      Script: {instanceID: 3142}
     - Class: 114
-      Script: {instanceID: 3226}
+      Script: {instanceID: 3236}
     - Class: 114
-      Script: {instanceID: 3380}
+      Script: {instanceID: 3392}
     - Class: 114
-      Script: {instanceID: 3544}
+      Script: {instanceID: 3556}
     - Class: 114
-      Script: {instanceID: 3916}
+      Script: {instanceID: 3928}
     - Class: 114
-      Script: {instanceID: 4148}
+      Script: {instanceID: 4160}
     - Class: 114
-      Script: {instanceID: 4284}
+      Script: {instanceID: 4296}
     - Class: 114
-      Script: {instanceID: 4452}
+      Script: {instanceID: 4464}
     - Class: 114
-      Script: {instanceID: 4928}
+      Script: {instanceID: 4942}
     - Class: 114
-      Script: {instanceID: 5160}
+      Script: {instanceID: 5174}
     - Class: 114
-      Script: {instanceID: 5328}
+      Script: {instanceID: 5344}
     - Class: 114
-      Script: {instanceID: 5490}
+      Script: {instanceID: 5506}
     - Class: 114
-      Script: {instanceID: 5816}
+      Script: {instanceID: 5836}
     - Class: 114
-      Script: {instanceID: 5896}
+      Script: {instanceID: 5918}
     - Class: 114
-      Script: {instanceID: 5928}
+      Script: {instanceID: 5950}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -272,7 +272,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 29c512492d2acaf4750b84a626de7b56
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ExperienceButton
@@ -290,7 +290,7 @@ ScriptsOnlyBuild:
     className: SpriteSkinUpdateHelper
   - hash:
       serializedVersion: 2
-      Hash: f75078a83e3713f524f6693893db5ad4
+      Hash: e5580c2c6df08bb57ecde7d131e7f2c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Enemy
@@ -344,7 +344,7 @@ ScriptsOnlyBuild:
     className: AspectRatioFitter
   - hash:
       serializedVersion: 2
-      Hash: 853a65eaddd0d5423353353ef992b5ff
+      Hash: 7ab434f51e608448cb19640d91c83092
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CategoryButton
@@ -416,7 +416,7 @@ ScriptsOnlyBuild:
     className: LimbSolver2D
   - hash:
       serializedVersion: 2
-      Hash: 087fe01b3def9641cc81547b8e27ca19
+      Hash: 093a5eb7de6bfa8eb76dafe77119c65c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Item
@@ -470,7 +470,7 @@ ScriptsOnlyBuild:
     className: SpriteShapeController
   - hash:
       serializedVersion: 2
-      Hash: 1789f78cf5a75507944d33c5365a1266
+      Hash: 1cf971ae003f83bf83cd4f80d0763c51
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ItemButton
@@ -548,7 +548,7 @@ ScriptsOnlyBuild:
     className: PositionAsUV1
   - hash:
       serializedVersion: 2
-      Hash: c3990ecedbd72c58228f895754dcbd1a
+      Hash: 5fbabef12bd9157900e764467edeb4c9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ShopButton
@@ -560,7 +560,7 @@ ScriptsOnlyBuild:
     className: AudioPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: ebee506a8dbb53ede87414a2653d48c0
+      Hash: 045fde8d99a1e5d9d4204d6794e106a2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Hero
@@ -692,7 +692,7 @@ ScriptsOnlyBuild:
     className: SpriteLibraryAsset
   - hash:
       serializedVersion: 2
-      Hash: 719b497278a70050c7932be1218d2962
+      Hash: d93f0d67e20492f89ebab3114e3ce48f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Spawner
@@ -764,7 +764,7 @@ ScriptsOnlyBuild:
     className: FabrikSolver2D
   - hash:
       serializedVersion: 2
-      Hash: 719b497278a70050c7932be1218d2962
+      Hash: d93f0d67e20492f89ebab3114e3ce48f
     assemblyName: Assembly-CSharp.dll
     namespaceName: Script.Managers
     className: BattleStarter
@@ -777,4 +777,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/3q/Desktop/chtonicraft0.851.apk
+  playerPath: C:/Users/3q/Desktop/chtonicraft0.86.apk

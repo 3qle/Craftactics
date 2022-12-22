@@ -15,7 +15,7 @@ using UnityEngine;
         public PopUp PopUpText;
         
         [HideInInspector]  public List<PopUp> PopUpList;
-        [HideInInspector]  public List<Character> HeroesList = new List<Character>();
+        [HideInInspector]  public List<Character> ActiveHeroes = new List<Character>();
         public List<Character> EnemiesList = new List<Character>();
      
         public List<Entity> EntityPool = new List<Entity>();
@@ -23,8 +23,8 @@ using UnityEngine;
         public void AddCharacterToPool(Character character)
         {
            
-            if(character.entityType == EntityType.Hero && !HeroesList.Contains(character))
-                HeroesList.Add(character);
+            if(character.entityType == EntityType.Hero && !ActiveHeroes.Contains(character))
+                ActiveHeroes.Add(character);
             if(character.entityType == EntityType.Enemy && !EnemiesList.Contains(character))
                 EnemiesList.Add(character);
         }
@@ -32,7 +32,7 @@ using UnityEngine;
         public void RemoveCharacterFromPool(Character character)
         {
             if(EnemiesList.Contains(character)) EnemiesList.Remove(character);
-            if(HeroesList.Contains(character)) HeroesList.Remove(character);
+            if(ActiveHeroes.Contains(character)) ActiveHeroes.Remove(character);
         }
 
         public void AddShopEntities(Entity item, Spawner starter)

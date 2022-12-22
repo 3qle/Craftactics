@@ -8,8 +8,8 @@ public class Flow : Attribute
 {
    public override void SetName()
    {
-      Name = "FLOW";
+      Name = "Flow";
       start = max;
-      attributeType = AtrributeTypes.Music;
+      attributeType = AtrributeTypes.Flow;
    }
 }

@@ -13,7 +13,7 @@ public class Accuracy  : Attribute
 
    public override void SetName()
    {
-      Name = "ACC";
+      Name = "Accuracy";
       start = max;
       attributeType = AtrributeTypes.Accuracy;
    }

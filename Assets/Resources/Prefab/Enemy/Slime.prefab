@@ -110,52 +110,76 @@ MonoBehaviour:
     height: 0
     width: 0
   Resistance:
-    physicDefence: 71
-    fireDefence: -100
-    waterDefence: 90
-    electricDefence: -50
-    waveDefence: -100
-    mentalDefence: 82
-    holyDefence: 84
-    IllDefence: -43
     attackResult: 0
+    physicDefence:
+      Element: 0
+      amount: 39
+    fireDefence:
+      Element: 1
+      amount: -32
+    waterDefence:
+      Element: 2
+      amount: 26
+    electricDefence:
+      Element: 4
+      amount: 40
+    waveDefence:
+      Element: 3
+      amount: -48
+    mentalDefence:
+      Element: 5
+      amount: 84
+    holyDefence:
+      Element: 6
+      amount: -28
+    IllDefence:
+      Element: 7
+      amount: 54
+    ResistanceClasses: []
   Attributes:
     health:
       attributeType: 0
       Name: 
       current: 0
       max: 5
+      notShow: 0
     stamina:
       attributeType: 0
       Name: 
       current: 0
       max: 4
+      notShow: 0
       OutOfStamina: 0
     accuracy:
       attributeType: 0
       Name: 
       current: 0
       max: 0
+      notShow: 0
     support:
       attributeType: 0
       Name: 
       current: 0
       max: 0
+      notShow: 0
     magic:
       attributeType: 0
       Name: 
       current: 0
-      max: 0
+      max: 1
+      notShow: 0
     strength:
       attributeType: 0
       Name: 
       current: 0
-      max: 0
+      max: 1
+      notShow: 0
     flow:
       attributeType: 0
       Name: 
       current: 0
-      max: 0
+      max: 3
+      notShow: 0
   MasteryTypes:
     Types: 
   Bag:

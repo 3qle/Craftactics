@@ -7,7 +7,7 @@ public class Magic  : Attribute
 {
     public override void SetName()
     {
-        Name = "MAG";
+        Name = "Magic";
         start = max;
         attributeType = AtrributeTypes.Magic;
     }

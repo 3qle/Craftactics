@@ -27,7 +27,7 @@ public class UIShop
        _shop = shop;
        GetShopButtons(); 
        GetCategoryButtons();
-       EnableValidCategories();
+       EnableValidCategories(true);
       CategoryButtons[0].OpenCategory();
    }
    
@@ -64,8 +64,8 @@ public class UIShop
         if (_shop.inShop && character != null)
         {
             SelectedCharacter = character;
-            SelectCategory(SelectedCategory);
-            EnableValidCategories();
+            if(SelectedCharacter.Bought)SelectCategory(SelectedCategory);
+            EnableValidCategories(true);
         }
     }
 
@@ -73,7 +73,7 @@ public class UIShop
     {
         SelectedEntity = item;
     }
-    void EnableValidCategories()
+    void EnableValidCategories(bool enable)
     {
         foreach (var button in CategoryButtons) 
             button.Enable(false);
@@ -84,7 +84,7 @@ public class UIShop
 
     void OpenCharacterCategory()
     {
-        CategoryButtons[0].Enable(_spawner.ui.CharacterUI.characters.Count < 5);
+        CategoryButtons[0].Enable(_spawner.pool.ActiveHeroes.Count < 5);
     }
     public void SelectItemInShop(ShopButton button, Entity item)
     {
@@ -92,13 +92,18 @@ public class UIShop
         SelectedEntity = item;
         if(SelectedEntity.entityType != EntityType.Hero) 
             Console.ShowInfo((Item)item);
-        else 
-            _spawner.controller.SelectFromShop((Character)SelectedEntity);
+        else
+        {
+            SelectCharacter((Character) item);
+            _spawner.controller.Select((Character)SelectedEntity);
+           
+        }
+           
     }
   
     public void Buy(bool buy)
     {
-        if (_shop.Wallet.IsEnough(SelectedEntity.ShopCost) || !buy)
+        if (_shop.Wallet.IsEnough(SelectedEntity.ShopCost) && SelectedCharacter.Bought || (!SelectedCharacter.Bought && SelectedEntity.entityType == EntityType.Hero ) || !buy)
         {
             SelectedEntity.Buy(SelectedCharacter,buy);
             _spawner.ui.ItemUI.UpdateButtons(SelectedCharacter);

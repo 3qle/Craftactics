@@ -8,17 +8,17 @@ using UnityEngine.Events;
 public class Controller
 {
     private Camera _camera;
-    [HideInInspector] public Character _selectable;
+    public Character _selectable;
     private CharacterButton _characterButton;
     private Turn _turn;
     private UI _ui;
-    private UIShop _uiShop;
+  
     public Controller (BattleStarter starter)
     {
         _ui = starter.ui;
         _camera = Camera.main;
         _turn = starter.turn;
-        _uiShop = starter.shop.UIShop;
+        CharacterButton.CharacterButtonSelected += Select;
     }
 
     public   void WaitForInput()
@@ -38,7 +38,7 @@ public class Controller
                      AttackTarget(hit.collider.GetComponent<CellButton>().CurrentCharacter);
                      break;
                  case "CharacterTile": 
-                     SelectByMouse(hit.collider.GetComponent<CellButton>().CurrentCharacter);
+                     Select(hit.collider.GetComponent<CellButton>().CurrentCharacter);
                      break; 
              }
         }
@@ -47,34 +47,15 @@ public class Controller
     void AttackTarget(Character target)
     {
        _selectable.UseItem(target);
-        Select(false);
     }
-    void Select(bool select)
+    public void Select(Character character)
     {
-        _characterButton?.HighLightButton(select, _selectable);
-        _selectable?.Select(select); 
+        _selectable?.Select(false); 
+        _selectable = character; 
+        _selectable.Select(true);
        _ui.ShowInfoOnSelect(_selectable);
     }
-    public void SelectCharacterButton(Character character, CharacterButton button)
-    {
-        Select(false);
-        _characterButton = button;
-        _selectable = character;
-        _uiShop.SelectCharacter(character);
-        Select(true);
-    }
-
-   public void SelectByMouse(Character character)
-    {
-        Select(false);
-        _selectable = character; 
-        Select(true);
-    }
    
-   public void SelectFromShop(Character character)
-    {
-        _selectable = character;
-        _ui.ShowInfoOnSelect(_selectable);
-    }
-   
+    
+    
 }

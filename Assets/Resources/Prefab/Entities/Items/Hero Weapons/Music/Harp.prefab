@@ -48,25 +48,33 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Name: Harp
   ShopCost: 75
-  Quantity: 1
+  QuantityInShop: 1
+  QuantityInBag: 0
   instantUse: 0
-  SPCost: 3
+  SPCost: 2
   AttributeModifiers: []
+  ResistanceModifiers: []
   Damage:
-    Using: 0
-    WeaponElement: 0
-    Damage: 0
+    Using: 1
+    Icon: {fileID: 0}
+    Points: 1
+    Duration: 0
+    WeaponElement: 3
     StrenghtMultiplier: 0
     AccuracyMultiplier: 0
-    SupportMultiplier: 0
+    SupportMultiplier: 30
     MagicMultiplier: 0
-    MusicMultiplier: 0
-    ModDamage: 0
-    strBonus: 0
+    MusicMultiplier: 50
+    raw: 0
+    Stack: 
   Range:
-    Using: 0
+    Using: 1
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
+    ToEnemy: 1
     MinRange: 0
-    MaxRange: 0
+    MaxRange: 5
 --- !u!212 &4609902908453904983
 SpriteRenderer:
   m_ObjectHideFlags: 0

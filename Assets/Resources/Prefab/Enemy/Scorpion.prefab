@@ -97,61 +97,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c62eb21c0595546940a491c2671f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShopCost: 0
-  Bought: 0
-  Icon: {fileID: 0}
   entityType: 14
+  Icon: {fileID: 0}
   Name: Scorpion
-  side: 1
+  ShopCost: 0
+  QuantityInShop: 0
+  QuantityInBag: 0
+  instantUse: 0
   field:
     height: 0
     width: 0
-  MasteryTypes:
-    Types: 
+  Resistance:
+    attackResult: 0
+    physicDefence:
+      Element: 0
+      amount: 45
+    fireDefence:
+      Element: 1
+      amount: 34
+    waterDefence:
+      Element: 2
+      amount: -20
+    electricDefence:
+      Element: 4
+      amount: 37
+    waveDefence:
+      Element: 3
+      amount: 24
+    mentalDefence:
+      Element: 5
+      amount: -23
+    holyDefence:
+      Element: 6
+      amount: 31
+    IllDefence:
+      Element: 7
+      amount: 36
+    ResistanceClasses: []
   Attributes:
     health:
-      current: 0
+      attributeType: 0
       Name: 
+      current: 0
       max: 3
+      notShow: 0
     stamina:
-      current: 0
+      attributeType: 0
       Name: 
+      current: 0
       max: 4
+      notShow: 0
       OutOfStamina: 0
     accuracy:
-      current: 0
+      attributeType: 0
       Name: 
-      max: 0
+      current: 0
+      max: 1
+      notShow: 0
     support:
-      current: 0
+      attributeType: 0
       Name: 
+      current: 0
       max: 0
+      notShow: 0
     magic:
-      current: 0
+      attributeType: 0
       Name: 
+      current: 0
       max: 0
+      notShow: 0
     strength:
-      current: 0
+      attributeType: 0
       Name: 
-      max: 0
-    music:
       current: 0
+      max: 3
+      notShow: 0
+    flow:
+      attributeType: 0
       Name: 
-      max: 0
+      current: 0
+      max: 1
+      notShow: 0
+  MasteryTypes:
+    Types: 
   Bag:
     Items:
     - {fileID: 3207652995770377427}
     - {fileID: 5578551721309668543}
-  Resistance:
-    physicDefence: 56
-    fireDefence: 30
-    waterDefence: 72
-    electricDefence: -100
-    waveDefence: 95
-    mentalDefence: -60
-    holyDefence: 70
-    IllDefence: 72
-    attackResult: 0
   targetList: []
 --- !u!1001 &1298338306516414705
 PrefabInstance:

@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Script.Character;
+﻿using System.Collections.Generic;
 using Script.Enum;
-using Script.Managers;
-using Script.UI;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
     public class UIItem
     {

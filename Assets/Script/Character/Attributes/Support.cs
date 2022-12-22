@@ -7,8 +7,8 @@ public class Support  : Attribute
 {
     public override void SetName()
     {
-        Name = "SUP";
+        Name = "Spirit";
         start = max;
-        attributeType = AtrributeTypes.Support;
+        attributeType = AtrributeTypes.Spirit;
     }
 }

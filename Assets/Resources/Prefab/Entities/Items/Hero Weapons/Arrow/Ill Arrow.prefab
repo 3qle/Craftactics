@@ -53,19 +53,25 @@ MonoBehaviour:
   instantUse: 0
   SPCost: 2
   AttributeModifiers: []
+  ResistanceModifiers: []
   Damage:
     Using: 1
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
     WeaponElement: 7
-    Damage: 1
-    StrenghtMultiplier: 10
-    AccuracyMultiplier: 30
+    StrenghtMultiplier: 20
+    AccuracyMultiplier: 10
     SupportMultiplier: 0
-    MagicMultiplier: 0
+    MagicMultiplier: 40
     MusicMultiplier: 0
-    ModDamage: 0
-    strBonus: 0
+    raw: 0
+    Stack: 
   Range:
     Using: 1
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
     ToEnemy: 1
     MinRange: 2
     MaxRange: 4

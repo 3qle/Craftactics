@@ -14,15 +14,11 @@ using Random = UnityEngine.Random;
 public class UI
 {
    private Turn _turn;
-   private Controller _controller;
    private Pool _pool;
    private Shop _shop;
    public Console Console;
-   public UIResistance ResistanceUI;
-   public UIExperience ExperienceUI;
    public UIItem ItemUI;
-   public UIBaseInfo InfoUI;
-   public UICharacter CharacterUI;
+   public UICharacterPanel InfoUI;
    public UIScore ScoreUI;
    [Header("Buttons")] 
    public Button EndTurnButton;
@@ -32,22 +28,19 @@ public class UI
    public Button SellButton;
    [Header("Containers")]
    public GameObject PopUpContainer;
-   public Transform CharacterButtons, ItemButtons, StatButtons, ResistanceButtons;
+   public Transform  ItemButtons;
    
    public TextMeshProUGUI  TurnAnnouncement;
    
    public void Initialize(BattleStarter starter)
    {
-      _controller = starter.controller;
       _pool = starter.pool;
       _turn = starter.turn;
       _shop = starter.shop;
       
-      CharacterUI =  new UICharacter(_controller, CharacterButtons);
-      ResistanceUI = new UIResistance(ResistanceButtons);
-      ExperienceUI = new UIExperience(starter,StatButtons);
       ItemUI = new UIItem(starter, ItemButtons);
      
+      InfoUI.Initialize();
       LoadButtons();
     
    }
@@ -63,15 +56,11 @@ public class UI
   
 
    public void ShowInfoOnUpdate(Character character)
-   { 
-      CharacterUI.Show();
-      ResistanceUI.Show(character);
+   {
+      if (character == null) return;
       InfoUI.Show(character);
-      ExperienceUI.Show(character);
       ItemUI.UpdateButtons(character);
-      ExperienceUI.SetButtons(character);
-     
-   }
+    }
 
    public void ShowInfoOnSelect(Character character)
    {

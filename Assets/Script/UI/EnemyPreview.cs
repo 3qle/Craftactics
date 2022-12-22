@@ -37,6 +37,6 @@
 
       void SelectEnemyPreview(Character enemy)
       {
-        spawner.controller.SelectByMouse(enemy);
+        spawner.controller.Select(enemy);
       }  
     }

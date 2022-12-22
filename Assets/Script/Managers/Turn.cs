@@ -42,7 +42,7 @@ public class Turn
     {
         _activeFractionList.Clear();
         if(Act == TurnState.P)
-            foreach (var character in _pool.HeroesList) 
+            foreach (var character in _pool.ActiveHeroes) 
                 _activeFractionList.Add(character);
         
         if(Act == TurnState.E)
@@ -56,7 +56,7 @@ public class Turn
     public void RemoveEnemy(Character enemy)
     {
         _activeFractionList.Remove(enemy);
-        if(_pool.HeroesList.Count != 0)
+        if(_pool.ActiveHeroes.Count != 0)
         NextEnemyAct();
         else
         {
@@ -68,7 +68,7 @@ public class Turn
         if (_activeFractionList.Count > 0 )
         {
             int i = Random.Range(0, _activeFractionList.Count);
-             _controller.SelectByMouse(_activeFractionList[i]);
+             _controller.Select(_activeFractionList[i]);
         }
 
         if (_activeFractionList.Count == 0)

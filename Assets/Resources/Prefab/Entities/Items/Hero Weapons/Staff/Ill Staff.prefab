@@ -59,6 +59,12 @@ MonoBehaviour:
     Duration: 2
     attributeType: 2
     TemporaryEffect: 0
+  ResistanceModifiers:
+  - Using: 1
+    Icon: {fileID: 0}
+    Points: -10
+    Duration: 2
+    Element: 7
   Damage:
     Using: 1
     Icon: {fileID: 21300000, guid: beba2ccec25182d4cb405fd20704ebbb, type: 3}
@@ -70,6 +76,7 @@ MonoBehaviour:
     SupportMultiplier: 0
     MagicMultiplier: 10
     MusicMultiplier: 0
+    raw: 0
     Stack: 
   Range:
     Using: 1

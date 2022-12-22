@@ -48,23 +48,30 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Name: Shield
   ShopCost: 25
-  Quantity: 1
+  QuantityInShop: 1
+  QuantityInBag: 0
   instantUse: 0
   SPCost: 1
   AttributeModifiers: []
+  ResistanceModifiers: []
   Damage:
     Using: 0
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
     WeaponElement: 0
-    Damage: 0
     StrenghtMultiplier: 0
     AccuracyMultiplier: 0
     SupportMultiplier: 0
     MagicMultiplier: 0
     MusicMultiplier: 0
-    ModDamage: 0
-    strBonus: 0
+    Stack: 
   Range:
     Using: 0
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
+    ToEnemy: 0
     MinRange: 0
     MaxRange: 0
 --- !u!212 &-4740333303470347916

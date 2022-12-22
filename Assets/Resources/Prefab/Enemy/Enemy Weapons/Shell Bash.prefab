@@ -60,11 +60,12 @@ MonoBehaviour:
     Points: 1
     Duration: 0
     WeaponElement: 0
-    StrenghtMultiplier: 20
+    StrenghtMultiplier: 40
     AccuracyMultiplier: 0
     SupportMultiplier: 0
     MagicMultiplier: 0
-    MusicMultiplier: 0
+    MusicMultiplier: 30
+    raw: 0
     Stack: 
   Range:
     Using: 1
@@ -72,8 +73,8 @@ MonoBehaviour:
     Points: 0
     Duration: 0
     ToEnemy: 0
-    MinRange: 3
-    MaxRange: 1
+    MinRange: 1
+    MaxRange: 0
 --- !u!212 &6614234241475291917
 SpriteRenderer:
   m_ObjectHideFlags: 0

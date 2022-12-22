@@ -7,7 +7,7 @@ public class Strenght  : Attribute
 {
     public override void SetName()
     {
-        Name = "STR";
+        Name = "Strength";
         start = max;
         attributeType = AtrributeTypes.Strength;
     }

@@ -25,9 +25,10 @@ public class Console
         for (int i = 0; i < item.Properties.Count; i++)
         { 
             Points[i].enabled =  DamageElement[i].enabled = ElementBackground[i].enabled = true; 
+            Points[i] = item.Properties[i].Text(Points[i]);
             DamageElement[i].sprite = item.Properties[i].Icon;
 
-            Points[i] = item.Properties[i].Text(Points[i]);
+           
             
            
             Duration[i].text = item.Properties[i].Duration > 0
@@ -42,7 +43,7 @@ public class Console
     void ShowText(Item item)
     {
         Quantity.text = item.QuantityInBag > 1 ? item.QuantityInBag.ToString() : "";
-        Name.text = item.Name;
+        Name.text = $"{item.SPCost} {item.Name}";
     }
     public void Clear()
     {
