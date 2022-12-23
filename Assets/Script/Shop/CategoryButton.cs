@@ -1,72 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
-using Script.Character;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Script.Enum;
 using UnityEngine;
 using UnityEngine.UI;
-using Object = System.Object;
-
 
     public class CategoryButton : MonoBehaviour
     {
-      public  Image Icon;
-     
+       private Image Icon;
+       private Sprite[]  HighLight;
+       private int buttonIndex;
+       private bool Selected;
+        private List<ShopButton> ShopButtons;
+       [HideInInspector]public List<Entity> _itemList, Entities;
+       [HideInInspector]public Button Button; 
+       public EntityType categoryType;
+       private UIShop _uiShop;
+       private List<CategoryButton> _categoryButtons;
+       private void Awake()
+       {
+           Button = GetComponent<Button>();
+           Icon = transform.GetChild(0).GetComponent<Image>();
+           HighLight = Resources.LoadAll<Sprite>("Sprites/Shop/CategoryButton/");
+       }
        
-       [HideInInspector] public Button Button;
-        private UIShop _uiShop;
-        private List<ShopButton> _container;
-        private Spawner _spawner;
-        public EntityType categoryType;
-        private int index, buttonIndex;
-        private void Awake()
-        {
-            Button = GetComponent<Button>();
+       public void Initialize(List<ShopButton> container, List<Entity> list,UIShop  uiShop, List<CategoryButton> categoryButtons)
+       {
+           _categoryButtons = categoryButtons;
+           _uiShop = uiShop;
+            Entities = list;
+            ShopButtons = container;
+            Button.onClick.AddListener( Open);
         }
 
-        public void Initialize(List<ShopButton> container, UIShop ui,int i,Spawner spawner)
+        public void Change(EntityType type)
         {
-            index = i;
-            _spawner = spawner;
-            _container = container;
-            _uiShop = ui;
-            Button.onClick.AddListener(OpenCategory);
-        }
-
-        public void CloseCategory()
-        {
-            Button.image.sprite = Resources.Load<Sprite>("Sprites/Shop/CategoryButton/" + false);
-            foreach (var button in _container) 
-                button.ClearButton(true);
-        }
-        public void OpenCategory()
-        {
-            _uiShop.SelectCategory(this);
-                foreach (var item in _spawner.pool.EntityPool) 
-                    if (item.entityType == categoryType && !item.Bought)
-                    {
-                        _container[buttonIndex].ShowItemInShop(item,_spawner,true);
-                        buttonIndex++;
-                    }
-                buttonIndex = 0;
-                Button.image.sprite = Resources.Load<Sprite>("Sprites/Shop/CategoryButton/" + true);
-            
-            
-        }
-
-        public void Refresh()
-        {
-            
+            Clear();
+            categoryType = type;
+            Icon.sprite = Resources.Load<Sprite>("Sprites/Shop/Category/" + categoryType);
+            Button.enabled = Button.image.enabled = Icon.enabled = true;
         }
         
-        public void EnableCategory(Character character, int i)
+        public void Clear() => Button.enabled =  Button.image.enabled = Icon.enabled = false;
+        
+        public void SetHighlight(bool set) => Button.image.sprite = HighLight[set ? 1:0];
+        
+        public void Open( )
         {
-            Icon.sprite = Resources.Load<Sprite>("Sprites/Shop/Category/" + character.MasteryTypes.Types[i]);
-            categoryType = character.MasteryTypes.Types[i];
-            Enable(true);
+            foreach (var button in _categoryButtons) 
+                button.SetHighlight(false);
+            
+            _uiShop.SelectCategory(this);
+            SetHighlight(true);
+            
+            foreach (var item in ShopButtons)
+                item.ClearButton(); 
+            SetItems();
         }
 
-        public void Enable(bool enable)
+        void SetItems()
         {
-            Button.enabled = Icon.enabled = enable;
+            _itemList.Clear();
+            foreach (var entity in Entities.Where(entity => entity.entityType == categoryType && !entity.Bought))
+                _itemList.Add(entity); 
+            for (int i = 0; i < _itemList.Count; i++) 
+                ShopButtons[i].SetItem(_itemList[i],_uiShop,ShopButtons);
         }
     }

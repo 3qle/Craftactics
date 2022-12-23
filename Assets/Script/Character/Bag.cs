@@ -26,6 +26,7 @@ public class Bag
     public void Remove(Item item)
     {
         Items.Remove(item);
+        item.SetQuantity(false);
     }
     
     

@@ -494,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d4d47710c9d46a3ab3fa21251f18804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Image: {fileID: 4216734818255979031}
+  ItemImage: {fileID: 4216734818255979031}
   HighLight: {fileID: 5909701764952902580}
   Cost: {fileID: 2726958213217777661}
   Quantity: {fileID: 7113535331880481410}
@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 2550195447718638467}
   - component: {fileID: 4216734818255979031}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Item Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

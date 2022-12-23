@@ -1,89 +1,75 @@
-﻿ using Script.Enum;
+﻿ using System;
+ using System.Collections.Generic;
+ using Script.Enum;
  using TMPro;
  using UnityEngine;
  using UnityEngine.UI;
 
  public class ShopButton: MonoBehaviour
-    {  
-        public Image Image, HighLight;
+ {
+        public Image ItemImage, Image;
+        Sprite[] HighLight;
         public TextMeshProUGUI  Cost, Quantity;
-        private Spawner _spawner;
-        private UIItem _ui;
-        private UIShop _uiShop; 
-        private Entity _item;
-        private Wallet _wallet;
-        private int num;
-        private Button Button;
+        public Entity _item;
+        public Button Button;
+        public bool Selected;
+        public static Action<Character> CharacterButtonSelected;
+        private Character _selectedCharacter;
+        private UIShop _uiShop;
+        private List<ShopButton> _shopButtons;
         private void Awake()
         {
             Button = GetComponent<Button>();
+            Image = GetComponent<Image>();
+            Button.onClick.AddListener(() => { SelectItem(true); });
+            HighLight = Resources.LoadAll<Sprite>("Sprites/Shop/CategoryButton/");
         }
-       
-        public void ShowItemInShop(Entity item, Spawner starter, bool show)
+        
+        public void SetItem(Entity entity, UIShop uiShop,List<ShopButton> list)
         {
-            _item = item;
-            _uiShop = starter.shop.UIShop;
-            _wallet = starter.shop.Wallet;
-            if(item.Bought ) return;
-            
-            Image.enabled = true;
-            Button.enabled = show;
-            SetShopButton();
-            SetContent(show);
-        }
-
-        void SetContent(bool show)
-        {
-            if (show)
+            _uiShop = uiShop;
+            _item = entity;
+            _shopButtons = list;
+            Image.enabled = ItemImage.enabled = Button.enabled = true;
+            ItemImage.sprite = _item.Icon.sprite;
+            Cost.text = _item.ShopCost.ToString();
+            if (_item.QuantityInShop > 0)
             {
-                Cost.text = _item.ShopCost.ToString();
-                Cost.color = _wallet.IsEnough(_item.ShopCost)? Color.green : Color.red;
+                Image.sprite = Selected ? HighLight[1] : HighLight[0];
+                Cost.color = uiShop._shop.Wallet.Coins >_item.ShopCost? Color.green : Color.red; 
                 Quantity.text = _item.QuantityInShop > 1 ? _item.QuantityInShop.ToString() : "";
-                Image.sprite = _item.Icon.sprite;
             }
             else
-                ClearButton(true);
+                ClearButton();
         }
-       
-        public void SetShopButton()
-        {
-            Button.onClick.RemoveAllListeners();
-            Button.onClick.AddListener(() => { SelectItemInShop(true); });
-        }
-        
-        public void SelectItemInShop(bool show)
-        {
-            
+        public void SelectItem(bool show)
+        { 
             if (show)
             {
-                _uiShop.HideShopButtons();
-
-                if (_item.entityType != EntityType.Hero)
-                {
-                    Item item = (Item) _item;
-                    item.SelectInShop(_uiShop.SelectedCharacter);
-                }
-                  
-              
-                _uiShop.SelectItemInShop(this,_item);
+              _uiShop.SelectEntity(_item);
+                foreach (var button in _shopButtons) 
+                    button.SetHighlight(false);
+                ChooseEntity();
+                SetHighlight(true);
             }
-       
-            HighLightButton(show);
         }
-     
         
-        public void HighLightButton(bool selected) => HighLight.enabled = selected;
+       public void SetHighlight(bool show)=>Image.sprite = show ? HighLight[1] : HighLight[0];
         
-        public void ClearButton(bool clear)
+        void ChooseEntity()
         {
-            if(!clear) SetContent(true);
-            else
-            {
-                Cost.text = Quantity.text = "";
-                Image.enabled = false;
-        
-                HighLightButton(false);
+            if (_item.entityType != EntityType.Hero)
+            {  
+                _selectedCharacter =  _uiShop.SelectedCharacter;
+                var item = (Item) _item;
+                item.SelectInShop(_selectedCharacter);
             }
-           
+            else CharacterButtonSelected.Invoke((Character)_item);
         }
-    }
+        
+        public void ClearButton()
+        {
+            Cost.text = Quantity.text = "";
+            ItemImage.enabled = Image.enabled = Button.enabled = false;
+        }
+ }

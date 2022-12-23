@@ -17,14 +17,11 @@ public class CharacterButton : MonoBehaviour
     { 
         _character = character;
         characterButton = GetComponent<Button>(); 
-        characterButton.onClick.AddListener(Select);
+        characterButton.onClick.AddListener(() => CharacterButtonSelected.Invoke(_character));
         CharacterImage.enabled = true;
         CharacterImage.sprite = _character.Icon.sprite;
     }
 
-
-    public void Select()
-        => CharacterButtonSelected.Invoke(_character);
     
     public void Show()
     {

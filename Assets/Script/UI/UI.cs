@@ -60,12 +60,13 @@ public class UI
       if (character == null) return;
       InfoUI.Show(character);
       ItemUI.UpdateButtons(character);
+      _shop.Show(character);
     }
 
    public void ShowInfoOnSelect(Character character)
    {
-    
       ItemUI.ChangeCharacter(character);
+     _shop.UIShop.ChangeCategories(character);
    }
    
    public void ShowPopUp(AttackResult result, Vector3 pos, float damage) 

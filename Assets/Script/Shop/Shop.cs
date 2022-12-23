@@ -26,6 +26,11 @@ public class Shop
  
  }
 
+ public void Show(Character character)
+ { 
+ 
+ }
+
  public void OpenShop(bool open)
  {
   if ((_spawner.pool.ActiveHeroes.Count > 0 && _spawner.pool.ActiveHeroes[0].Bag.Items.Count > 0 && !open) || open)

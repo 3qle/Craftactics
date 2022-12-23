@@ -19,6 +19,7 @@ public class Controller
         _camera = Camera.main;
         _turn = starter.turn;
         CharacterButton.CharacterButtonSelected += Select;
+        ShopButton.CharacterButtonSelected += Select;
     }
 
     public   void WaitForInput()

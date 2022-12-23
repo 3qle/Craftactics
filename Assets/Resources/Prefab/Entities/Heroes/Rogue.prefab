@@ -177,6 +177,7 @@ MonoBehaviour:
       max: 0
       notShow: 0
   MasteryTypes:
-    Types: 100000000f000000090000000800000004000000
+    Types: 100000000f00000008000000090000000c000000
   Bag:
     Items: []
+  Selected: 0

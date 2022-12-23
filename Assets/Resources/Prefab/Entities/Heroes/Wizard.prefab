@@ -180,3 +180,4 @@ MonoBehaviour:
     Types: 100000000f00000008000000070000000a000000
   Bag:
     Items: []
+  Selected: 0

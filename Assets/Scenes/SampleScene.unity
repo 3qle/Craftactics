@@ -10512,7 +10512,10 @@ MonoBehaviour:
     UIShop:
       ShopButtonsContainer: {fileID: 2087497265}
       CategoryContainer: {fileID: 531342806}
+      CharacterCategory: {fileID: 0}
       SelectedCharacter: {fileID: 0}
+      SelectedButton: {fileID: 0}
+      SelectedCategory: {fileID: 0}
     inShop: 1
     ShopContainer: {fileID: 1035372880}
 --- !u!1001 &1182143620
