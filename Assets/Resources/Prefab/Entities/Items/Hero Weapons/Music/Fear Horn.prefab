@@ -49,44 +49,59 @@ MonoBehaviour:
   Name: Fear Horn
   ShopCost: 100
   QuantityInShop: 1
-  QuantityInBag: 0
+  IndexOfCategory: 0
+  itemType: 0
+  projectileType: 0
+  maxCapacity: 0
+  staminaCost: 1
   instantUse: 0
-  SPCost: 2
-  AttributeModifiers:
-  - Using: 1
-    Icon: {fileID: 0}
-    Points: -10
-    Duration: 1
-    attributeType: 3
-    TemporaryEffect: 0
-  - Using: 1
-    Icon: {fileID: 0}
-    Points: -5
-    Duration: 2
-    attributeType: 2
-    TemporaryEffect: 0
-  ResistanceModifiers: []
-  Damage:
-    Using: 1
-    Icon: {fileID: 0}
-    Points: 1
-    Duration: 0
-    WeaponElement: 3
-    StrenghtMultiplier: 40
-    AccuracyMultiplier: 0
-    SupportMultiplier: 10
-    MagicMultiplier: 0
-    MusicMultiplier: 30
-    raw: 0
-    Stack: 
-  Range:
+  passive: 0
+  consumable: 0
+  Selected: 0
+  itemRange:
     Using: 1
     Icon: {fileID: 0}
     Points: 0
     Duration: 0
-    ToEnemy: 1
     MinRange: 0
-    MaxRange: 5
+    MaxRange: 0
+    RangeType: 4
+  damageStack:
+    Using: 0
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
+    StrenghtMultiplier: 0
+    AccuracyMultiplier: 0
+    SupportMultiplier: 0
+    MagicMultiplier: 0
+    MusicMultiplier: 0
+    Stack: 
+  PositionModifier:
+    Using: 0
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
+  attributeModifiers: []
+  resistanceModifiers:
+  - Using: 1
+    Icon: {fileID: 0}
+    Points: -50
+    Duration: 5
+    Element: 5
+    BuffType: 1
+  damageModifiers:
+  - Using: 1
+    Icon: {fileID: 0}
+    Points: 0.5
+    Duration: 0
+    WeaponElement: 3
+    StatusDamage: 0
+    raw: 0
+    rawStatus: 0
+  _weapon: {fileID: 0}
+  ProjectileIndex: 0
+  ActiveItem: {fileID: 0}
 --- !u!212 &-6237708201903618523
 SpriteRenderer:
   m_ObjectHideFlags: 0

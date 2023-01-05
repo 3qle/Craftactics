@@ -9,7 +9,7 @@
  {
         public Image ItemImage, Image;
         Sprite[] HighLight;
-        public TextMeshProUGUI  Cost, Quantity;
+        public TextMeshProUGUI  Cost, Quantity, Name;
         public Entity _item;
         public Button Button;
         public bool Selected;
@@ -22,7 +22,7 @@
             Button = GetComponent<Button>();
             Image = GetComponent<Image>();
             Button.onClick.AddListener(() => { SelectItem(true); });
-            HighLight = Resources.LoadAll<Sprite>("Sprites/Shop/CategoryButton/");
+            HighLight = Resources.LoadAll<Sprite>("Sprites/Shop/ShopButton/");
         }
         
         public void SetItem(Entity entity, UIShop uiShop,List<ShopButton> list)
@@ -33,11 +33,14 @@
             Image.enabled = ItemImage.enabled = Button.enabled = true;
             ItemImage.sprite = _item.Icon.sprite;
             Cost.text = _item.ShopCost.ToString();
-            if (_item.QuantityInShop > 0)
+            Name.text = _item.Name;
+            if (_item.GetAmount() > 0)
             {
+                
                 Image.sprite = Selected ? HighLight[1] : HighLight[0];
-                Cost.color = uiShop._shop.Wallet.Coins >_item.ShopCost? Color.green : Color.red; 
-                Quantity.text = _item.QuantityInShop > 1 ? _item.QuantityInShop.ToString() : "";
+             //   Cost.color = uiShop._shop.Wallet.Coins >_item.ShopCost? Color.green : Color.red; 
+                Quantity.text = _item.GetAmount() > 1 ? _item.GetAmount().ToString() : "";
+              
             }
             else
                 ClearButton();
@@ -46,11 +49,11 @@
         { 
             if (show)
             {
-              _uiShop.SelectEntity(_item);
                 foreach (var button in _shopButtons) 
                     button.SetHighlight(false);
                 ChooseEntity();
                 SetHighlight(true);
+                _uiShop.SelectEntity(_item);
             }
         }
         
@@ -69,7 +72,7 @@
         
         public void ClearButton()
         {
-            Cost.text = Quantity.text = "";
+            Cost.text = Quantity.text = Name.text = "";
             ItemImage.enabled = Image.enabled = Button.enabled = false;
         }
  }

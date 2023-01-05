@@ -24,33 +24,21 @@ public class Resistance
            VARIABLE.Set();
    }
 
-   public void ChangeResistance(Element key,int amount,int duration)
-   {
-       foreach (var res in ResistanceClasses) 
-           if(res.Element == key)res.Add(amount,duration);
-   }
-
-   public void CheckActiveModifiers()
-   {
-       foreach (var VARIABLE in ResistanceClasses) 
-           VARIABLE.CheckDuration();
-   }
-  public float CalculateDamage(ItemDamage item)
+ 
+  public float CalculateDamage(float dam, Element element)
   {
       foreach (var resistance in ResistanceClasses) 
-          if (resistance.Element == item.WeaponElement)
-              resistAmount = resistance.amount;
+          if (resistance.Element == element)
+              resistAmount = resistance.current;
       
-       float damage = item.Points - item.Points * resistAmount/100;
+       float damage = dam - dam * resistAmount/100;
         attackResult = 
             resistAmount < 0 ? AttackResult.Weak :
             resistAmount == 100 ? AttackResult.Absorb :
             resistAmount > 0 ? AttackResult.Block :
             AttackResult.Neutral;
-        
-      return damage;
-      
-    }
+        return damage;
+  }
 
   public float EvadeHit()
   {

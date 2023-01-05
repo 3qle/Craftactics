@@ -47,30 +47,55 @@ MonoBehaviour:
   entityType: 10
   Icon: {fileID: 0}
   Name: Lightning
-  ShopCost: 100
-  QuantityInShop: 0
-  QuantityInBag: 0
+  ShopCost: 10
+  QuantityInShop: 10
+  IndexOfCategory: 0
+  itemType: 2
+  projectileType: 2
+  maxCapacity: 0
+  staminaCost: 1
   instantUse: 0
-  SPCost: 3
-  AttributeModifiers: []
-  Damage:
+  passive: 0
+  consumable: 1
+  Selected: 0
+  itemRange:
+    Using: 1
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
+    MinRange: 2
+    MaxRange: 4
+    RangeType: 3
+  damageStack:
     Using: 0
     Icon: {fileID: 0}
     Points: 0
-    WeaponElement: 0
+    Duration: 0
     StrenghtMultiplier: 0
     AccuracyMultiplier: 0
     SupportMultiplier: 0
     MagicMultiplier: 0
     MusicMultiplier: 0
     Stack: 
-  Range:
+  PositionModifier:
     Using: 0
-    Icon: {fileID: 21300000, guid: 304094d93dc55a349ae50c9a26d9ce86, type: 3}
+    Icon: {fileID: 0}
     Points: 0
-    ToEnemy: 0
-    MinRange: 0
-    MaxRange: 0
+    Duration: 0
+  attributeModifiers: []
+  resistanceModifiers: []
+  damageModifiers:
+  - Using: 1
+    Icon: {fileID: 0}
+    Points: 2
+    Duration: 0
+    WeaponElement: 4
+    StatusDamage: 0
+    raw: 0
+    rawStatus: 0
+  _weapon: {fileID: 0}
+  ProjectileIndex: 0
+  ActiveItem: {fileID: 0}
 --- !u!212 &5140397714982389592
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -19,7 +19,6 @@ using Vector3 = System.Numerics.Vector3;
         }
         public IEnumerator Walk(Vector2 destination )
         {
-            
             _character.field.SetTileType(_character, true);
             _character.field.HideTiles();
            
@@ -46,7 +45,7 @@ using Vector3 = System.Numerics.Vector3;
             _character.field.CreateHighLight(_character, true);
             _character.field.ShowWalkTile(_character,true);
             _character.field.SetTileType(_character, false);
-          
+          Debug.Log("finish");
           
             _isWalking = false;
         }

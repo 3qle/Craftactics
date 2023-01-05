@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
 
 [Serializable]
 public class Attributes
@@ -16,29 +13,46 @@ public class Attributes
     public Strenght strength;
     public Flow flow;
     
-   
     public List<Attribute> AttributesList;
-    
+    public List<Status> StatusList = new List<Status>();
+    List<Status> RemoveList = new List<Status>();
     public void Initialize()
     {
         SetAttributes();
     }
 
+    public void SetStatus(Status status)
+    {
+        if(!StatusList.Contains(status))
+         StatusList.Add(status);
+        
+    }
     public void SetAttributes()
     {
         AttributesList = new List<Attribute> {strength,accuracy,magic,support,flow, health, stamina};
         foreach (var stat in AttributesList)
         {
-            stat.SetCurrentToMax();
-            stat.SetName();
+            stat.Initialize(StatusList);
         } 
-        stamina.SetName(); 
-        health.SetName();
+        stamina.Initialize(StatusList); 
+        health.Initialize(StatusList);
     }
 
     public void CheckActiveModifiers()
     {
-        foreach (var attribute in AttributesList) 
-            attribute.DecreaseDuration();
+        for (int i = 0; i < StatusList.Count; i++)
+        {
+            StatusList[i].CheckDuration();
+            if(StatusList[i].Disable) RemoveList.Add(StatusList[i]);
+        }
+
+        foreach (var status in RemoveList)
+            StatusList.Remove(status);
+        RemoveList.Clear();
+    }
+
+    public void ResetPassives()
+    {
+       
     }
 }

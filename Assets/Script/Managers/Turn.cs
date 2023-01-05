@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Script.Character;
 using Script.Managers;
 using TMPro;
@@ -27,8 +28,21 @@ public class Turn
         _pool = starter.pool;
         Act = TurnState.E;
         StartNewTurn();
+        Character.CharacterActed += CheckModifiers;
     }
-    
+
+    void CheckModifiers()
+    {
+        var list = _pool.ActiveHeroes.ToArray();
+        foreach (var hero in list)
+            hero.CheckModifiers();
+    //    foreach (var enemy in _pool.EnemiesList) 
+       //     enemy.CheckModifiers();
+        for (int i = 0; i < _pool.EnemiesList.Count; i++)
+        {
+            _pool.EnemiesList[i].CheckModifiers();
+        }
+    }
    public void StartNewTurn()
     {
         Act = Act == TurnState.E? TurnState.P:TurnState.E;

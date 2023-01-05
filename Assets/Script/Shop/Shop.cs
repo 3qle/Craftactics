@@ -16,7 +16,7 @@ public class Shop
  public bool inShop;
  public Transform ShopContainer;
 
-
+ public bool CanClose;
  public void Initialize(Spawner spawner)
  {
   _turn = spawner.turn;
@@ -33,7 +33,7 @@ public class Shop
 
  public void OpenShop(bool open)
  {
-  if ((_spawner.pool.ActiveHeroes.Count > 0 && _spawner.pool.ActiveHeroes[0].Bag.Items.Count > 0 && !open) || open)
+  if (CanClose && !open || open)
   {
    Wallet.Use(0,true);
    UIShop.Initialize(_spawner,this);

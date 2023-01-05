@@ -98,86 +98,98 @@ MonoBehaviour:
   entityType: 2
   Icon: {fileID: 7108880036797212023}
   Name: Wizard
-  ShopCost: 100
+  ShopCost: 500
   QuantityInShop: 1
-  QuantityInBag: 0
-  instantUse: 0
+  IndexOfCategory: 0
   field:
     height: 0
     width: 0
+  Face: {fileID: -2352396353401391747, guid: a4223240680b04041a22241dcd5ae8a6, type: 3}
   Resistance:
     attackResult: 0
     physicDefence:
       Element: 0
-      amount: -85
+      current: -20
+      Icon: {fileID: 0}
     fireDefence:
       Element: 1
-      amount: 39
+      current: -20
+      Icon: {fileID: 0}
     waterDefence:
       Element: 2
-      amount: 37
+      current: -20
+      Icon: {fileID: 0}
     electricDefence:
       Element: 4
-      amount: 47
+      current: 20
+      Icon: {fileID: 0}
     waveDefence:
       Element: 3
-      amount: -51
+      current: 20
+      Icon: {fileID: 0}
     mentalDefence:
       Element: 5
-      amount: 18
+      current: 30
+      Icon: {fileID: 0}
     holyDefence:
       Element: 6
-      amount: 0
+      current: 0
+      Icon: {fileID: 0}
     IllDefence:
       Element: 7
-      amount: 36
+      current: -20
+      Icon: {fileID: 0}
     ResistanceClasses: []
   Attributes:
     health:
       attributeType: 0
       Name: 
       current: 0
-      max: 4
-      notShow: 0
+      max: 2
+      Icon: {fileID: 0}
     stamina:
       attributeType: 0
       Name: 
       current: 0
-      max: 5
-      notShow: 0
+      max: 3
+      Icon: {fileID: 0}
       OutOfStamina: 0
     accuracy:
       attributeType: 0
       Name: 
       current: 0
-      max: 1
-      notShow: 0
+      max: 2
+      Icon: {fileID: 0}
     support:
       attributeType: 0
       Name: 
       current: 0
       max: 1
-      notShow: 0
+      Icon: {fileID: 0}
     magic:
       attributeType: 0
       Name: 
       current: 0
-      max: 4
-      notShow: 0
+      max: 5
+      Icon: {fileID: 0}
     strength:
       attributeType: 0
       Name: 
       current: 0
       max: 0
-      notShow: 0
+      Icon: {fileID: 0}
     flow:
       attributeType: 0
       Name: 
       current: 0
-      max: 0
-      notShow: 0
+      max: 4
+      Icon: {fileID: 0}
   MasteryTypes:
-    Types: 100000000f00000008000000070000000a000000
+    Types: 0f00000010000000110000000a000000070000000800000004000000
   Bag:
+    AllItems: []
+    Weapons: []
     Items: []
+    SelectedProjectiles: []
   Selected: 0
+  _starter: {fileID: 0}

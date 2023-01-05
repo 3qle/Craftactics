@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.Enum;
 using Script.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -11,12 +12,13 @@ public class Enemy : Character
     private Vector2 _pos;
     private Character _target;
     public List<CellButton> targetList = new List<CellButton>();
+    private List<Character> _targets = new List<Character>();
 
-     
-   public override void Select(bool selected)
+
+    public override void Select(bool selected)
    {
-      
-        base.Select(selected);
+       base.Select(selected);
+     
         if (!selected || _turn.Act != TurnState.E) return;
 
         if (Attributes.stamina.CheckForStamina(Arms.SelectRandomWeapon(this)))
@@ -29,8 +31,7 @@ public class Enemy : Character
             ChooseAction();
             StartCoroutine(WaitForAttack());
         }
-       
-    }
+   }
 
     IEnumerator WaitForAttack()
     {
@@ -51,7 +52,7 @@ public class Enemy : Character
     {
         Debug.Log("stop");
         Select(false);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.1f);
         _turn.NextEnemyAct();
     }
 
@@ -61,6 +62,7 @@ public class Enemy : Character
          targetList = field.GetTargetsForEnemy(this);
         foreach (var cell in targetList)
         {
+            _targets.Add(cell.CurrentCharacter);
             if (cell?.CheckFreeNeighbours(this) != null)
             {
                 _target = cell.CurrentCharacter;
@@ -73,7 +75,10 @@ public class Enemy : Character
     {
         if (_target != null)
         {
-            UseItem(_target);
+            
+            List<Character> list = Arms.selectedItem.itemRange.RangeType == RangeType.AllAlly || Arms.selectedItem.itemRange.RangeType == RangeType.AllEnemy
+                ? _targets: new List<Character> {_target};
+                UseItem(list);
             StartCoroutine( StopAction());
         }
         else
@@ -82,6 +87,7 @@ public class Enemy : Character
       
     }
 
+   
    
 
 }

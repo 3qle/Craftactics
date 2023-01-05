@@ -49,32 +49,53 @@ MonoBehaviour:
   Name: Fire Spit
   ShopCost: 0
   QuantityInShop: 0
-  QuantityInBag: 0
+  IndexOfCategory: 0
+  itemType: 0
+  projectileType: 0
+  maxCapacity: 0
+  staminaCost: 1
   instantUse: 0
-  SPCost: 2
-  AttributeModifiers: []
-  ResistanceModifiers: []
-  Damage:
-    Using: 1
-    Icon: {fileID: 21300000, guid: d6eee6c539c84544190c87536d86743c, type: 3}
-    Points: 1
-    Duration: 0
-    WeaponElement: 1
-    StrenghtMultiplier: 20
-    AccuracyMultiplier: 20
-    SupportMultiplier: 0
-    MagicMultiplier: 20
-    MusicMultiplier: 0
-    raw: 0
-    Stack: 
-  Range:
+  passive: 0
+  consumable: 0
+  Selected: 0
+  itemRange:
     Using: 1
     Icon: {fileID: 0}
     Points: 0
     Duration: 0
-    ToEnemy: 0
-    MinRange: 1
-    MaxRange: 3
+    MinRange: 0
+    MaxRange: 1
+    RangeType: 3
+  damageStack:
+    Using: 1
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
+    StrenghtMultiplier: 10
+    AccuracyMultiplier: 10
+    SupportMultiplier: 0
+    MagicMultiplier: 0
+    MusicMultiplier: 0
+    Stack: 
+  PositionModifier:
+    Using: 0
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
+  attributeModifiers: []
+  resistanceModifiers: []
+  damageModifiers:
+  - Using: 1
+    Icon: {fileID: 0}
+    Points: 1
+    Duration: 0
+    WeaponElement: 0
+    StatusDamage: 0
+    raw: 0
+    rawStatus: 0
+  _weapon: {fileID: 0}
+  ProjectileIndex: 0
+  ActiveItem: {fileID: 0}
 --- !u!212 &-34751230692273844
 SpriteRenderer:
   m_ObjectHideFlags: 0

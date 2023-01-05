@@ -8,9 +8,14 @@ using UnityEngine;
 public class ResistanceModifier :ItemProperty
 {
     public Element Element;
-    public override void Use(Character target, Field field)
+    public AttributeModifier.BuffType BuffType;
+    public override void Use(Character target, Field field, Item item)
     { 
-        target.Resistance.ChangeResistance(Element,(int)Points,Duration);
+        foreach (var attribute in target.Resistance.ResistanceClasses)
+        {
+            if(attribute.Element == Element)
+                attribute.ChangeAttribute((int)Points, Duration, BuffType,target,item);
+        }
     }
 
     public override TextMeshProUGUI Text(TextMeshProUGUI text)
@@ -18,7 +23,12 @@ public class ResistanceModifier :ItemProperty
         Icon = Resources.Load<Sprite>("Sprites/Affinity/" + Element);
        
         text.color = Points > 0 ? Color.green : Color.red;
-        text.text = (Points >0? Points: -Points).ToString()+"%";
+        text.text = (Points >0? Points: -Points)+"%";
         return text;
+    }
+
+    public override float StatusDamageFill()
+    {
+        return 0;
     }
 }

@@ -20,7 +20,7 @@ using UnityEngine.UI;
        {
            Button = GetComponent<Button>();
            Icon = transform.GetChild(0).GetComponent<Image>();
-           HighLight = Resources.LoadAll<Sprite>("Sprites/Shop/CategoryButton/");
+         //  HighLight = Resources.LoadAll<Sprite>("Sprites/Shop/CategoryButton/");
        }
        
        public void Initialize(List<ShopButton> container, List<Entity> list,UIShop  uiShop, List<CategoryButton> categoryButtons)
@@ -37,12 +37,16 @@ using UnityEngine.UI;
             Clear();
             categoryType = type;
             Icon.sprite = Resources.Load<Sprite>("Sprites/Shop/Category/" + categoryType);
-            Button.enabled = Button.image.enabled = Icon.enabled = true;
+            Button.enabled =  Icon.enabled = true;
         }
         
-        public void Clear() => Button.enabled =  Button.image.enabled = Icon.enabled = false;
+        public void Clear() => Button.enabled =   Icon.enabled = false;
+
+        public void SetHighlight(bool set)
+        {
+            Icon.color = Color.HSVToRGB(0,0,set?1:0.5f);
+        }
         
-        public void SetHighlight(bool set) => Button.image.sprite = HighLight[set ? 1:0];
         
         public void Open( )
         {
@@ -60,9 +64,15 @@ using UnityEngine.UI;
         void SetItems()
         {
             _itemList.Clear();
-            foreach (var entity in Entities.Where(entity => entity.entityType == categoryType && !entity.Bought))
+            foreach (var entity in Entities.Where(entity => entity.entityType == categoryType && entity.GetAmount() > 0))
                 _itemList.Add(entity); 
             for (int i = 0; i < _itemList.Count; i++) 
                 ShopButtons[i].SetItem(_itemList[i],_uiShop,ShopButtons);
+        }
+
+        public void RemoveItems()
+        {
+            for (int i = 0; i < _itemList.Count; i++) 
+                ShopButtons[i].ClearButton();
         }
     }

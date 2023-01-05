@@ -49,7 +49,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < max; i++)
         {
             var  enemy =Instantiate(pool.enemies[Random.Range(0, pool.enemies.Length)], field.CreateSpawnPoint(), Quaternion.identity, transform.GetChild(2));
-            enemy.Initialize(this);
+            enemy.Initialize(this,0);
             pool.AddCharacterToPool(enemy);
         }
    }
@@ -64,8 +64,10 @@ public class Spawner : MonoBehaviour
    public void GetEntities()
    {
        Entities = Resources.LoadAll<Entity>($"Prefab/Entities/");
-       foreach (var item in Entities) 
-          pool.AddShopEntities(Instantiate(item,EntityContainer),this);
+       foreach (var item in Entities)
+           for (int i = 0; i < item.QuantityInShop; i++)
+               pool.AddShopEntities(Instantiate(item,EntityContainer),this);
+        
    }
    
   

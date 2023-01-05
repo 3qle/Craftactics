@@ -47,40 +47,53 @@ MonoBehaviour:
   entityType: 10
   Icon: {fileID: 0}
   Name: Heal
-  ShopCost: 100
-  QuantityInShop: 2
-  QuantityInBag: 0
+  ShopCost: 5
+  QuantityInShop: 10
+  IndexOfCategory: 0
+  itemType: 2
+  projectileType: 2
+  maxCapacity: 0
+  staminaCost: 3
   instantUse: 0
-  SPCost: 3
-  AttributeModifiers:
-  - Using: 1
-    Icon: {fileID: 21300000, guid: 0f739d7606184904ca571484a87e4378, type: 3}
-    Points: 2
-    Duration: 0
-    attributeType: 5
-    TemporaryEffect: 0
-  ResistanceModifiers: []
-  Damage:
+  passive: 0
+  consumable: 1
+  Selected: 0
+  itemRange:
     Using: 0
-    Icon: {fileID: 21300000, guid: 31f81169e85eaec42bb3d85214bb9440, type: 3}
-    Points: 2
-    Duration: 0
-    WeaponElement: 1
-    StrenghtMultiplier: 0
-    AccuracyMultiplier: 30
-    SupportMultiplier: 0
-    MagicMultiplier: 20
-    MusicMultiplier: 5
-    raw: 0
-    Stack: 
-  Range:
-    Using: 1
-    Icon: {fileID: 21300000, guid: 31f81169e85eaec42bb3d85214bb9440, type: 3}
+    Icon: {fileID: 0}
     Points: 0
     Duration: 0
-    ToEnemy: 1
     MinRange: 0
-    MaxRange: 2
+    MaxRange: 0
+    RangeType: 2
+  damageStack:
+    Using: 0
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
+    StrenghtMultiplier: 0
+    AccuracyMultiplier: 0
+    SupportMultiplier: 0
+    MagicMultiplier: 0
+    MusicMultiplier: 0
+    Stack: 
+  PositionModifier:
+    Using: 0
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
+  attributeModifiers:
+  - Using: 1
+    Icon: {fileID: 0}
+    Points: 5
+    Duration: 0
+    attributeType: 5
+    type: 2
+  resistanceModifiers: []
+  damageModifiers: []
+  _weapon: {fileID: 0}
+  ProjectileIndex: 0
+  ActiveItem: {fileID: 0}
 --- !u!212 &1832664178103087732
 SpriteRenderer:
   m_ObjectHideFlags: 0

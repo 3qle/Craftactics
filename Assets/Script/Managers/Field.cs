@@ -31,10 +31,8 @@ public class Field
 
     public void CreateField(Spawner starter)
     {
-       
         for (var i = 0; i <= width; i++)
             _tilePool.Add(new List<CellButton>());
-        
     }
 
     public void SetCellOnField(CellButton cellButton, int x,int y)
@@ -80,10 +78,15 @@ public class Field
         var cells = new List<CellButton>();
         HideTiles();
         GetStatsFromChar(obj);
-        for (int x = (int) _pos.x - _stamina; x <= _stamina + _pos.x; x++)
-        for (int y = (int) _pos.y - _stamina; y <= _stamina + _pos.y; y++)
-            if (CheckMaxRange(x,y) && _tilePool[x][y].Type == CellButton.CellType.Hero)
-                    cells.Add(_tilePool[x][y]);
+        for (int x = 0; x <= width; x++)
+        for (int y = 0; y <= height; y++)
+        {
+            if (CheckMaxRange(x,y) && _tilePool[x][y].Type == CellButton.CellType.Hero && obj.Arms.selectedItem.itemRange.RangeType == RangeType.Enemy || obj.Arms.selectedItem.itemRange.RangeType == RangeType.AllEnemy)
+                cells.Add(_tilePool[x][y]);
+            if (CheckMaxRange(x,y) && _tilePool[x][y].Type == CellButton.CellType.Enemy && obj.Arms.selectedItem.itemRange.RangeType == RangeType.Ally || obj.Arms.selectedItem.itemRange.RangeType == RangeType.AllAlly)
+                cells.Add(_tilePool[x][y]);
+        }
+          
         return cells;
     }
 
@@ -92,8 +95,22 @@ public class Field
         bool free = _tilePool[x][y].Type == CellButton.CellType.Free;
         return free;
     }
-   
-    
+
+    public void SelectAllSide(RangeType type)
+    {
+        for (int x = 0; x < width; x++)
+        for (int y = 0; y < height; y++)
+        {
+            if(type == RangeType.AllAlly && _tilePool[x][y].CurrentCharacter?.entityType == EntityType.Hero)
+                _tilePool[x][y].CreateAttackCell(RangeType.AllAlly);
+            if (type == RangeType.AllEnemy && _tilePool[x][y].CurrentCharacter?.entityType == EntityType.Enemy)
+            {
+                _tilePool[x][y].CreateAttackCell(RangeType.AllEnemy);
+            }
+               
+        }
+            
+    }
 
    
     public void HideTiles()

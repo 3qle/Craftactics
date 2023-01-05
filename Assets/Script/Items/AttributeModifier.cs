@@ -7,15 +7,19 @@ using UnityEngine;
 public class AttributeModifier : ItemProperty
 {
     public AtrributeTypes attributeType;
-  
-    public bool TemporaryEffect;
 
-    public override void Use(Character target, Field field)
+    public enum BuffType
+    {
+        Upgrade,Buff, Restore, Passive
+    }
+
+    public BuffType type;
+    public override void Use(Character target, Field field, Item item)
     {
         foreach (var attribute in target.Attributes.AttributesList)
         {
             if(attribute.attributeType == attributeType)
-                attribute.ChangeAttribute((int)Points, Duration);
+                attribute.ChangeAttribute((int)Points, Duration, type,target,item);
         }
     }
 
@@ -25,7 +29,12 @@ public class AttributeModifier : ItemProperty
         text.text = Points > 0 ? Points.ToString() : (-Points).ToString();
         text.color = Points > 0 ? Color.green : Color.red;
         return text;
-    } 
+    }
+
+    public override float StatusDamageFill()
+    {
+        return 0;
+    }
 }
 
 

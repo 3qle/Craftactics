@@ -61,7 +61,7 @@ public class CellButton : MonoBehaviour
 
    public CellButton CheckFreeNeighbours(Character character)
    {
-       weaponRange = character.Arms.selectedItem.Range.MaxRange; 
+       weaponRange = character.Arms.selectedItem.itemRange.MaxRange; 
        AddFreeNeighbours(weaponRange);
        CellButton c = Left != null
             && (Left.Type == CellType.Free ||CurrentCharacter == character) 
@@ -104,10 +104,23 @@ public class CellButton : MonoBehaviour
        CreateCell(false);
    }
 
-   public void CreateAttackCell(bool toEnemy)
+   public void CreateAttackCell(RangeType type)
    {
-       Debug.Log($"select");
-       tag = toEnemy ? Type == CellType.Enemy ? "AttackTile":"VoidTile" : Type == CellType.Hero ? "AttackTile" : "VoidTile";
+       switch (type)
+       {
+           case RangeType.Enemy:
+               tag = Type == CellType.Enemy ? "AttackTile":"VoidTile";
+               break;
+           case RangeType.Ally:
+               tag = Type == CellType.Hero ? "AttackTile":"VoidTile";
+               break;
+           case RangeType.Self:
+           case RangeType.AllAlly:
+           case RangeType.AllEnemy:
+               tag ="AttackTile";
+               break;
+       }
+
        SetCellType(tag);
        CreateCell(true);
    }
@@ -132,24 +145,28 @@ public class CellButton : MonoBehaviour
    
    public void ChangeType(Character c, bool free)
    {
+    //   Debug.Log(free);
        if (!free)
        {
+         
            if (c.entityType == EntityType.Hero)
                Type = CellType.Hero;
            if (c.entityType == EntityType.Enemy)
                Type = CellType.Enemy;
            tag = "CharacterTile";
            CurrentCharacter = c;
+         
        }
        else
        {
            Type = CellType.Free;
            CurrentCharacter = null;
+        
        }
    }
  public  void  CreateHighLight(bool create)
  {
-       SetCellType("CharacterTile");
+     SetCellType("CharacterTile");
        CreateCell(create);
  }
 }

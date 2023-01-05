@@ -102,37 +102,46 @@ MonoBehaviour:
   Name: Mantis
   ShopCost: 0
   QuantityInShop: 0
-  QuantityInBag: 0
-  instantUse: 0
+  IndexOfCategory: 0
   field:
     height: 0
     width: 0
+  Face: {fileID: 6230911579049521198, guid: 61dc9de40508e4b4bbdc7bfa50012b00, type: 3}
+  Faces: []
   Resistance:
     attackResult: 0
     physicDefence:
       Element: 0
-      amount: -47
+      current: -20
+      Icon: {fileID: 0}
     fireDefence:
       Element: 1
-      amount: -16
+      current: -30
+      Icon: {fileID: 0}
     waterDefence:
       Element: 2
-      amount: 62
+      current: -10
+      Icon: {fileID: 0}
     electricDefence:
       Element: 4
-      amount: 18
+      current: -10
+      Icon: {fileID: 0}
     waveDefence:
       Element: 3
-      amount: 17
+      current: -20
+      Icon: {fileID: 0}
     mentalDefence:
       Element: 5
-      amount: 43
+      current: 90
+      Icon: {fileID: 0}
     holyDefence:
       Element: 6
-      amount: -15
+      current: 0
+      Icon: {fileID: 0}
     IllDefence:
       Element: 7
-      amount: -28
+      current: 30
+      Icon: {fileID: 0}
     ResistanceClasses: []
   Attributes:
     health:
@@ -140,50 +149,55 @@ MonoBehaviour:
       Name: 
       current: 0
       max: 4
-      notShow: 0
+      Icon: {fileID: 0}
     stamina:
       attributeType: 0
       Name: 
       current: 0
       max: 3
-      notShow: 0
+      Icon: {fileID: 0}
       OutOfStamina: 0
     accuracy:
       attributeType: 0
       Name: 
       current: 0
       max: 2
-      notShow: 0
+      Icon: {fileID: 0}
     support:
       attributeType: 0
       Name: 
       current: 0
       max: 0
-      notShow: 0
+      Icon: {fileID: 0}
     magic:
       attributeType: 0
       Name: 
       current: 0
       max: 0
-      notShow: 0
+      Icon: {fileID: 0}
     strength:
       attributeType: 0
       Name: 
       current: 0
-      max: 2
-      notShow: 0
+      max: 3
+      Icon: {fileID: 0}
     flow:
       attributeType: 0
       Name: 
       current: 0
-      max: 1
-      notShow: 0
+      max: 3
+      Icon: {fileID: 0}
   MasteryTypes:
     Types: 
   Bag:
+    AllItems: []
+    Weapons: []
     Items:
     - {fileID: 407288678133153354}
     - {fileID: 863770371583304501}
+    SelectedProjectiles: []
+  Selected: 0
+  _starter: {fileID: 0}
   targetList: []
 --- !u!1001 &6094173385699694459
 PrefabInstance:
@@ -192,6 +206,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5696796565254440727}
     m_Modifications:
+    - target: {fileID: 6876540284209984590, guid: 6683904b134c69a4f91818b4fd12e13e, type: 3}
+      propertyPath: Name
+      value: Eye Of Terror
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: 6683904b134c69a4f91818b4fd12e13e, type: 3}
+      propertyPath: attributeModifiers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: 6683904b134c69a4f91818b4fd12e13e, type: 3}
+      propertyPath: attributeModifiers.Array.data[0].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: 6683904b134c69a4f91818b4fd12e13e, type: 3}
+      propertyPath: attributeModifiers.Array.data[0].Using
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: 6683904b134c69a4f91818b4fd12e13e, type: 3}
+      propertyPath: attributeModifiers.Array.data[0].Points
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: 6683904b134c69a4f91818b4fd12e13e, type: 3}
+      propertyPath: attributeModifiers.Array.data[0].Duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: 6683904b134c69a4f91818b4fd12e13e, type: 3}
+      propertyPath: attributeModifiers.Array.data[0].attributeType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8112658595717335936, guid: 6683904b134c69a4f91818b4fd12e13e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -238,7 +280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9066409753201465566, guid: 6683904b134c69a4f91818b4fd12e13e, type: 3}
       propertyPath: m_Name
-      value: Eye Fire
+      value: Eye Of Terror
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6683904b134c69a4f91818b4fd12e13e, type: 3}
@@ -265,6 +307,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5696796565254440727}
     m_Modifications:
+    - target: {fileID: 6876540284209984590, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
+      propertyPath: Name
+      value: Massive Claw
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
+      propertyPath: staminaCost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
+      propertyPath: itemRange.MaxRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
+      propertyPath: resistanceModifiers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
+      propertyPath: damageModifiers.Array.data[0].Points
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
+      propertyPath: resistanceModifiers.Array.data[0].Using
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
+      propertyPath: resistanceModifiers.Array.data[0].Points
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
+      propertyPath: resistanceModifiers.Array.data[0].BuffType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876540284209984590, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
+      propertyPath: resistanceModifiers.Array.data[0].Duration
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8112658595717335936, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -311,7 +389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9066409753201465566, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}
       propertyPath: m_Name
-      value: Holy Claw
+      value: Massive Claw
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8f25280ce743ad4a901bd1225bf2bad, type: 3}

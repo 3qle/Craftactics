@@ -12,45 +12,61 @@ public abstract class Character : Entity
 {
     [HideInInspector]public Field field;
     protected UI _ui;
-    private Pool _pool;
+    public Sprite Face;
     protected Turn _turn;
     private Wallet _wallet;
 
-    [Header("Character Settings")]
+    [Header("Character Settings")] public Sprite[] Faces;
     public Resistance Resistance;
     public Attributes Attributes;
     public WeaponMastery MasteryTypes;
     public Bag Bag;
     public Legs Legs;
     public Arms Arms;
-
+    public static Action CharacterActed;
     [HideInInspector] public bool Selected;
-
+    public List<Status> DamageStatusList = new List<Status>();
+    public bool Active;
     public void SetPosition(Vector2 dir) => transform.position += (Vector3)dir;
 
     public override void Buy(Character character,bool buy)
-    { 
-        SetQuantity(buy);
-        _pool.AddCharacterToPool(this);
-        _ui.InfoUI.AddCharacterToButton(this, _pool.ActiveHeroes.IndexOf(this));
-        transform.position = new Vector3(buy?_pool.ActiveHeroes.IndexOf(this):transform.position.x, transform.position.y, buy ? 1 : -100);
+    {
+        Bought = true;
+       // SetQuantity(buy);
+       Active = buy;
+        pool.AddCharacterToPool(this);
+        _ui.InfoUI.AddCharacterToButton(this, pool.ActiveHeroes.IndexOf(this));
+        transform.position = new Vector3(buy?pool.ActiveHeroes.IndexOf(this):transform.position.x, transform.position.y, buy ? 1 : -100);
         field.SetTileType(this, !buy);
     }
     
-    public override void Initialize(Spawner starter)
+    public override void Initialize(Spawner starter, int i)
     {
+        IndexOfCategory = i;
         name = Name;
         Icon = GetComponent<SpriteRenderer>();
         _ui = starter.ui;
         _turn = starter.turn;
-        _pool = starter.pool;
+        pool = starter.pool;
         field = starter.field;
         _wallet = starter.shop.Wallet;
+       
         if (entityType == EntityType.Enemy)
         {
+            
             field.SetTileType(this, false);
+            GetWeapon();
+            
         }
+        Bag.Initialize(this,starter);
         InitializeAttributes();
+       
+    }
+
+    void GetWeapon()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+            Bag.AllItems.Add(transform.GetChild(i).GetComponent<Item>());
     }
 
     public void InitializeAttributes()
@@ -60,20 +76,27 @@ public abstract class Character : Entity
         
         Resistance.SetResistance();
         Attributes.Initialize();
+       
     }
     public  void Move(Vector2 destination)
     {
         Attributes.stamina.Loose(1);
         StartCoroutine(Legs.Walk(destination));
+        CharacterActed.Invoke();
     }
     
     public void PrepareForNewTurn()
     {
         Attributes.stamina.SetCurrentToMax();
-        Attributes.CheckActiveModifiers();
-        Resistance.CheckActiveModifiers();
+       
     }
- 
+
+    public void CheckModifiers()
+    {
+     
+      Attributes.CheckActiveModifiers();
+      TakePassiveDamage();
+    }
     public virtual void Select(bool selected)
     {
         Selected = selected;
@@ -81,7 +104,6 @@ public abstract class Character : Entity
         {
             field.CreateHighLight(this, selected);
             field.ShowWalkTile(this, selected);
-         //   Arms.DeselectWeapon(selected);
         }
     }
     
@@ -99,43 +121,61 @@ public abstract class Character : Entity
         }
     }
     
-    public void TakeDamage(ItemDamage weapon)
+    public void TakeDamage(ItemDamage damage)
     {
        if(entityType == EntityType.Hero) 
            _ui.ScoreUI.SetScore(0 , _wallet.Coins);
-       
-      
-       float damage = Attributes.health.Loose( (float)Math.Round(!Attributes.accuracy.TryEvade()
-            ? Resistance.CalculateDamage(weapon)
-            : Resistance.EvadeHit(), 1));
-       
-       _ui.ShowPopUp(Resistance.attackResult, transform.position, damage); 
-       
-       Kill();
-    }
-    public ItemDamage Attack()
-    {
-        field.HideTiles();
-        Attributes.stamina.Loose(Arms.selectedItem.SPCost);
-        return Arms.selectedItem.Damage;
+
+       if (damage.Duration > 0)
+       {
+           DamageStatusList.Add(new Status(damage.Duration,damage.Icon, damage.StatusDamage,damage.WeaponElement));
+           Attributes.SetStatus(DamageStatusList[DamageStatusList.Count - 1]);
+       }
+       SetDamage(damage.Points,damage.WeaponElement);
     }
 
-    public void UseItem(Character target)
+    void SetDamage(float dam, Element element)
     {
+        
+        float damage = Attributes.health.Loose( (float)Math.Round(Resistance.CalculateDamage(dam,element)));
+        
+        _ui.ShowPopUp(Resistance.attackResult, transform.position, damage);
+        
+        Kill();
+    }
+
+    void TakePassiveDamage()
+    {
+        foreach (var damage in DamageStatusList)
+            if (damage._duration > 0)
+              SetDamage(damage._damage,damage.Element);
+    }
+    
+    public void UseItem(List<Character> targets)
+    {
+        CharacterActed.Invoke();
         field.HideTiles();
-        Attributes.stamina.Loose(Arms.selectedItem.SPCost);
-        Arms.selectedItem.Use(target);
+        Attributes.stamina.Loose(Arms.selectedItem.staminaCost);
+        if (!Arms.selectedItem.passive)
+        {
+            Arms.selectedItem.Use(targets);
         }
-    private void Kill()
+       
+    }
+    public virtual void Kill()
     {
         if (Attributes.health.isOver)
         { 
             field.SetTileType(this,true);
             if(entityType == EntityType.Hero)
                 Buy(this,false);
-            _pool.RemoveCharacterFromPool(this);
+            else 
+                _turn.RemoveEnemy(this);
+           
+                
+            pool.RemoveCharacterFromPool(this);
          
-            _wallet.Add(_ui.ScoreUI.SetScore(50,_wallet.Coins));
+            _wallet.Add(_ui.ScoreUI.SetScore(1,_wallet.Coins));
             Destroy(gameObject);
         }
         else

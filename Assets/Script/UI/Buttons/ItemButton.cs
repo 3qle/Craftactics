@@ -1,69 +1,49 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Script.Character;
-using Script.Managers;
-using Script.UI;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 public class ItemButton : MonoBehaviour
 {
-    public Image Image, HighLight;
-    public TextMeshProUGUI  Cost;
-    private Spawner _spawner;
-    private UIItem _ui;
-    private UIShop _uiShop;
-   public Item _item;
-    private Character _character;
-    private int num;
-    private Button Button;
-  
-    private void Awake()
+    private Image _itemImage;
+    private UIItem _uiItem;
+    public Item _itemOnButton;
+    private int _buttonIndex;
+    private float _imageValue;
+    
+    public void Initialize(int i, UIItem ui)
     {
-        Button = GetComponent<Button>();
+        _itemImage = GetComponent<Image>();
+        _uiItem = ui;
+        _buttonIndex = i;
     }
 
-    public void UpdateButtonInfo( Character fightable, int i)
-    {
-        if (i < fightable.Bag.Items.Count)
-        {
-            _item = fightable.Bag.Items[i];
-            Cost.text = _item.SPCost.ToString();
-            Cost.color = fightable.Attributes.stamina.current >= _item.SPCost ? Color.green : Color.red;
-            Image.enabled = true;
-            Image.sprite =_item.Icon.sprite;
-        }
-        else
-        {
-            ClearButton();
-        }
-      
-    }
+    public void SelectWeapon()
+    { 
+        
+        _uiItem.SelectWeapon(_buttonIndex);
+        HighLightButton(true);
+    } 
 
-   
+    public void UpdateButtonInfo( Character character, int i)
+    {
+        if (i < character.Bag.AllItems.Count)
+        {
+            _itemOnButton =  character.Bag.AllItems[i];
+            _itemImage.enabled = true;
+            _itemImage.color = Color.HSVToRGB(0,character.Attributes.stamina.current >= _itemOnButton.staminaCost ? 0f : 0.5f , _imageValue);
+            _itemImage.sprite =_itemOnButton.Icon.sprite;
+        }
+        else ClearButton();
+    }
     
     public void ClearButton()
     {
-        _item = null;
-        Cost.text = "";
-        Image.enabled = false;
-        
         HighLightButton(false);
+        _itemImage.enabled = false;
+        _itemOnButton = null;
     }
-
-    public void Initialize(int i, UIItem ui)
+    
+    public void HighLightButton(bool selected)
     {
-        _ui = ui;
-        num = i;
+      _imageValue = selected ? 1 : 0.5f; 
+      _itemOnButton?.Deselect();
     }
-    
-    public void SelectWeapon() => _ui.SelectWeapon(num);
-
-    
-
-    public void HighLightButton(bool selected) => HighLight.enabled = selected;
-    
 }

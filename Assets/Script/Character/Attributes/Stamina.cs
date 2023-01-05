@@ -15,7 +15,8 @@ public class Stamina  : Attribute
     
     public bool CheckForStamina(Item item)
     {
-        OutOfStamina = item.SPCost + 1 > current ;
+        var i = item.staminaCost;
+        OutOfStamina = i > current ;
         return OutOfStamina;
     }
 

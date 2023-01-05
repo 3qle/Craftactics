@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using Script.Enum;
 using TMPro;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
@@ -7,20 +8,31 @@ using Vector3 = UnityEngine.Vector3;
 [Serializable]
 public class ItemRange: ItemProperty
 {
-    public bool ToEnemy;
     public int MinRange, MaxRange;
     private Field _field;
+    public RangeType RangeType;
 
-    public override void Use(Character target, Field field)
+    public void Initialize()
+    {
+        Icon = Resources.Load<Sprite>("Sprites/Status/Range/" + RangeType);
+    }
+    public override void Use(Character target, Field field, Item item)
     {
         _field = field;
+        _field.HideTiles();
         ShowAttackTiles(target);
-       
+    
+      
     }
 
     public override TextMeshProUGUI Text(TextMeshProUGUI text)
     {
         throw new NotImplementedException();
+    }
+
+    public override float StatusDamageFill()
+    {
+        return 0;
     }
 
     public void ShowAttackTiles(Character user)
@@ -30,16 +42,14 @@ public class ItemRange: ItemProperty
         for (int x = (int) pos.x - MaxRange; x <= MaxRange + pos.x; x++)
         for (int y = (int) pos.y - MaxRange; y <= MaxRange + pos.y; y++)
         {
-            
-            if (CheckMaxRange(x, y) && CheckMinRange(x, y, MinRange, pos))
+            if (RangeType == RangeType.AllAlly || RangeType == RangeType.AllEnemy)
+                _field.SelectAllSide(RangeType);
+            else
             {
-                _field._tilePool[x][y].CreateAttackCell(ToEnemy);
-               
+                if (CheckMaxRange(x, y) && CheckMinRange(x, y, MinRange, pos) || RangeType == RangeType.Self) 
+                    _field._tilePool[x][y].CreateAttackCell(RangeType);
             }
         }
-        
-               
-                   
     }
     bool CheckMaxRange(int x, int y)
     {

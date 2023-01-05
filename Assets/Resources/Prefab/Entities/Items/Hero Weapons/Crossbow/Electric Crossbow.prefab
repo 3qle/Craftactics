@@ -47,34 +47,55 @@ MonoBehaviour:
   entityType: 9
   Icon: {fileID: 0}
   Name: Electric Crossbow
-  ShopCost: 2000
+  ShopCost: 40
   QuantityInShop: 1
-  QuantityInBag: 0
+  IndexOfCategory: 0
+  itemType: 0
+  projectileType: 1
+  maxCapacity: 5
+  staminaCost: 3
   instantUse: 0
-  SPCost: 2
-  AttributeModifiers: []
-  ResistanceModifiers: []
-  Damage:
+  passive: 0
+  consumable: 0
+  Selected: 0
+  itemRange:
     Using: 1
     Icon: {fileID: 0}
     Points: 0
     Duration: 0
-    WeaponElement: 4
-    StrenghtMultiplier: 10
-    AccuracyMultiplier: 30
+    MinRange: 2
+    MaxRange: 5
+    RangeType: 3
+  damageStack:
+    Using: 1
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
+    StrenghtMultiplier: 0
+    AccuracyMultiplier: 20
     SupportMultiplier: 0
-    MagicMultiplier: 10
+    MagicMultiplier: 20
     MusicMultiplier: 0
-    raw: 0
     Stack: 
-  Range:
-    Using: 1
+  PositionModifier:
+    Using: 0
     Icon: {fileID: 0}
     Points: 0
     Duration: 0
-    ToEnemy: 1
-    MinRange: 1
-    MaxRange: 3
+  attributeModifiers: []
+  resistanceModifiers: []
+  damageModifiers:
+  - Using: 1
+    Icon: {fileID: 0}
+    Points: 2
+    Duration: 3
+    WeaponElement: 4
+    StatusDamage: 75
+    raw: 0
+    rawStatus: 0
+  _weapon: {fileID: 0}
+  ProjectileIndex: 0
+  ActiveItem: {fileID: 0}
 --- !u!212 &1281700728834281703
 SpriteRenderer:
   m_ObjectHideFlags: 0

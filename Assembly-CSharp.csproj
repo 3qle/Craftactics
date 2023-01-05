@@ -41,8 +41,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Character\Attributes\Status\Status.cs" />
      <Compile Include="Assets\Script\Managers\App.cs" />
      <Compile Include="Assets\Script\UI\Buttons\CellButton.cs" />
+     <Compile Include="Assets\Script\Enum\ProjectileType.cs" />
      <Compile Include="Assets\Script\Character\Attributes\Accuracy.cs" />
      <Compile Include="Assets\Script\Enum\TurnState.cs" />
      <Compile Include="Assets\Script\Character\Attributes\Magic.cs" />
@@ -60,26 +62,32 @@
      <Compile Include="Assets\Script\Shop\CategoryButton.cs" />
      <Compile Include="Assets\Script\Items\ItemRange.cs" />
      <Compile Include="Assets\Script\Character\Entity.cs" />
+     <Compile Include="Assets\Script\UI\Buttons\StatusButton.cs" />
      <Compile Include="Assets\Script\Items\ResistanceModifier.cs" />
      <Compile Include="Assets\Script\Managers\Pool.cs" />
      <Compile Include="Assets\Script\Items\ItemProperty.cs" />
      <Compile Include="Assets\Script\Character\Bag.cs" />
      <Compile Include="Assets\Script\Character\Character.cs" />
      <Compile Include="Assets\Script\Items\Item.cs" />
+     <Compile Include="Assets\Script\UI\Buttons\BuyButton.cs" />
      <Compile Include="Assets\Script\UI\EnemyPreview.cs" />
      <Compile Include="Assets\Script\UI\Console.cs" />
      <Compile Include="Assets\Script\Character\Legs.cs" />
+     <Compile Include="Assets\Script\Items\DamageStack.cs" />
      <Compile Include="Assets\Script\Managers\Controller.cs" />
      <Compile Include="Assets\Script\UI\Buttons\ItemButton.cs" />
      <Compile Include="Assets\Script\Character\Attributes\Support.cs" />
      <Compile Include="Assets\Script\Character\Attributes\Stamina.cs" />
+     <Compile Include="Assets\Script\Enum\RangeType.cs" />
      <Compile Include="Assets\Script\Enum\AttackResult.cs" />
      <Compile Include="Assets\Script\Managers\Field.cs" />
      <Compile Include="Assets\Script\Managers\Turn.cs" />
      <Compile Include="Assets\Script\UI\Buttons\ShopButton.cs" />
      <Compile Include="Assets\Script\Character\Attributes.cs" />
+     <Compile Include="Assets\Script\Items\PositionModifier.cs" />
      <Compile Include="Assets\Script\Character\Hero.cs" />
      <Compile Include="Assets\Script\Character\Arms.cs" />
+     <Compile Include="Assets\Script\Enum\StatusType.cs" />
      <Compile Include="Assets\Script\UI\Buttons\CharacterButton.cs" />
      <Compile Include="Assets\Script\UI\UIScore.cs" />
      <Compile Include="Assets\Script\Shop\UIShop.cs" />
@@ -90,6 +98,7 @@
      <Compile Include="Assets\Script\Enum\AtrributeTypes.cs" />
      <Compile Include="Assets\Script\Shop\Wallet.cs" />
      <Compile Include="Assets\Script\Character\Attributes\WeaponMastery.cs" />
+     <Compile Include="Assets\Script\UI\Holder.cs" />
      <Compile Include="Assets\Script\UI\PopUp.cs" />
      <Compile Include="Assets\Script\Character\Attributes\Resistance\ResistanceClass.cs" />
      <Compile Include="Assets\Script\UI\UI.cs" />
@@ -110,12 +119,14 @@
      <Folder Include="Assets\TextMesh Pro\Resources\Sprite Assets" />
      <Folder Include="Assets\Resources\Prefab\Entities\Items\Hero Weapons" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+     <Folder Include="Assets\Resources\Animator\Coin" />
      <Folder Include="Assets\Resources\Animator\UI\TurnAnnouncement" />
      <Folder Include="Assets\Resources\Prefab\Entities\Items\Hero Weapons\Shield" />
      <Folder Include="Assets\Resources\Prefab\UI" />
      <Folder Include="Assets\Resources\Prefab\Entities" />
      <Folder Include="Assets\Resources" />
      <Folder Include="Assets\Resources\Sprites\Cell" />
+     <Folder Include="Assets\Resources\Sprites\Shop\ShopButton" />
      <Folder Include="Assets\Scenes" />
      <Folder Include="Assets\Resources\Prefab\Entities\Items\Hero Weapons\Skill Books" />
      <Folder Include="Assets\Resources\Prefab\Enemy" />
@@ -127,6 +138,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <Folder Include="Assets\Resources\Prefab\Enemy\Enemy Weapons" />
      <Folder Include="Assets\TextMesh Pro\Resources" />
+     <Folder Include="Assets\Resources\Sprites\Status" />
      <Folder Include="Assets\Resources\Sprites\UI\CharacterButton" />
      <Folder Include="Assets\Resources\Animator\Tile" />
      <Folder Include="Assets\Resources\Prefab\Entities\Items\Hero Weapons\Dagger" />
@@ -137,10 +149,14 @@
      <Folder Include="Assets\Resources\Sprites\Shop" />
      <Folder Include="Assets\Resources\Prefab\Entities\Items\Hero Weapons\Potion" />
      <Folder Include="Assets\TextMesh Pro" />
+     <Folder Include="Assets\Resources\Sprites\Shop\BuyButton" />
      <Folder Include="Assets\Resources\Sprites\Shop\CategoryButton" />
      <Folder Include="Assets\Script\Managers" />
      <Folder Include="Assets\Resources\Sprites\Stats" />
+     <Folder Include="Assets\Resources\Sprites\Status\Range" />
+     <Folder Include="Assets\Resources\Sprites\UI\Switch" />
      <Folder Include="Assets\Resources\Sprites" />
+     <Folder Include="Assets\Resources\Prefab\Entities\Items\Hero Weapons\Book" />
      <Folder Include="Assets\Resources\Prefab\Entities\Items\Hero Weapons\Music" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
      <Folder Include="Assets\Resources\Prefab\Entities\Items\Hero Weapons\Spell" />
@@ -166,6 +182,8 @@
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <Folder Include="Assets\Resources\Sprites\Affinity" />
      <Folder Include="Assets\Resources\Prefab\Entities\Items\Hero Weapons\Axe" />
+     <Folder Include="Assets\Script\Character\Attributes\Status" />
+     <Folder Include="Assets\Resources\Prefab\Entities\Items\Hero Weapons\Oil" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <Folder Include="Assets\Script\Character\Attributes" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

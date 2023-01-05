@@ -50,41 +50,36 @@ MonoBehaviour:
   ShopCost: 50
   QuantityInShop: 1
   QuantityInBag: 0
+  itemType: 2
+  projectileType: 2
+  maxCapacity: 0
+  staminaCost: 0
   instantUse: 0
-  SPCost: 2
-  AttributeModifiers:
-  - Using: 1
-    Icon: {fileID: 21300000, guid: bac16e00bd702204ea4b9e8e4e890749, type: 3}
-    Points: -3
-    Duration: 5
-    attributeType: 2
-    TemporaryEffect: 0
-  ResistanceModifiers:
-  - Using: 1
-    Icon: {fileID: 21300000, guid: d6eee6c539c84544190c87536d86743c, type: 3}
-    Points: 36
-    Duration: 5
-    Element: 0
-  Damage:
+  passive: 0
+  consumable: 0
+  range:
     Using: 0
     Icon: {fileID: 0}
     Points: 0
     Duration: 0
-    WeaponElement: 0
+    MinRange: 0
+    MaxRange: 0
+    RangeType: 0
+  damageStack:
+    Using: 0
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
     StrenghtMultiplier: 0
     AccuracyMultiplier: 0
     SupportMultiplier: 0
     MagicMultiplier: 0
     MusicMultiplier: 0
     Stack: 
-  Range:
-    Using: 1
-    Icon: {fileID: 0}
-    Points: 0
-    Duration: 0
-    ToEnemy: 0
-    MinRange: 0
-    MaxRange: 5
+  attributeModifiers: []
+  resistanceModifiers: []
+  damageModifiers: []
+  Projectiles: []
 --- !u!212 &-8351869963319771755
 SpriteRenderer:
   m_ObjectHideFlags: 0

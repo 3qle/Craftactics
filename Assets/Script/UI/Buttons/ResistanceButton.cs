@@ -9,12 +9,12 @@ using UnityEngine.UI;
     {
         private  Image  ResisatanceAmount;
 
-        private void Awake() => ResisatanceAmount = GetComponent<Image>();
+        private void Awake() => ResisatanceAmount = transform.GetChild(0).GetComponent<Image>();
         public void ClearResistanceAmount() => ResisatanceAmount.fillAmount = 0;
         public void SetResistanceAmount(float resistAmount)
         {
             ResisatanceAmount.color = resistAmount > 0 ? new Color(0.12f,0.7f,0.24f) : new Color(.7f,.12f,.13f);
             resistAmount = resistAmount < 0 ? -resistAmount : resistAmount;
-            ResisatanceAmount.fillAmount = resistAmount / 100;
+            ResisatanceAmount.rectTransform.localScale = new Vector3(resistAmount / 100, transform.localScale.y,1) ;
         }
     }

@@ -9,20 +9,19 @@ using UnityEngine;
         [HideInInspector]public SpriteRenderer Icon;
         public string Name;
         public int ShopCost;
-        public int QuantityInShop, QuantityInBag;
-        public bool instantUse;
-        public bool Bought => QuantityInShop == 0;
+        public int QuantityInShop;
+        protected Pool pool;
+        public int IndexOfCategory;
+        public int GetAmount() => pool.GetAmount(IndexOfCategory);
+        public bool Bought;
 
-        public void SetQuantity(bool buy)
-        {
-            QuantityInShop = buy ? --QuantityInShop: ++QuantityInShop;
-            QuantityInBag = buy ? ++QuantityInBag: --QuantityInBag;
-            Debug.Log("buy");
-        }
         public abstract void Buy(Character character, bool buy);
-        public abstract void Initialize(Spawner starter);
-        
-      
+        public abstract void Initialize(Spawner starter, int i);
+
+        public virtual bool TrySell()
+        {
+            return true;
+        }
 
 
     }

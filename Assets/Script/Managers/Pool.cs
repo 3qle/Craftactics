@@ -19,7 +19,7 @@ using UnityEngine;
         public List<Character> EnemiesList = new List<Character>();
      
         public List<Entity> EntityPool = new List<Entity>();
-
+        public List<List<Entity>> CategoryPool = new List<List<Entity>>();
         public void AddCharacterToPool(Character character)
         {
            
@@ -37,7 +37,24 @@ using UnityEngine;
 
         public void AddShopEntities(Entity item, Spawner starter)
         {
-            EntityPool.Add(item);
-            item.Initialize(starter);
+            if (CategoryPool.Count == 0 || item.Name != CategoryPool[CategoryPool.Count - 1][0].Name)
+            {
+                CategoryPool.Add(new List<Entity>());
+                EntityPool.Add(item);
+            }
+           
+            CategoryPool[CategoryPool.Count -1].Add(item);
+            item.Initialize(starter, CategoryPool.Count-1);
         }
+
+        public void BuyEntity(Entity entity, bool buy)
+        {
+            if(buy) CategoryPool[entity.IndexOfCategory]
+                .Remove(CategoryPool[entity.IndexOfCategory][CategoryPool[entity.IndexOfCategory].Count - 1]);
+            else 
+                CategoryPool[entity.IndexOfCategory].Add(entity);
+        }
+
+        public int GetAmount(int i)=> CategoryPool[i].Count;
+        
     }

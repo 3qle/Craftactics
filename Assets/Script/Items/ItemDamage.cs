@@ -1,5 +1,6 @@
 ﻿using System;
 using Script.Character;
+using Script.Enum;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,35 +9,67 @@ using UnityEngine.UI;
 public class ItemDamage : ItemProperty
 {
     public Element WeaponElement;
-  
-    public int StrenghtMultiplier, AccuracyMultiplier, SupportMultiplier, MagicMultiplier, MusicMultiplier;
-    [HideInInspector]public float raw;
-    public int[] Stack;
+    public float StatusDamage;
+    private float bonus;
+    [HideInInspector]public float raw, rawStatus;
+    private Item _item;
+    private Character user;
+    public ItemProperty Initialize(Item item)
+    {
+        _item = item;
+        Icon =  Duration > 0 ? Resources.Load<Sprite>("Sprites/Status/" + WeaponElement): Resources.Load<Sprite>("Sprites/Affinity/" + WeaponElement);
+        raw = Points;
+        rawStatus = StatusDamage;
+       
+        return this;
+    }
     public void ModifyDamage(Character character)
     {
-        Icon = Resources.Load<Sprite>("Sprites/Affinity/" + WeaponElement);
-        if (raw == 0) raw = Points;
-        Stack = new[] { StrenghtMultiplier,AccuracyMultiplier,MagicMultiplier,SupportMultiplier,MusicMultiplier };
-        Points = raw +( character.Attributes.strength.current * StrenghtMultiplier 
-                        +  character.Attributes.accuracy.current * AccuracyMultiplier 
-                        +  character.Attributes.support.current * SupportMultiplier 
-                        +  character.Attributes.magic.current * MagicMultiplier 
-                        +  character.Attributes.flow.current * MusicMultiplier)
+        user = character;
+        bonus = ( character.Attributes.strength.current * _item.damageStack.StrenghtMultiplier 
+                       +  character.Attributes.accuracy.current * _item.damageStack.AccuracyMultiplier 
+                       +  character.Attributes.support.current * _item.damageStack.SupportMultiplier 
+                       +  character.Attributes.magic.current * _item.damageStack.MagicMultiplier 
+                       +  character.Attributes.flow.current * _item.damageStack.MusicMultiplier)
             / 100;
-      
-       
+        Points = raw + bonus;
+        StatusDamage = Points / 100 * rawStatus;
+        StatusDamage =   (float)Math.Round(StatusDamage,1);
     }
 
-    public override void Use(Character target, Field field )
+    void UseProjectile()
     {
+        
+        foreach (var projectile in  user.Bag.Projectiles[user.Bag.Weapons.IndexOf(_item)])
+        {
+             WeaponElement = projectile.damageModifiers[0].WeaponElement;
+                Duration = projectile.damageModifiers[0].Duration;
+                StatusDamage = projectile.damageModifiers[0].StatusDamage;
+                Points = projectile.damageModifiers[0].Points + bonus;
+                Icon = projectile.damageModifiers[0].Icon;
+               // projectile.QuantityInBag -= 1;
+         
+        }
+
+       
+    }
+    public override void Use(Character target, Field field,Item item )
+    {
+        Debug.Log(target.name);
       target.TakeDamage(this);
       
     }
 
     public override TextMeshProUGUI Text(TextMeshProUGUI text)
     {
-        text.text = Points.ToString();
+        text.text = Duration > 0? $"{StatusDamage}": Points.ToString();
         text.color = Color.white;
         return text;
+    }
+
+    public override float StatusDamageFill()
+    {
+        float i = StatusDamage / Points;
+        return i;
     }
 }

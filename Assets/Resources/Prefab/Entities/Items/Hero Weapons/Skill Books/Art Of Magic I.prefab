@@ -47,38 +47,53 @@ MonoBehaviour:
   entityType: 15
   Icon: {fileID: -5487257898932661307}
   Name: Art Of Magic I
-  ShopCost: 100
+  ShopCost: 15
   QuantityInShop: 5
-  QuantityInBag: 0
+  IndexOfCategory: 0
+  itemType: 0
+  projectileType: 0
+  maxCapacity: 0
+  staminaCost: 0
   instantUse: 1
-  SPCost: 0
-  AttributeModifiers:
-  - Using: 1
-    Icon: {fileID: 21300000, guid: d35efacc86ab8d04ba3d62d7a1788de4, type: 3}
-    Points: 1
-    Duration: 0
-    attributeType: 1
-    TemporaryEffect: 0
-  Damage:
+  passive: 0
+  consumable: 0
+  Selected: 0
+  itemRange:
     Using: 0
     Icon: {fileID: 0}
     Points: 0
     Duration: 0
-    WeaponElement: 0
+    MinRange: 0
+    MaxRange: 0
+    RangeType: 0
+  damageStack:
+    Using: 0
+    Icon: {fileID: 0}
+    Points: 0
+    Duration: 0
     StrenghtMultiplier: 0
     AccuracyMultiplier: 0
     SupportMultiplier: 0
     MagicMultiplier: 0
     MusicMultiplier: 0
     Stack: 
-  Range:
+  PositionModifier:
     Using: 0
     Icon: {fileID: 0}
     Points: 0
     Duration: 0
-    ToEnemy: 0
-    MinRange: 0
-    MaxRange: 0
+  attributeModifiers:
+  - Using: 1
+    Icon: {fileID: 0}
+    Points: 1
+    Duration: 0
+    attributeType: 1
+    type: 0
+  resistanceModifiers: []
+  damageModifiers: []
+  _weapon: {fileID: 0}
+  ProjectileIndex: 0
+  ActiveItem: {fileID: 0}
 --- !u!212 &-5487257898932661307
 SpriteRenderer:
   m_ObjectHideFlags: 0
