@@ -31,7 +31,6 @@ Transform:
   m_Children:
   - {fileID: 3493603535575281699}
   - {fileID: 1419830295022718913}
-  - {fileID: 3397177203585299267}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -104,102 +103,91 @@ MonoBehaviour:
   ShopCost: 0
   QuantityInShop: 0
   IndexOfCategory: 0
+  Bought: 0
   field:
     height: 0
     width: 0
   Face: {fileID: -3029504926045522119, guid: 61dc9de40508e4b4bbdc7bfa50012b00, type: 3}
   Faces: []
-  Resistance:
-    attackResult: 0
-    physicDefence:
-      Element: 0
-      current: 50
-      Icon: {fileID: 0}
-    fireDefence:
-      Element: 1
-      current: 50
-      Icon: {fileID: 0}
-    waterDefence:
-      Element: 2
-      current: 50
-      Icon: {fileID: 0}
-    electricDefence:
-      Element: 4
-      current: 0
-      Icon: {fileID: 0}
-    waveDefence:
-      Element: 3
-      current: 0
-      Icon: {fileID: 0}
-    mentalDefence:
-      Element: 5
-      current: 80
-      Icon: {fileID: 0}
-    holyDefence:
-      Element: 6
-      current: 0
-      Icon: {fileID: 0}
-    IllDefence:
-      Element: 7
-      current: 50
-      Icon: {fileID: 0}
-    ResistanceClasses: []
   Attributes:
-    health:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 5
-      Icon: {fileID: 0}
-    stamina:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 4
-      Icon: {fileID: 0}
-      OutOfStamina: 0
-    accuracy:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 0
-      Icon: {fileID: 0}
-    support:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 3
-      Icon: {fileID: 0}
-    magic:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 0
-      Icon: {fileID: 0}
-    strength:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 2
-      Icon: {fileID: 0}
-    flow:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 4
-      Icon: {fileID: 0}
+    TraitList:
+    - current: 0
+      Trait: 0
+      startPoint: 1
+      damage: 0
+    - current: 0
+      Trait: 1
+      startPoint: 1
+      damage: 0
+    - current: 0
+      Trait: 2
+      startPoint: 0
+      damage: 0
+    - current: 0
+      Trait: 3
+      startPoint: 5
+      damage: 0
+    - current: 0
+      Trait: 4
+      startPoint: 5
+      damage: 0
+    - current: 0
+      Trait: 5
+      startPoint: 80
+      damage: 0
+    - current: 0
+      Trait: 6
+      startPoint: -20
+      damage: 0
+    - current: 0
+      Trait: 7
+      startPoint: 100
+      damage: 0
+    - current: 0
+      Trait: 8
+      startPoint: 80
+      damage: 0
+    - current: 0
+      Trait: 9
+      startPoint: -40
+      damage: 0
+    - current: 0
+      Trait: 10
+      startPoint: 100
+      damage: 0
+    - current: 0
+      Trait: 11
+      startPoint: 30
+      damage: 0
+    - current: 0
+      Trait: 12
+      startPoint: -50
+      damage: 0
+    - current: 0
+      Trait: 13
+      startPoint: 2
+      damage: 0
+    - current: 0
+      Trait: 14
+      startPoint: 6
+      damage: 0
+    - current: 0
+      Trait: 15
+      startPoint: 0
+      damage: 0
   MasteryTypes:
     Types: 
   Bag:
+    Stash: []
     AllItems: []
     Weapons: []
     Items:
-    - {fileID: 8125132455216558417}
+    - {fileID: 0}
     - {fileID: 2269903346493870061}
     - {fileID: 4345926187836862479}
     SelectedProjectiles: []
   Selected: 0
-  _starter: {fileID: 0}
+  Active: 0
   targetList: []
 --- !u!1001 &4678731923739327395
 PrefabInstance:
@@ -294,195 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &6801890969461687097
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 5696796565254440727}
-    m_Modifications:
-    - target: {fileID: 1302576741547219263, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: m_Name
-      value: Heavy Armor
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: Name
-      value: Heavy Armor
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: entityType
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: staminaCost
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: itemRange.Using
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: itemRange.MaxRange
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: attributeModifiers.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: resistanceModifiers.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: attributeModifiers.Array.data[0].type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: attributeModifiers.Array.data[0].Points
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: resistanceModifiers.Array.data[0].Using
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: resistanceModifiers.Array.data[0].Points
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: attributeModifiers.Array.data[0].Duration
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: resistanceModifiers.Array.data[0].BuffType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: resistanceModifiers.Array.data[0].Duration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: attributeModifiers.Array.data[0].attributeType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
---- !u!1 &5509737881748904454 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1302576741547219263, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-  m_PrefabInstance: {fileID: 6801890969461687097}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3397177203585299267 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8160550453112877178, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-  m_PrefabInstance: {fileID: 6801890969461687097}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8125132455216558417 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3361777860847972968, guid: 7f1f605a8fd16414884d3a143eb36456, type: 3}
-  m_PrefabInstance: {fileID: 6801890969461687097}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5509737881748904454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!212 &7295521021277247538
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5509737881748904454}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1001 &7143188550394741825
 PrefabInstance:
   m_ObjectHideFlags: 0

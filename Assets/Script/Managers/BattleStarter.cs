@@ -7,6 +7,7 @@ namespace Script.Managers
         private void Awake()
         {
             SpawnOnBattleStart();
+           ui.InitOnAwake();
         }
 
         void Start()

@@ -19,6 +19,7 @@
         private List<ShopButton> _shopButtons;
         private void Awake()
         {
+            CharacterButtonSelected = null;
             Button = GetComponent<Button>();
             Image = GetComponent<Image>();
             Button.onClick.AddListener(() => { SelectItem(true); });
@@ -38,7 +39,7 @@
             {
                 
                 Image.sprite = Selected ? HighLight[1] : HighLight[0];
-             //   Cost.color = uiShop._shop.Wallet.Coins >_item.ShopCost? Color.green : Color.red; 
+                Cost.color = uiShop._shop.Wallet.Coins >=_item.ShopCost? Color.green : Color.red; 
                 Quantity.text = _item.GetAmount() > 1 ? _item.GetAmount().ToString() : "";
               
             }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4229230645586911074}
   - component: {fileID: 1534225727708782764}
-  - component: {fileID: -8807677406019826971}
+  - component: {fileID: 1776933178665777638}
   m_Layer: 0
   m_Name: Silver Sword
   m_TagString: Untagged
@@ -50,53 +50,44 @@ MonoBehaviour:
   ShopCost: 25
   QuantityInShop: 1
   IndexOfCategory: 0
+  Bought: 0
+  _user: {fileID: 0}
+  ActiveItem: {fileID: 0}
+  _weapon: {fileID: 0}
   itemType: 0
   projectileType: 5
   maxCapacity: 2
   staminaCost: 2
   instantUse: 0
-  passive: 0
+  projectileRange: 0
   consumable: 0
-  Selected: 0
-  itemRange:
-    Using: 0
-    Icon: {fileID: 0}
-    Points: 0
-    Duration: 0
+  range:
     MinRange: 0
     MaxRange: 1
-    RangeType: 3
+    target: 3
   damageStack:
-    Using: 1
-    Icon: {fileID: 0}
-    Points: 0
-    Duration: 0
-    StrenghtMultiplier: 20
-    AccuracyMultiplier: 20
-    SupportMultiplier: 0
-    MagicMultiplier: 0
-    MusicMultiplier: 0
+    Strenght: 20
+    Accuracy: 20
+    Magic: 0
+    Spirit: 40
+    Flow: 40
     Stack: 
-  PositionModifier:
-    Using: 0
-    Icon: {fileID: 0}
+  Shapers:
+  - Icon: {fileID: 0}
+    Chain: 0
     Points: 0
     Duration: 0
-  attributeModifiers: []
-  resistanceModifiers: []
-  damageModifiers:
-  - Using: 1
-    Icon: {fileID: 0}
-    Points: 2
+    Trait: 5
+    type: 0
+    target: 3
+  - Icon: {fileID: 0}
+    Chain: 0
+    Points: 0
     Duration: 0
-    WeaponElement: 0
-    StatusDamage: 0
-    raw: 0
-    rawStatus: 0
-  _weapon: {fileID: 0}
-  ProjectileIndex: 0
-  ActiveItem: {fileID: 0}
---- !u!212 &-8807677406019826971
+    Trait: 11
+    type: 0
+    target: 3
+--- !u!212 &1776933178665777638
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -11,7 +11,7 @@ public class UIShop
 {
     private Console Console;
     private Spawner _spawner; 
-    private Shop _shop;
+    [HideInInspector] public Shop _shop;
    
     private List<CategoryButton> CategoryButtons = new List<CategoryButton>();
     private List<ShopButton> ItemButtons = new List<ShopButton>();
@@ -118,7 +118,7 @@ public class UIShop
     {
         SelectedEntity =_spawner.pool.CategoryPool[_spawner.pool.EntityPool.IndexOf(entity)][_spawner.pool.CategoryPool[_spawner.pool.EntityPool.IndexOf(entity)].Count -1];
         if(entity.entityType != EntityType.Hero) 
-            Console.ShowInfo((Item)SelectedEntity,SelectedCharacter);
+            Console.ShowInfo((Item)SelectedEntity);
         BuyButton.SetCost(SelectedEntity.ShopCost, _shop.Wallet.Coins,SelectedCharacter,SelectedEntity);
     }
 

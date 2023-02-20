@@ -47,14 +47,11 @@ public class UIItem
                  projectileIndex =  projectileIndex == 0 ? _item.Projectiles.Count - 1 : projectileIndex -= 1;
                 else
                     projectileIndex =  projectileIndex < _item.Projectiles.Count - 1 ?   projectileIndex += 1: 0;
-
-              
-                _item.SetProjectile(projectileIndex,_item);
+                _item.SetProjectile(projectileIndex,_character);
             }
-              
-            _character.Arms.SelectWeapon(_item,_character);
+            
             _uiShop.SelectCharacterItem(_item.ActiveItem) ;
-            _console.ShowInfo(_item,_character );
+            _console.ShowInfo(_item);
           
         }
 
@@ -65,9 +62,9 @@ public class UIItem
           
             if (_character == null || i >= _character.Bag.AllItems.Count ) return;
             _item =  _character.Bag.AllItems[i] ;
-            
-            _character.Arms.SelectWeapon(_item,_character);
-            _console.ShowInfo(_item,_character );
+            if(_character.entityType != EntityType.Enemy) 
+                _character.Arms.SelectWeapon(_item,_character);
+            _console.ShowInfo(_item);
        
             if (_character.entityType == EntityType.Enemy) return;
             _uiShop.SelectCharacterItem(_item.ActiveItem) ;

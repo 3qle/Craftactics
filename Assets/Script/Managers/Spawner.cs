@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Script.Character;
 using Script.Enum;
-using Unity.Mathematics;
+
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -33,11 +33,11 @@ public class Spawner : MonoBehaviour
     }
     void SpawnCells()
     {
-        field.CreateField(this);
+        field.CreateField();
         for (var x = 0; x < field.width; x++)
         for (var y = 0; y < field.height; y++)
         {
-            var cell =  Instantiate(pool.tile, new Vector2(x,y), quaternion.identity, transform.GetChild(0));
+            var cell =  Instantiate(pool.tile, new Vector2(x,y), Quaternion.identity, transform.GetChild(0));
             field.SetCellOnField(cell,x,y);
         }
     }

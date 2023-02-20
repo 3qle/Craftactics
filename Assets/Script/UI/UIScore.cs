@@ -25,8 +25,8 @@ namespace Script.UI
 
         void SetText()
         {
-            ComboText.text = $"Combo: {combo}";
-            ScoreText.text = $"Coins: {score.ToString()}";
+            ComboText.text = $"COMBO \n {combo}";
+            ScoreText.text = $"{score.ToString()}";
         }
     }
 }

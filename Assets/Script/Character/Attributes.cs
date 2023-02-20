@@ -1,58 +1,58 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Script.Enum;
 using UnityEngine;
 
 [Serializable]
 public class Attributes
 {
-    public Health health;
-    public Stamina stamina;
-    public Accuracy accuracy;
-    public Support support;
-    public Magic magic;
-    public Strenght strength;
-    public Flow flow;
-    
-    public List<Attribute> AttributesList;
+    public List<Attribute> TraitList;
     public List<Status> StatusList = new List<Status>();
-    List<Status> RemoveList = new List<Status>();
-    public void Initialize()
+    public Attribute Get(Trait type) =>
+        TraitList.Find(attribute => attribute.Trait == type);
+    
+    public void Initialize(Character character)
     {
-        SetAttributes();
+        foreach (var stat in TraitList)
+            stat.Initialize(character); 
     }
+
+    public bool isWounded => Get(Trait.Health).current < Get(Trait.Health).startPoint  * 0.4f;
 
     public void SetStatus(Status status)
     {
         if(!StatusList.Contains(status))
          StatusList.Add(status);
-        
-    }
-    public void SetAttributes()
-    {
-        AttributesList = new List<Attribute> {strength,accuracy,magic,support,flow, health, stamina};
-        foreach (var stat in AttributesList)
-        {
-            stat.Initialize(StatusList);
-        } 
-        stamina.Initialize(StatusList); 
-        health.Initialize(StatusList);
     }
 
-    public void CheckActiveModifiers()
+    public void CheckPassive(Item item)
     {
-        for (int i = 0; i < StatusList.Count; i++)
+        var list = StatusList.ToArray();
+        foreach (var status in list.Where(status => status._item == item)) 
+           if(status.CanRemovePassive()) StatusList.Remove(status) ;
+    }
+
+    public IEnumerator CheckActiveModifiers(Vector2 pos)
+    {
+        var list = StatusList.ToArray();
+        foreach (var status in list)
         {
-            StatusList[i].CheckDuration();
-            if(StatusList[i].Disable) RemoveList.Add(StatusList[i]);
+            
+                status.CheckStatus(pos);
+                Debug.Log(status._type);
+                if(!status.Icon) StatusList.Remove(status);
+                yield return new WaitForSeconds(1);
+            
         }
-
-        foreach (var status in RemoveList)
-            StatusList.Remove(status);
-        RemoveList.Clear();
     }
 
-    public void ResetPassives()
-    {
-       
-    }
+    public float GetStack() 
+        => (Get(Trait.Strength).current
+            + Get(Trait.Accuracy).current
+            + Get(Trait.Magic).current
+            + Get(Trait.Spirit).current
+            + Get(Trait.Flow).current) / 100;
+    
 }

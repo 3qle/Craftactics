@@ -1,12 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Script.Enum;
 using Script.Managers;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
-
 public class Enemy : Character
 {
     private Vector2 _pos;
@@ -21,7 +16,7 @@ public class Enemy : Character
      
         if (!selected || _turn.Act != TurnState.E) return;
 
-        if (Attributes.stamina.CheckForStamina(Arms.SelectRandomWeapon(this)))
+        if (!Attributes.Get(Trait.Stamina).IsMore(Arms.SelectRandomWeapon(this).staminaCost))
         {
             _turn.RemoveEnemy(this);
         }
@@ -52,20 +47,21 @@ public class Enemy : Character
     {
         Debug.Log("stop");
         Select(false);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(1f);
         _turn.NextEnemyAct();
     }
 
     private void SearchTarget()
     {
         Arms.SelectRandomWeapon(this);
-         targetList = field.GetTargetsForEnemy(this);
+         targetList = field.GetTargetsForEnemy(this,pool);
         foreach (var cell in targetList)
         {
             _targets.Add(cell.CurrentCharacter);
             if (cell?.CheckFreeNeighbours(this) != null)
             {
                 _target = cell.CurrentCharacter;
+                Debug.Log(_target.name);
                 _pos = cell.CheckFreeNeighbours(this).transform.position;
             }
         } 
@@ -75,10 +71,7 @@ public class Enemy : Character
     {
         if (_target != null)
         {
-            
-            List<Character> list = Arms.selectedItem.itemRange.RangeType == RangeType.AllAlly || Arms.selectedItem.itemRange.RangeType == RangeType.AllEnemy
-                ? _targets: new List<Character> {_target};
-                UseItem(list);
+            UseItem(_target);
             StartCoroutine( StopAction());
         }
         else

@@ -129,6 +129,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -195,6 +196,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -953,6 +966,42 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tilles_10: 9159650431193177351
+      Tilles_22: 8283277011461134599
+      Tilles_14: -8916917526464061259
+      Tilles_34: -7653964744094033072
+      Tilles_28: 6459835126526439107
+      Tilles_17: -6092472441882531502
+      Tilles_11: -1013390225092597533
+      Tilles_33: -1726490292577875550
+      Tilles_15: -229464617220566829
+      Tilles_16: -4096546649622500168
+      Tilles_5: -808472115684494933
+      Tilles_32: -4691733429525208968
+      Tilles_27: -3680538577810957075
+      Tilles_2: 4873719579296625514
+      Tilles_6: -5845749655016508573
+      Tilles_7: 4253335269329195115
+      Tilles_25: 4218444346116972240
+      Tilles_9: 5438525345601195887
+      Tilles_4: -1301448234400829959
+      Tilles_12: 948797454394795777
+      Tilles_18: -3108801199824216401
+      Tilles_31: -8318611162571070828
+      Tilles_1: 8932960366091890774
+      Tilles_23: -8648057996017580754
+      Tilles_30: 2639929751284167771
+      Tilles_26: -9052684653719627967
+      Tilles_13: 686118733027797474
+      Tilles_3: 3634586397081298519
+      Tilles_24: -250262672027786121
+      Tilles_21: 2570429563256773053
+      Tilles_20: -4670329023147191376
+      Tilles_19: -2531040658469860633
+      Tilles_29: 3239693087003621142
+      Tilles_0: 1932002337122165900
+      Tilles_8: 5082473876918756819
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

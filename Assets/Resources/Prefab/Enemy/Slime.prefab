@@ -31,7 +31,6 @@ Transform:
   m_Children:
   - {fileID: 7528017939196081732}
   - {fileID: 3191388709906421546}
-  - {fileID: 7662074771184819477}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -104,102 +103,91 @@ MonoBehaviour:
   ShopCost: 0
   QuantityInShop: 0
   IndexOfCategory: 0
+  Bought: 0
   field:
     height: 0
     width: 0
   Face: {fileID: 2731795287329381114, guid: 61dc9de40508e4b4bbdc7bfa50012b00, type: 3}
   Faces: []
-  Resistance:
-    attackResult: 0
-    physicDefence:
-      Element: 0
-      current: 100
-      Icon: {fileID: 0}
-    fireDefence:
-      Element: 1
-      current: -50
-      Icon: {fileID: 0}
-    waterDefence:
-      Element: 2
-      current: 0
-      Icon: {fileID: 0}
-    electricDefence:
-      Element: 4
-      current: 0
-      Icon: {fileID: 0}
-    waveDefence:
-      Element: 3
-      current: 0
-      Icon: {fileID: 0}
-    mentalDefence:
-      Element: 5
-      current: 0
-      Icon: {fileID: 0}
-    holyDefence:
-      Element: 6
-      current: 0
-      Icon: {fileID: 0}
-    IllDefence:
-      Element: 7
-      current: 0
-      Icon: {fileID: 0}
-    ResistanceClasses: []
   Attributes:
-    health:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 2
-      Icon: {fileID: 0}
-    stamina:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 4
-      Icon: {fileID: 0}
-      OutOfStamina: 0
-    accuracy:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 0
-      Icon: {fileID: 0}
-    support:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 0
-      Icon: {fileID: 0}
-    magic:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 1
-      Icon: {fileID: 0}
-    strength:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 1
-      Icon: {fileID: 0}
-    flow:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 3
-      Icon: {fileID: 0}
+    TraitList:
+    - current: 0
+      Trait: 0
+      startPoint: 3
+      damage: 0
+    - current: 0
+      Trait: 1
+      startPoint: 2
+      damage: 0
+    - current: 0
+      Trait: 2
+      startPoint: 5
+      damage: 0
+    - current: 0
+      Trait: 3
+      startPoint: 0
+      damage: 0
+    - current: 0
+      Trait: 4
+      startPoint: 2
+      damage: 0
+    - current: 0
+      Trait: 5
+      startPoint: 100
+      damage: 0
+    - current: 0
+      Trait: 6
+      startPoint: -20
+      damage: 0
+    - current: 0
+      Trait: 7
+      startPoint: 100
+      damage: 0
+    - current: 0
+      Trait: 8
+      startPoint: 100
+      damage: 0
+    - current: 0
+      Trait: 9
+      startPoint: -100
+      damage: 0
+    - current: 0
+      Trait: 10
+      startPoint: 100
+      damage: 0
+    - current: 0
+      Trait: 11
+      startPoint: 0
+      damage: 0
+    - current: 0
+      Trait: 12
+      startPoint: -20
+      damage: 0
+    - current: 0
+      Trait: 13
+      startPoint: 3
+      damage: 0
+    - current: 0
+      Trait: 14
+      startPoint: 5
+      damage: 0
+    - current: 0
+      Trait: 15
+      startPoint: 0
+      damage: 0
   MasteryTypes:
     Types: 
   Bag:
+    Stash: []
     AllItems: []
     Weapons: []
     Items:
-    - {fileID: 3869258560220929799}
+    - {fileID: 0}
     - {fileID: 5153086200381393290}
     - {fileID: 266138892226636004}
     SelectedProjectiles: []
   Selected: 0
-  _starter: {fileID: 0}
+  Active: 0
   targetList: []
 --- !u!1001 &1796109885340696004
 PrefabInstance:
@@ -267,79 +255,6 @@ Transform:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6876540284209984590, guid: d32b876febbd1e5458f1040ecc3c538e, type: 3}
   m_PrefabInstance: {fileID: 1796109885340696004}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a15ce2304079dd498c5c4520bc33902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &1951519950330277231
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 5696796565254440727}
-    m_Modifications:
-    - target: {fileID: 1302576741547219263, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-      propertyPath: m_Name
-      value: Jump Stomp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8160550453112877178, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
---- !u!4 &7662074771184819477 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8160550453112877178, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-  m_PrefabInstance: {fileID: 1951519950330277231}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3869258560220929799 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3361777860847972968, guid: 3ac50352e0e5c93488ab8458772ebe07, type: 3}
-  m_PrefabInstance: {fileID: 1951519950330277231}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1

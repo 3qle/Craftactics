@@ -117,6 +117,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -183,6 +184,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -857,6 +870,38 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      TillesPerfect_4: 7312586811743521180
+      TillesPerfect_9: -8330788333074847506
+      TillesPerfect_22: -3938798002987283067
+      TillesPerfect_7: -2197526007179908090
+      TillesPerfect_14: -7278746022035614508
+      TillesPerfect_15: -4268125469376966035
+      TillesPerfect_2: -6798428824456788768
+      TillesPerfect_13: -7884345904105208785
+      TillesPerfect_21: 2238805313396486976
+      TillesPerfect_23: 6351684084596012514
+      TillesPerfect_25: 1792349258374287872
+      TillesPerfect_19: -4940337580514052034
+      TillesPerfect_5: -5608165814907777988
+      TillesPerfect_24: -4377601737103375834
+      TillesPerfect_30: -2851176582138364161
+      TillesPerfect_6: -6594127426777569723
+      TillesPerfect_11: 132527510124479519
+      TillesPerfect_8: 6756719832954609911
+      TillesPerfect_27: -7898717639942910169
+      TillesPerfect_1: -6383450373437886412
+      TillesPerfect_3: 4653150577224809142
+      TillesPerfect_20: 7379290805671486042
+      TillesPerfect_17: -790837048618041496
+      TillesPerfect_28: 4874433500539677065
+      TillesPerfect_16: 8748080895544925221
+      TillesPerfect_29: -1909303512729359357
+      TillesPerfect_26: -2398657333131726180
+      TillesPerfect_10: 1438948730609023954
+      TillesPerfect_18: 6980646301147743980
+      TillesPerfect_0: -4526192607412357078
+      TillesPerfect_12: 278993777324592258
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

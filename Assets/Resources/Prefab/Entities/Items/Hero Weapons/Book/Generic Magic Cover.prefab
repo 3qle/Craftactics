@@ -47,38 +47,32 @@ MonoBehaviour:
   entityType: 17
   Icon: {fileID: 0}
   Name: Generic Magic Cover
-  ShopCost: 10
+  ShopCost: 15
   QuantityInShop: 1
-  QuantityInBag: 0
+  IndexOfCategory: 0
+  Bought: 0
+  _user: {fileID: 0}
+  ActiveItem: {fileID: 0}
+  _weapon: {fileID: 0}
   itemType: 0
   projectileType: 2
-  maxCapacity: 2
+  maxCapacity: 3
   staminaCost: 0
   instantUse: 0
-  passive: 0
+  projectileRange: 1
   consumable: 0
-  itemRange:
-    Using: 0
-    Icon: {fileID: 0}
-    Points: 0
-    Duration: 0
+  range:
     MinRange: 0
     MaxRange: 0
-    RangeType: 0
+    target: 3
   damageStack:
-    Using: 0
-    Icon: {fileID: 0}
-    Points: 0
-    Duration: 0
-    StrenghtMultiplier: 0
-    AccuracyMultiplier: 0
-    SupportMultiplier: 0
-    MagicMultiplier: 30
-    MusicMultiplier: 0
+    Strenght: 0
+    Accuracy: 0
+    Magic: 50
+    Spirit: 20
+    Flow: 50
     Stack: 
-  attributeModifiers: []
-  resistanceModifiers: []
-  damageModifiers: []
+  Shapers: []
 --- !u!212 &1281700728834281703
 SpriteRenderer:
   m_ObjectHideFlags: 0

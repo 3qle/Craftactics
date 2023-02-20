@@ -108,85 +108,72 @@ MonoBehaviour:
     width: 0
   Face: {fileID: -7994963395263852509, guid: 61dc9de40508e4b4bbdc7bfa50012b00, type: 3}
   Faces: []
-  Resistance:
-    attackResult: 0
-    physicDefence:
-      Element: 0
-      current: -20
-      Icon: {fileID: 0}
-    fireDefence:
-      Element: 1
-      current: -50
-      Icon: {fileID: 0}
-    waterDefence:
-      Element: 2
-      current: 30
-      Icon: {fileID: 0}
-    electricDefence:
-      Element: 4
-      current: -30
-      Icon: {fileID: 0}
-    waveDefence:
-      Element: 3
-      current: 0
-      Icon: {fileID: 0}
-    mentalDefence:
-      Element: 5
-      current: 50
-      Icon: {fileID: 0}
-    holyDefence:
-      Element: 6
-      current: 0
-      Icon: {fileID: 0}
-    IllDefence:
-      Element: 7
-      current: 50
-      Icon: {fileID: 0}
-    ResistanceClasses: []
   Attributes:
-    health:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 3
-      Icon: {fileID: 0}
-    stamina:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 2
-      Icon: {fileID: 0}
-      OutOfStamina: 0
-    accuracy:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 1
-      Icon: {fileID: 0}
-    support:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 0
-      Icon: {fileID: 0}
-    magic:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 0
-      Icon: {fileID: 0}
-    strength:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 0
-      Icon: {fileID: 0}
-    flow:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 4
-      Icon: {fileID: 0}
+    TraitList:
+    - current: 0
+      Trait: 0
+      startPoint: 1
+      damage: 0
+    - current: 0
+      Trait: 1
+      startPoint: 5
+      damage: 0
+    - current: 0
+      Trait: 2
+      startPoint: 0
+      damage: 0
+    - current: 0
+      Trait: 3
+      startPoint: 5
+      damage: 0
+    - current: 0
+      Trait: 4
+      startPoint: 1
+      damage: 0
+    - current: 0
+      Trait: 5
+      startPoint: -80
+      damage: 0
+    - current: 0
+      Trait: 6
+      startPoint: -10
+      damage: 0
+    - current: 0
+      Trait: 7
+      startPoint: 100
+      damage: 0
+    - current: 0
+      Trait: 8
+      startPoint: 0
+      damage: 0
+    - current: 0
+      Trait: 9
+      startPoint: -20
+      damage: 0
+    - current: 0
+      Trait: 10
+      startPoint: 100
+      damage: 0
+    - current: 0
+      Trait: 11
+      startPoint: 100
+      damage: 0
+    - current: 0
+      Trait: 12
+      startPoint: 10
+      damage: 0
+    - current: 0
+      Trait: 13
+      startPoint: 4
+      damage: 0
+    - current: 0
+      Trait: 14
+      startPoint: 4
+      damage: 0
+    - current: 0
+      Trait: 15
+      startPoint: 0
+      damage: 0
   MasteryTypes:
     Types: 
   Bag:

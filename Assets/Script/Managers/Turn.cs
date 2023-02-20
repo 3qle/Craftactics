@@ -26,27 +26,26 @@ public class Turn
         _controller = starter.controller;
         _ui = starter.ui;
         _pool = starter.pool;
-        Act = TurnState.E;
-        StartNewTurn();
-        Character.CharacterActed += CheckModifiers;
+       
+      //  StartNewTurn();
+       
     }
 
-    void CheckModifiers()
+  public  void CheckModifiers()
     {
-        var list = _pool.ActiveHeroes.ToArray();
-        foreach (var hero in list)
+        var heroes = _pool.ActiveHeroes.ToArray();
+        foreach (var hero in heroes)
             hero.CheckModifiers();
-    //    foreach (var enemy in _pool.EnemiesList) 
-       //     enemy.CheckModifiers();
-        for (int i = 0; i < _pool.EnemiesList.Count; i++)
-        {
-            _pool.EnemiesList[i].CheckModifiers();
-        }
+        var enemies = _pool.EnemiesList.ToArray();
+        foreach (var enemy in enemies)
+            enemy.CheckModifiers();
+        
+        
     }
    public void StartNewTurn()
     {
         Act = Act == TurnState.E? TurnState.P:TurnState.E;
-        
+        Debug.Log(Act + " act");
         AddActiveFractionToList();
         if(Act == TurnState.E)NextEnemyAct();
         _ui.UpdateTurnText(Act);

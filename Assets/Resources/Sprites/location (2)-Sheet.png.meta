@@ -117,6 +117,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -183,6 +184,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -857,6 +870,38 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      location (2)-Sheet_1: -2136975930258716712
+      location (2)-Sheet_5: -1802231047137675510
+      location (2)-Sheet_6: -7683914552692008061
+      location (2)-Sheet_29: -3625192965407979918
+      location (2)-Sheet_4: 6900649548643344097
+      location (2)-Sheet_30: 3424976738453298856
+      location (2)-Sheet_2: 8678907863379535059
+      location (2)-Sheet_20: -7186213578734283161
+      location (2)-Sheet_24: 3654729277261612507
+      location (2)-Sheet_8: 5737851910220351384
+      location (2)-Sheet_25: -2622863721978980059
+      location (2)-Sheet_28: 7081515554900063135
+      location (2)-Sheet_21: -1825702870496515362
+      location (2)-Sheet_12: 1281628915848189972
+      location (2)-Sheet_17: -1280763419190503465
+      location (2)-Sheet_22: -5277062933275635953
+      location (2)-Sheet_9: 2606957466909783053
+      location (2)-Sheet_0: 2119906454469122962
+      location (2)-Sheet_3: 8921348785397793697
+      location (2)-Sheet_7: -8773497636620682591
+      location (2)-Sheet_10: -1682884421821228913
+      location (2)-Sheet_16: 3927874389772806148
+      location (2)-Sheet_14: 4354817167522595230
+      location (2)-Sheet_26: -7936895761715269848
+      location (2)-Sheet_18: 4252379651582963745
+      location (2)-Sheet_11: -7884278433915294702
+      location (2)-Sheet_27: -2156779861686007404
+      location (2)-Sheet_15: -1617896286960075301
+      location (2)-Sheet_23: 894773911562088461
+      location (2)-Sheet_13: 2773568471211181843
+      location (2)-Sheet_19: 114985681706416565
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

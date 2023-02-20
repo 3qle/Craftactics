@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8617723472294663587}
   - component: {fileID: 6369173029705280109}
-  - component: {fileID: -696056703454948942}
+  - component: {fileID: -8124570931501011779}
   m_Layer: 0
   m_Name: Ice Dagger
   m_TagString: Untagged
@@ -47,56 +47,54 @@ MonoBehaviour:
   entityType: 8
   Icon: {fileID: 0}
   Name: Ice Dagger
-  ShopCost: 30
+  ShopCost: 50
   QuantityInShop: 1
   IndexOfCategory: 0
   Bought: 0
+  _user: {fileID: 0}
+  ActiveItem: {fileID: 0}
+  _weapon: {fileID: 0}
   itemType: 0
-  projectileType: 0
-  maxCapacity: 0
+  projectileType: 5
+  maxCapacity: 3
   staminaCost: 1
   instantUse: 0
-  passive: 0
+  projectileRange: 0
   consumable: 0
-  Selected: 0
-  itemRange:
-    Using: 1
-    Icon: {fileID: 0}
-    Points: 0
-    Duration: 0
+  range:
     MinRange: 0
     MaxRange: 1
-    RangeType: 3
+    target: 3
   damageStack:
-    Using: 1
-    Icon: {fileID: 0}
-    Points: 0
-    Duration: 0
-    StrenghtMultiplier: 10
-    AccuracyMultiplier: 20
-    SupportMultiplier: 0
-    MagicMultiplier: 20
-    MusicMultiplier: 0
+    Strenght: 20
+    Accuracy: 0
+    Magic: 60
+    Spirit: 40
+    Flow: 0
     Stack: 
-  PositionModifier:
-    Using: 0
-    Icon: {fileID: 0}
+  Shapers:
+  - Icon: {fileID: 0}
+    Chain: 0
     Points: 0
     Duration: 0
-  attributeModifiers: []
-  resistanceModifiers: []
-  damageModifiers:
-  - Using: 1
-    Icon: {fileID: 0}
-    Points: 1
+    Trait: 5
+    type: 0
+    target: 3
+  - Icon: {fileID: 0}
+    Chain: 0
+    Points: 0
     Duration: 3
-    WeaponElement: 2
-    StatusDamage: 75
-    raw: 0
-    rawStatus: 0
-  _weapon: {fileID: 0}
-  ActiveItem: {fileID: 0}
---- !u!212 &-696056703454948942
+    Trait: 7
+    type: 0
+    target: 3
+  - Icon: {fileID: 0}
+    Chain: 0
+    Points: 0.2
+    Duration: 5
+    Trait: 5
+    type: 0
+    target: 3
+--- !u!212 &-8124570931501011779
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

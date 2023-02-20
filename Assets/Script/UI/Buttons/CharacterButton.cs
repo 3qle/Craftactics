@@ -8,11 +8,9 @@ public class CharacterButton : MonoBehaviour
     private Button characterButton;
     
     public static Action<Character> CharacterButtonSelected;
-    public Image CharacterImage, ButtonImage;
+    public Image CharacterImage;
     public Image HPbar, SPbar;
-    [SerializeField] private Sprite[] _images;
    
-    
     public void Initialize( Character character)
     { 
         _character = character;
@@ -25,8 +23,9 @@ public class CharacterButton : MonoBehaviour
     
     public void Show()
     {
+        CharacterImage.sprite = _character.Faces[_character.Attributes.Get(Trait.Health).IsMore(0)?_character.Attributes.isWounded?1:2:0];
         HPbar.color = SPbar.color =  CharacterImage.color =Color.HSVToRGB(0,0,_character.Selected?1:0.5f);
-        HPbar.fillAmount = _character.Attributes.health.current / _character.Attributes.health.max;
-        SPbar.fillAmount =_character.Attributes.stamina.current / _character.Attributes.stamina.max;
+        HPbar.fillAmount = _character.Attributes.Get(Trait.Health).current / _character.Attributes.Get(Trait.Health).startPoint;
+        SPbar.fillAmount =_character.Attributes.Get(Trait.Stamina).current / _character.Attributes.Get(Trait.Stamina).startPoint;
     }
 }

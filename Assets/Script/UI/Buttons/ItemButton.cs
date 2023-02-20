@@ -28,7 +28,7 @@ public class ItemButton : MonoBehaviour
         {
             _itemOnButton =  character.Bag.AllItems[i];
             _itemImage.enabled = true;
-            _itemImage.color = Color.HSVToRGB(0,character.Attributes.stamina.current >= _itemOnButton.staminaCost ? 0f : 0.5f , _imageValue);
+            _itemImage.color = Color.HSVToRGB(0,character.Attributes.Get(Trait.Stamina).current >= _itemOnButton.staminaCost ? 0f : 0.5f , _imageValue);
             _itemImage.sprite =_itemOnButton.Icon.sprite;
         }
         else ClearButton();
@@ -41,9 +41,7 @@ public class ItemButton : MonoBehaviour
         _itemOnButton = null;
     }
     
-    public void HighLightButton(bool selected)
-    {
-      _imageValue = selected ? 1 : 0.5f; 
-      _itemOnButton?.Deselect();
-    }
+    public void HighLightButton(bool selected) 
+        => _imageValue = selected ? 1 : 0.5f; 
+   
 }

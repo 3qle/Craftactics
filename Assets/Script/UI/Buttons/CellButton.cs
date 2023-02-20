@@ -61,7 +61,7 @@ public class CellButton : MonoBehaviour
 
    public CellButton CheckFreeNeighbours(Character character)
    {
-       weaponRange = character.Arms.selectedItem.itemRange.MaxRange; 
+       weaponRange = character.Arms.selectedItem.range.MaxRange; 
        AddFreeNeighbours(weaponRange);
        CellButton c = Left != null
             && (Left.Type == CellType.Free ||CurrentCharacter == character) 

@@ -47,53 +47,46 @@ MonoBehaviour:
   entityType: 17
   Icon: {fileID: 0}
   Name: Smooth Distortion Cover
-  ShopCost: 100
+  ShopCost: 30
   QuantityInShop: 1
   IndexOfCategory: 0
+  Bought: 0
+  _user: {fileID: 0}
+  ActiveItem: {fileID: 0}
+  _weapon: {fileID: 0}
   itemType: 0
   projectileType: 2
   maxCapacity: 5
   staminaCost: 1
   instantUse: 0
-  passive: 0
+  projectileRange: 1
   consumable: 0
-  Selected: 0
-  itemRange:
-    Using: 0
-    Icon: {fileID: 0}
-    Points: 0
-    Duration: 0
+  range:
     MinRange: 0
     MaxRange: 0
-    RangeType: 0
+    target: 3
   damageStack:
-    Using: 1
-    Icon: {fileID: 0}
-    Points: 0
-    Duration: 0
-    StrenghtMultiplier: 0
-    AccuracyMultiplier: 20
-    SupportMultiplier: 0
-    MagicMultiplier: 30
-    MusicMultiplier: 50
+    Strenght: 0
+    Accuracy: 0
+    Magic: 40
+    Spirit: 0
+    Flow: 80
     Stack: 
-  PositionModifier:
-    Using: 0
-    Icon: {fileID: 0}
-    Points: 0
+  Shapers:
+  - Icon: {fileID: 0}
+    Chain: 0
+    Points: -20
     Duration: 0
-  attributeModifiers: []
-  resistanceModifiers:
-  - Using: 1
-    Icon: {fileID: 0}
-    Points: -5
-    Duration: 5
-    Element: 5
-    BuffType: 1
-  damageModifiers: []
-  _weapon: {fileID: 0}
-  ProjectileIndex: 0
-  ActiveItem: {fileID: 0}
+    Trait: 10
+    type: 4
+    target: 0
+  - Icon: {fileID: 0}
+    Chain: 0
+    Points: 10
+    Duration: 0
+    Trait: 2
+    type: 4
+    target: 0
 --- !u!212 &1281700728834281703
 SpriteRenderer:
   m_ObjectHideFlags: 0

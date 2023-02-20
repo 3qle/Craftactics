@@ -12,27 +12,30 @@ public class Console
 {
     public Transform Windows;
     public TextMeshProUGUI Name;
-    public TextMeshProUGUI[] Duration, Points;
-    public Image[] DamageElement;
-    public Image[] Stack;
-    public Image RangeImage;
+    public List<TextMeshProUGUI> Duration, Points = new List<TextMeshProUGUI>();
+    public List<Image> DamageElement = new List<Image>();
+    public List<Image> Stack = new List<Image>();
     public Image SPCost, ProjectilesAmount, ProjectileMax;
     private UI _ui;
     public void Initialize(UI ui)
     {
+        
         _ui = ui;
         for (int i = 0; i <Windows.childCount ; i++)
         {
-            Points[Windows.childCount - 1 - i] =  Windows.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>();
-            DamageElement[Windows.childCount - 1 - i] = Windows.GetChild(i).GetChild(1).GetComponent<Image>();
-            Duration[Windows.childCount - 1 - i] = Windows.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>();
-        }
+            var childCount = Windows.childCount;
+            Points.Add(Windows.GetChild(childCount - 1 - i).GetChild(0).GetComponent<TextMeshProUGUI>());
+            DamageElement.Add(Windows.GetChild(childCount - 1 - i).GetChild(1).GetComponent<Image>());
+            Duration.Add(Windows.GetChild(childCount - 1 - i).GetChild(2).GetComponent<TextMeshProUGUI>()); ;
+      
+        } 
+       
     }
-    public void ShowInfo(Item item,Character character)
+    public void ShowInfo(Item item)
     {
         Clear();
        
-        ShowText(item.ActiveItem,character);
+        ShowText(item.ActiveItem);
         ShowDamageStack(item.ActiveItem);
         ShowElement(item.ActiveItem);
         _ui.ShowSwitches(item.Projectiles.Count > 0);
@@ -42,35 +45,36 @@ public class Console
 
     void ShowElement(Item item)
     {
-        for (int i = 0; i < item.Properties.Count; i++)
-        { 
-            Points[i].enabled = DamageElement[i].enabled = true; 
-            Points[i] = item.Properties[i].Text(Points[i]);
-            DamageElement[i].sprite = item.Properties[i].Icon;
-            Duration[i].text = item.Properties[i].Duration > 0
-                ? item.Properties[i].Duration.ToString():
+        for (int i = 0; i < item.Shapers.Count; i++)
+        {
+            Points[i].enabled = true;
+            DamageElement[i].enabled = true; 
+            Points[i] = item.Shapers[i].Text(Points[i]);
+            DamageElement[i].sprite = item.Shapers[i].Icon;
+            Duration[i].text = item.Shapers[i].Duration > 0
+                ? item.Shapers[i].Duration.ToString():
                 "";
         }
     }
 
-    void ShowText(Item item, Character character)
+    void ShowText(Item item)
     {
         Name.text = $"{item.Name}";
         SPCost.fillAmount =(float) item.staminaCost / 10;
-        RangeImage.sprite = item.itemRange.Icon; 
     }
     public void Clear()
     {
-        for (int i = 0; i < DamageElement.Length; i++)
+        for (int i = 0; i < DamageElement.Count; i++)
         {
-            
-            DamageElement[i].enabled = false;
-            Points[i].enabled = false;
-            ProjectilesAmount.fillAmount = SPCost.fillAmount = ProjectileMax.fillAmount =  0;
-            foreach (var stack in Stack)
-                stack.gameObject.SetActive(false);
+          
+          
+                Points[i].enabled = false;
+                DamageElement[i].enabled = false;
         }
-
+        
+        ProjectilesAmount.fillAmount = SPCost.fillAmount = ProjectileMax.fillAmount =  0;
+        foreach (var stack in Stack)
+            stack.gameObject.SetActive(false);
         foreach (var VARIABLE in Duration)
         {
             VARIABLE.text = "";
@@ -81,17 +85,11 @@ public class Console
 
     public void ShowDamageStack(Item item)
     {
-        for (int i = 0; i < item.damageStack.Stack.Length; i++)
-        {
-                
-            if (item.damageStack.Stack[i] > 0)
+        for (int i = 0; i < item.damageStack.Stack.Length; i++) 
+            if (item.damageStack.Stack[i] > 0) 
             {
                 Stack[i].gameObject.SetActive(true);
                 Stack[i].transform.GetChild(0).GetComponent<Image>().fillAmount =(float)item.damageStack.Stack[i]/100;
             }
-               
-        }
     }
-
-   
 }

@@ -50,64 +50,43 @@ MonoBehaviour:
   ShopCost: 5
   QuantityInShop: 20
   IndexOfCategory: 0
+  Bought: 0
+  _user: {fileID: 0}
+  ActiveItem: {fileID: 0}
+  _weapon: {fileID: 0}
   itemType: 2
   projectileType: 2
   maxCapacity: 0
   staminaCost: 2
   instantUse: 0
-  passive: 0
+  projectileRange: 0
   consumable: 1
-  Selected: 0
-  itemRange:
-    Using: 1
-    Icon: {fileID: 0}
-    Points: 0
-    Duration: 0
-    MinRange: 0
-    MaxRange: 2
-    RangeType: 3
+  range:
+    MinRange: 1
+    MaxRange: 3
+    target: 3
   damageStack:
-    Using: 0
-    Icon: {fileID: 0}
-    Points: 0
-    Duration: 0
-    StrenghtMultiplier: 0
-    AccuracyMultiplier: 0
-    SupportMultiplier: 0
-    MagicMultiplier: 0
-    MusicMultiplier: 0
+    Strenght: 0
+    Accuracy: 0
+    Magic: 0
+    Spirit: 0
+    Flow: 0
     Stack: 
-  PositionModifier:
-    Using: 0
-    Icon: {fileID: 0}
+  Shapers:
+  - Icon: {fileID: 0}
+    Chain: 1
     Points: 0
     Duration: 0
-  attributeModifiers: []
-  resistanceModifiers:
-  - Using: 1
-    Icon: {fileID: 0}
-    Points: -10
-    Duration: 10
-    Element: 0
-    BuffType: 1
-  - Using: 1
-    Icon: {fileID: 0}
-    Points: -10
-    Duration: 10
-    Element: 7
-    BuffType: 1
-  damageModifiers:
-  - Using: 1
-    Icon: {fileID: 0}
-    Points: 2
+    Trait: 12
+    type: 0
+    target: 3
+  - Icon: {fileID: 0}
+    Chain: 1
+    Points: 0
     Duration: 3
-    WeaponElement: 7
-    StatusDamage: 50
-    raw: 0
-    rawStatus: 0
-  _weapon: {fileID: 0}
-  ProjectileIndex: 0
-  ActiveItem: {fileID: 0}
+    Trait: 12
+    type: 0
+    target: 3
 --- !u!212 &3537528756929018542
 SpriteRenderer:
   m_ObjectHideFlags: 0

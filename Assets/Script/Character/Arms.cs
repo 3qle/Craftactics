@@ -15,18 +15,14 @@ using Random = UnityEngine.Random;
         
         public void SelectWeapon(Item item, Character character)
         {
-           
-            if (!character.Legs._isWalking && item && character.Attributes.stamina.current >= item.staminaCost)
+            selectedItem = item;
+            if (!character.Legs._isWalking && item && character.Attributes.Get(Trait.Stamina).current >= item.staminaCost)
             {
-                selectedItem = item;
-                item.Select(character);
+                
+                item.Select(character,false);
             }
         }
 
-        public void DeselectWeapon(bool select)
-        {
-            selectedItem = select?selectedItem:null;
-        }
         public Item SelectRandomWeapon(Character character)
         {
             SelectWeapon(character.Bag.AllItems[Random.Range(0, character.Bag.AllItems.Count)],character);

@@ -78,7 +78,7 @@ public class Bag
         AllItems.Remove(item);
         if (item.itemType == ItemType.Weapon) Weapons.Remove(item);
         else Items.Remove(item);
-        if(item.passive)_character.Attributes.CheckActiveModifiers();
+        _character.Attributes.CheckPassive(item);
     }
     
     

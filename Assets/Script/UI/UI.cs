@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script.Character;
+using Script.Enum;
 using Script.Managers;
 using Script.UI;
 using TMPro;
@@ -39,9 +40,15 @@ public class UI
      
       InfoUI.Initialize();
       LoadButtons();
+      
+ Console.Clear();
+      Status.ShowText += ShowPopUp;
+
+   }
+
+   public void InitOnAwake()
+   {
       Console.Initialize(this);
-      Console.Clear();
-    
    }
    public void LoadButtons()
    {
@@ -71,8 +78,8 @@ public class UI
      _shop.UIShop.ChangeCategories(character);
    }
    
-   public void ShowPopUp(AttackResult result, Vector3 pos, float damage) 
-      => _pool.PopUpList[Random.Range(0,_pool.PopUpList.Count)].ShowPopUp(result,pos,damage);
+   public void ShowPopUp( Status status, Vector2 pos) 
+      => _pool.PopUpList[0].ShowPopUp(status, pos, _pool.PopUpList);
    
    public void Reset()
       => SceneManager.LoadScene(0);

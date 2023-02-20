@@ -103,93 +103,82 @@ MonoBehaviour:
   ShopCost: 0
   QuantityInShop: 0
   IndexOfCategory: 0
+  Bought: 0
   field:
     height: 0
     width: 0
   Face: {fileID: -6271420699411309263, guid: 61dc9de40508e4b4bbdc7bfa50012b00, type: 3}
   Faces: []
-  Resistance:
-    attackResult: 0
-    physicDefence:
-      Element: 0
-      current: 0
-      Icon: {fileID: 0}
-    fireDefence:
-      Element: 1
-      current: -50
-      Icon: {fileID: 0}
-    waterDefence:
-      Element: 2
-      current: 0
-      Icon: {fileID: 0}
-    electricDefence:
-      Element: 4
-      current: 0
-      Icon: {fileID: 0}
-    waveDefence:
-      Element: 3
-      current: -50
-      Icon: {fileID: 0}
-    mentalDefence:
-      Element: 5
-      current: 100
-      Icon: {fileID: 0}
-    holyDefence:
-      Element: 6
-      current: 0
-      Icon: {fileID: 0}
-    IllDefence:
-      Element: 7
-      current: 100
-      Icon: {fileID: 0}
-    ResistanceClasses: []
   Attributes:
-    health:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 4
-      Icon: {fileID: 0}
-    stamina:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 3
-      Icon: {fileID: 0}
-      OutOfStamina: 0
-    accuracy:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 2
-      Icon: {fileID: 0}
-    support:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 1
-      Icon: {fileID: 0}
-    magic:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 0
-      Icon: {fileID: 0}
-    strength:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 2
-      Icon: {fileID: 0}
-    flow:
-      attributeType: 0
-      Name: 
-      current: 0
-      max: 4
-      Icon: {fileID: 0}
+    TraitList:
+    - current: 0
+      Trait: 0
+      startPoint: 2
+      damage: 0
+    - current: 0
+      Trait: 1
+      startPoint: 5
+      damage: 0
+    - current: 0
+      Trait: 2
+      startPoint: 0
+      damage: 0
+    - current: 0
+      Trait: 3
+      startPoint: 2
+      damage: 0
+    - current: 0
+      Trait: 4
+      startPoint: 3
+      damage: 0
+    - current: 0
+      Trait: 5
+      startPoint: -50
+      damage: 0
+    - current: 0
+      Trait: 6
+      startPoint: -100
+      damage: 0
+    - current: 0
+      Trait: 7
+      startPoint: -100
+      damage: 0
+    - current: 0
+      Trait: 8
+      startPoint: -100
+      damage: 0
+    - current: 0
+      Trait: 9
+      startPoint: 100
+      damage: 0
+    - current: 0
+      Trait: 10
+      startPoint: -10
+      damage: 0
+    - current: 0
+      Trait: 11
+      startPoint: 0
+      damage: 0
+    - current: 0
+      Trait: 12
+      startPoint: 0
+      damage: 0
+    - current: 0
+      Trait: 13
+      startPoint: 4
+      damage: 0
+    - current: 0
+      Trait: 14
+      startPoint: 4
+      damage: 0
+    - current: 0
+      Trait: 15
+      startPoint: 0
+      damage: 0
   MasteryTypes:
     Types: 
   Bag:
+    Stash: []
     AllItems: []
     Weapons: []
     Items:
@@ -198,7 +187,7 @@ MonoBehaviour:
     - {fileID: 0}
     SelectedProjectiles: []
   Selected: 0
-  _starter: {fileID: 0}
+  Active: 0
   targetList: []
 --- !u!1001 &691261267810785837
 PrefabInstance:

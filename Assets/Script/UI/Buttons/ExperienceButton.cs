@@ -16,9 +16,9 @@ public class ExperienceButton : MonoBehaviour
     {
         ButtonText.text = attribute == null ? "" : attribute.current.ToString();;
         ButtonText.color = attribute == null
-                ? Color.white:attribute.current > attribute.max
+                ? Color.white:attribute.current > attribute.startPoint
                 ? Color.green
-                : attribute.current == attribute.max
+                : attribute.current == attribute.startPoint
                     ? Color.white
                     : Color.red;
     }

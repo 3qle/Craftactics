@@ -24,11 +24,21 @@ public class BuyButton : MonoBehaviour
 
         public void SetCost(int cost, int bank, Character character, Entity entity)
         {
-            if (character.Bag.Stash.Contains(entity) && entity.TrySell())
+            if (character.Bag.Stash.Contains(entity))
+               
             {
-                buy =false;
-                _text.text = $"+{cost}";
-                Show(true);
+                if (entity.TrySell())
+                {
+                    buy =false;
+                    _text.text = $"+{cost}";
+                    Show(true);
+                }
+                else
+                {
+                    Item item = (Item) entity;
+                    Disable($"Sell {item.projectileType}s ");
+                }
+                
             }
             
             else
@@ -52,10 +62,13 @@ public class BuyButton : MonoBehaviour
         }
 
         private bool ValidWeapon(Item entity, Character character)
-            => character != null && entity.itemType == ItemType.Projectile &&
-               character.Arms.selectedItem != null &&
-               character.Arms.selectedItem.projectileType == entity.projectileType
-               || entity.itemType != ItemType.Projectile;
+        {
+            Debug.Log( $"xx {character != null && entity.itemType == ItemType.Projectile && character.Arms.selectedItem != null && character.Arms.selectedItem.projectileType == entity.projectileType || entity.itemType != ItemType.Projectile}");
+            return character != null && entity.itemType == ItemType.Projectile &&
+                   character.Arms.selectedItem != null &&
+                   character.Arms.selectedItem.projectileType == entity.projectileType
+                   || entity.itemType != ItemType.Projectile;
+        }
 
         public void Disable(string word)
         {

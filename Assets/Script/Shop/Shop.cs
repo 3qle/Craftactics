@@ -39,6 +39,7 @@ public class Shop
    UIShop.Initialize(_spawner,this);
    ShopContainer.localScale = open ? new Vector3(1, 1, 1) : Vector3.zero;
    _turn.Act = open ? TurnState.Shop : TurnState.E;
+   Debug.Log(_turn.Act);
    EnemyPreview.ShowNextEnemy();
    if(!open) _turn.StartNewTurn();
   }
